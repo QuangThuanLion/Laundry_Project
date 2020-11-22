@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LaundryStore.Models;
+using LaundryStore.Utils;
 
 namespace LaundryStore.Areas.Admin.Controllers
 {
@@ -16,8 +17,15 @@ namespace LaundryStore.Areas.Admin.Controllers
         private LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
 
         // GET: Admin/Employees
-        public ActionResult Index()
+        public ActionResult Index(string message = null)
         {
+            string result = Request.QueryString["message"];
+            if (message != null)
+            {
+                Dictionary<string, string> viewData = MessageUtil.getMessage(result);
+                ViewData["message"] = viewData["message"];
+                ViewData["alert"] = viewData["alert"];
+            }
             List<Employee> list = null;
             list = db.Employees.Where(e => e.status == true).ToList();
             return View(list);
@@ -50,7 +58,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,email,password,fullname,phone,gender,dayOfBirth,address,avatar,dateStart,dateEnd,contractSalary,unitSalary,workTime,schedule,createdDate,createdBy,modifyDate,modifyBy,status,activated")] Employee employee,
-                                        HttpPostedFileBase avatar)
+                                        HttpPostedFileBase avatar, string role)
         {
             if (ModelState.IsValid)
             {
@@ -68,9 +76,14 @@ namespace LaundryStore.Areas.Admin.Controllers
                     employee.avatar = "Assets/Admin/resources/image/" + "userDefault.jpg";
                 }
 
+                AccountRole account = new AccountRole();
+                account.employeeId = employee.id;
+                account.roleId = Convert.ToInt32(role);
+                db.AccountRoles.Add(account);
                 db.Employees.Add(employee);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return new RedirectResult(url: "/Admin/Employees/Index?message=insert_success");
+                //return RedirectToAction("Index");
             }
 
             return View(employee);
@@ -98,7 +111,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "id,email,password,fullname,phone,gender,dayOfBirth,address,avatar,dateStart,dateEnd,contractSalary,unitSalary,workTime,schedule,createdDate,createdBy,modifyDate,modifyBy,status,activated")] Employee employee,
-                                    HttpPostedFileBase avatar)
+                                    HttpPostedFileBase avatar, string role)
         {
             if (ModelState.IsValid)
             {
@@ -117,9 +130,13 @@ namespace LaundryStore.Areas.Admin.Controllers
                     employee.avatar = "Assets/Admin/resources/image/" + "userDefault.jpg";
                 }
 
+                AccountRole account = new AccountRole();
+                account.employeeId = employee.id;
+                account.roleId = Convert.ToInt32(role);
+                db.AccountRoles.Add(account);
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return new RedirectResult(url: "/Admin/Employees/Index?message=update_success");
             }
             return View(employee);
         }
@@ -147,7 +164,7 @@ namespace LaundryStore.Areas.Admin.Controllers
             Employee employee = db.Employees.Find(id);
             employee.status = false;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return new RedirectResult(url: "/Admin/Employees/Index?message=delete_success");
         }
 
         protected override void Dispose(bool disposing)
