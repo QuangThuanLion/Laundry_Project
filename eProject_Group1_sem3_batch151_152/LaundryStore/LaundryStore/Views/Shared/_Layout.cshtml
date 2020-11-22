@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>LaundryStore</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Calling Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Assets/Client/vendors/img/favicon.png">
+    <!-- Calling Favicon -->
+    <!-- ********************* -->
+    <!-- CSS files Start-->
+    <link href="~/Assets/Client/vendors/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/Client/vendors/css/animate.css" rel="stylesheet" />
+    <link href="~/Assets/Client/vendors/css/all.min.css" rel="stylesheet" />
+    <link href="~/Assets/Client/vendors/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Assets/Client/vendors/css/nice-select.css" rel="stylesheet" />
+    <link href="~/Assets/Client/vendors/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Assets/Client/vendors/css/meanmenu.css" rel="stylesheet" media="all" />
+    <link href="~/Assets/Client/vendors/css/twentytwenty.css" rel="stylesheet" media="screen" type="text/css" />
+    <link href="~/Assets/Client/vendors/css/default.css" rel="stylesheet" />
+    <link href="~/Assets/Client/vendors/css/style.css" rel="stylesheet" />
+    <link href="~/Assets/Client/vendors/css/color.css" rel="stylesheet" class="color-changing" />
+    <link href="~/Assets/Client/vendors/css/responsive.css" rel="stylesheet" />
+    <!-- End CSS files -->
+</head>
+
+<body>
+    <!-- Preloader start -->
+    <div class="loader-out flex-center">
+        <div class="loader"></div>
+    </div>
+    <!-- Preloader end -->
+    <!-- header start -->
+    <header class="head-type-1">
+        <div class="container-fluid p-0">
+            <div class="row align-items-center no-gutters">
+                <div class="col-lg-3">
+                    <div class="d-flex align-self-stretch">
+                        <div class="logo pl-35">
+                            <a href="/Home/Index">
+                                <img src="~/Assets/Client/vendors/img/logo/logo.png" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="header-1 line-after-1">
+                        <nav class="main-menu-1">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <ul>
+                                    <li>
+                                        <a href="/Home/Index" class="active">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Services/Index" class="">Service</a>
+                                    </li>
+                                    <li>
+                                        <a href="/About/Index" class="">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Blog/Index" class="">Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="">Account</a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="/Account/Login"><span></span>Login</a>
+                                            </li>
+                                            <li>
+                                                <a href="/Account/RegisterAccount"><span></span>Signup</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="/Home/Contact" class=""><span></span>Contact</a>
+                                    </li>
+                                </ul>
+                                <a href="/ShoppingCart/ShowCart" class="head-1-book ml-15 mr-30">Cart</a>
+                                <div class="emergency shine-inf white">
+                                    <p class="f-500 z-5">Emergency? Call Us Now</p>
+                                    <h4 class="fs-25 z-5 f-500">+123 4567 890</h4>
+                                    <img src="~/Assets/Client/vendors/img/icons/emergency.png" alt="" />
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mobile-menu tt-index-1"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+
+    <div class="content-wrapper">
+        @RenderBody()
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- footer start -->
+    <footer class="pt-100 pb-45 z-15 footer-1" data-overlay="8" style="background-image: url('/Assets/Client/vendors/img/bg/footer-bg.jpg');">
+        <div class="container">
+            <div class="row z-5">
+                <div class="col-lg-4 col-md-6 mb-md-60 mb-sm-40">
+                    <div class="logo-footer mb-30">
+                        <a href="">
+                            <img src="~/Assets/Client/vendors/img/logo/logo2.png" alt="">
+                        </a>
+                    </div>
+                    <p class="pr-40 mb-25">Lorem ipsum dolor sit amet consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua dolor.</p>
+                    <div class="contact-footer">
+                        <ul class="">
+                            <li class="mb-10"><i class="fas fa-phone blue"></i>+123 456 7890</li>
+                            <li><i class="fas fa-envelope blue"></i>info@bubbblezonne.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-md-60 mb-sm-40">
+                    <h3 class="fs-20 f-700 blue">Quick Links</h3>
+                    <span class="footer-lines"></span>
+                    <ul class="footer-links">
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>About Us</a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>Our Services</a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>How It Works</a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>Blogs & News</a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>Contact Us</a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>Faq</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-sm-40">
+                    <h3 class="fs-20 f-700 blue">Our Services</h3>
+                    <span class="footer-lines"></span>
+                    <ul class="footer-links">
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>House Cleaning </a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>Office Cleaning </a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>After Party Cleaning </a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>Move In / Out Clean </a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>Window Cleaning</a></li>
+                        <li><a href=""><i class="fas fa-angle-double-right"></i>Carpet Cleaning</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 text-center">
+                    <div class="footer-buttons">
+                        <a href="" class="btn shine-btn btn-lg mb-15 btn-blue">Book Now</a>
+                        <a href="" class="btn btn-white-border mb-15 btn-lg">Join Us</a>
+                        <a href="" class="btn btn-white-border btn-lg">Newsletter</a>
+                    </div>
+                    <ul class="social-icons footer mt-50 white">
+                        <li>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="fab fa-google-plus-g"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row z-5">
+                <div class="col-lg-12">
+                    <div class="hr-2 bg-light-white mt-95 mb-40 opacity-1"></div>
+                </div>
+                <div class="col-lg-8">
+                    <p class="mb-0">© Laundry Matic  2020 Allright Reserved</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <a href="" class="scroll-btn bg-blue opacity-0"><i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- Theme skins -->
+    <!-- Theme skins -->
+    <!-- JS Files -->
+    <script src="~/Assets/Client/vendors/js/modernizr-3.5.0.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/jquery-1.12.4.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/owl.carousel.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/jquery.nice-select.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/jquery.waypoints.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/jquery.counterup.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/jquery.countdown.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/lightslider.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/wow.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/isotope.pkgd.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/jquery.meanmenu.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/tilt.jquery.min.js"></script>
+    <script src="~/Assets/Client/vendors/js/jquery.event.move.js"></script>
+    <script src="~/Assets/Client/vendors/js/jquery.twentytwenty.js"></script>
+    <script src="~/Assets/Client/vendors/js/main.js"></script>
+    <!-- JS Files end -->
+</body>
+
+</html>

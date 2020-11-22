@@ -1,0 +1,38 @@
+﻿@model LaundryStore.Models.Employee
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!-- Modal -->
+<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle" style="font-size:40px; margin:0 44%; color:orange" ;></i>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <h3><b>Are you sure delete employee ?</b></h3>
+                <h4>You will not be able to recover this employee !</h4>
+            </div>
+            <div class="modal-footer editModalFooter">
+                @using (Html.BeginForm("Delete", "Employees", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <button type="button" class="btn btn-info" data-dismiss="modal"><b>Cancel</b></button>
+                    <button type="submit" class="btn btn-warning" style="margin-top:0px;"><b>Yes, delete it !</b></button>
+                }
+            </div><!-- /.modal-footer -->
+        </div>
+    </div>
+</div>
+
+<style>
+    .editModalFooter {
+        justify-content: center;
+    }
+</style>

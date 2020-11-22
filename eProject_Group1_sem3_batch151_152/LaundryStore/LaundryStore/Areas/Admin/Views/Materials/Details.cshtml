@@ -1,0 +1,144 @@
+﻿@model LaundryStore.Models.Material
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Page Header Start -->
+<section class="page--header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Page Title Start -->
+                <h2 class="page--title h5">Material</h2>
+                <!-- Page Title End -->
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Material</a></li>
+                    <li class="breadcrumb-item active"><span>Detail Material</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Header End -->
+<!-- Main Content Start -->
+<section class="main--content">
+    <div class="panel">
+        <!-- Records Header Start -->
+        <div class="records--header">
+            <div class="title fa-shopping-bag">
+                <h3 class="h3">Material Management<a href="#" class="btn btn-sm btn-outline-info">Material Detail</a></h3>
+            </div>
+            <div class="actions">
+                <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "Materials")">
+                    <span>BACK</span>
+                </a>
+                <a class="addProduct btn btn-lg btn-rounded btn-warning" title="Edit" href="@Url.Action("Edit", "Materials", new { id = Model.id })">
+                    <span>EDIT MATERIAL</span>
+                </a>
+            </div>
+        </div>
+        <!-- Records Header End -->
+    </div>
+
+    <div class="panel">
+
+        <!-- View Order Start -->
+        <div class="records--body">
+            <div class="title">
+                <h6 class="h6"><span class="text-lightergray">Detail Material</span></h6>
+            </div>
+
+            <!-- Tabs Nav Start -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#tab01" data-toggle="tab" class="nav-link active">Detail</a>
+                </li>
+            </ul>
+            <!-- Tabs Nav End -->
+            <!-- Tab Content Start -->
+            <div class="tab-content">
+                <!-- Tab Pane Start -->
+                <div class="tab-pane fade show active" id="tab01">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="subtitle">Other Information</h4>
+
+                            <table class="table table-simple">
+                                <tbody>
+                                    <tr>
+                                        <td>Id</td>
+                                        <th>@Html.DisplayFor(model => model.id)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Material</td>
+                                        <th>@Html.DisplayFor(model => model.materialName)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Provider Name</td>
+                                        <th>@Html.DisplayFor(model => model.Provider.providerName)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <th>@Html.DisplayFor(model => model.price)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Amout</td>
+                                        <th>@Html.DisplayFor(model => model.amount)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <th>@Html.DisplayFor(model => model.description)</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h4 class="subtitle">Other Information</h4>
+
+                            <table class="table table-simple">
+                                <tbody>
+                                    <tr>
+                                        <td>CreatedDate</td>
+                                        <th>@Html.DisplayFor(model => model.createdDate)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>CreatedBy</td>
+                                        <th>@Html.DisplayFor(model => model.createdBy)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>ModifyDate</td>
+                                        <th>@Html.DisplayFor(model => model.modifyDate)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>ModifyBy</td>
+                                        <th>@Html.DisplayFor(model => model.modifyBy)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Available</td>
+                                        <th>
+                                            @if (Model.available == true)
+                                            {
+                                                <span class="label label-success">Yes</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-danger">No</span>
+                                            }
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab Pane End -->
+            </div>
+            <!-- Tab Content End -->
+        </div>
+        <!-- View Order End -->
+    </div>
+</section>
+<!-- Main Content End -->

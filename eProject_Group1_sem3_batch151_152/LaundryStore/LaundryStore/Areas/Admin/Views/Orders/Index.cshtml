@@ -1,0 +1,124 @@
+﻿@model IEnumerable<LaundryStore.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.orderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paymentStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employeeIdConfirm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employeeIdShipping)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalDebt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayMentMethod.paymentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShippingAdress.addressName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status1.statusName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.orderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paymentStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employeeIdConfirm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employeeIdShipping)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalDebt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayMentMethod.paymentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShippingAdress.addressName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status1.statusName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

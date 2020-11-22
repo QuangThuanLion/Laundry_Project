@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_layoutOtherPage.cshtml";
+}
+
+<!-- inner banner start -->
+@section scripts{
+    <div class="container">
+        <div class="row z-5 mt-85 align-items-center">
+            <div class="col-lg-7 text-center text-lg-left">
+                <h1 class="blue">Checkout</h1>
+            </div>
+        </div>
+    </div>
+}
+<!-- inner banner end -->
+
+<!-- checkout start -->
+    <section class="checkout pt-90 pb-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="left-checkout mb-md-30">
+                        <div class="login-section">
+                            <div id="accordion1">
+                                <div class="card">
+                                    <div class="card-header" id="heading1" data-toggle="collapse" role="button" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                        <h5 class="mb-0 rbt fs-15">Registered Customer Login Here</h5>
+                                    </div>
+                                    <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordion1">
+                                        <div class="card-body">
+                                            <form action="#">
+                                                <p class="mb-20">If you have an account with us, please log in.</p>
+                                                <div class="form-group">
+                                                    <label for="email">Email address*</label>
+                                                    <input type="email" class="form-control input-white" placeholder="Email address" id="email">
+                                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pwd">Password*</label>
+                                                    <input type="password" class="form-control input-white" placeholder="Password" id="pwd">
+                                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                                </div>
+                                                <div class="custom-control mb-10 custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="chk19" name="chk19">
+                                                    <label class="custom-control-label" for="chk19">Remember me</label>
+                                                </div>
+                                                <button type="submit" class="btn btn-blue btn-md mb-5">LOGIN</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="heading2" data-toggle="collapse" role="button" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                        <h5 class="mb-0 rbt fs-15"> Are You a New Customer?</h5>
+                                    </div>
+                                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion1">
+                                        <div class="card-body">
+                                            <h5 class="mb-20 ">Register with us for future convenience.</h5>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="chk20" name="chk20">
+                                                <label class="custom-control-label" for="chk20">Checkout as a guest</label>
+                                            </div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. veniam, quis nostrud nostrud exercitation laboris.</p>
+                                            <a href="" class="btn btn-blue btn-md">Create Account</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bill-section">
+                            <h3 class="f-700 mb-15 mt-35">Billing Details</h3>
+                            <form action="#" class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="fname">First Name *</label>
+                                    <input type="text" class="form-control input-white" id="fname" placeholder="First Name">
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="lname">Last Name *</label>
+                                    <input type="text" class="form-control input-white" id="lname" placeholder="Last Name">
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Email">Email *</label>
+                                    <input type="email" class="form-control input-white" id="Email" placeholder="Email">
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="text" class="form-control input-white" id="phone" placeholder="Phone Number">
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="Company">Company Name *</label>
+                                    <input type="text" class="form-control input-white" id="Company" placeholder="Company Name">
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="Address">Address *</label>
+                                    <input type="text" class="form-control input-white mb-15" id="Address" placeholder="Address Line 1">
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                    <input type="text" class="form-control input-white" id="Address2" placeholder="Address Line 2">
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="country">Country*</label>
+                                    <select class="form-control input-white" id="country">
+                                        <option>Country 1</option>
+                                        <option>Country 2</option>
+                                        <option>Country 3</option>
+                                    </select>
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="state">State*</label>
+                                    <select class="form-control input-white" id="state">
+                                        <option>State 1</option>
+                                        <option>State 2</option>
+                                        <option>State 3</option>
+                                    </select>
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Town">Town*</label>
+                                    <input type="text" class="form-control input-white" id="Town" placeholder="Town">
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Post">Post code*</label>
+                                    <input type="text" class="form-control input-white" id="Post" placeholder="Post code">
+                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                </div>
+                                <div class="form-group form-check">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="chk18" name="chk18">
+                                        <label class="custom-control-label" for="chk18">Have read and agree to the <a href="" class="underline">Privacy Policy </a></label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="order-note">
+                            <h3 class=" f-700 mb-15 mt-15">Order Summary</h3>
+                            <div class="form-group mb-0">
+                                <textarea class="form-control input-white" rows="5" id="comment" placeholder="Notes about your order"></textarea>
+                                <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="your-order bg-light-white">
+                        <h3 class="f-700 mb-20">Your Order</h3>
+                        <div class="ordered">
+                            <ul>
+                                <li class="odered-items">
+                                    <img src="~/Assets/Client/vendors/img/shop/prdt1.jpg" />                                 
+                                    <div class="details">
+                                        <h4 class="rbt">Persil Micro Clean</h4>
+                                        <div class="quantity">2 x <span>$50.00</span></div>
+                                        <a href=""><i class="fas fa-times"></i></a>
+                                    </div>
+                                </li>
+                                <li class="odered-items">
+                                    <img src="~/Assets/Client/vendors/img/shop/prdt2.jpg" />
+                                    <div class="details">
+                                        <h4 class="rbt">Dish Soap</h4>
+                                        <div class="quantity">1 x <span>$50.00</span></div>
+                                        <a href=""><i class="fas fa-times"></i></a>
+                                    </div>
+                                </li>
+                                <li class="odered-items">
+                                    <img src="~/Assets/Client/vendors/img/shop/prdt3.jpg" />
+                                    <div class="details">
+                                        <h4 class="rbt">Mop With a Bucket</h4>
+                                        <div class="quantity">1 x <span>$50.00</span></div>
+                                        <a href=""><i class="fas fa-times"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="price-detail mb-15">
+                            <ul class="total-table mt-5">
+                                <li><span>Sub Total:</span>$1000.00</li>
+                                <li><span>Tax :</span>$15.00</li>
+                                <li><span>Shipping Cost:</span>$10.00</li>
+                                <li class="total"><span>TOTAL:</span>$1025.00</li>
+                            </ul>
+                        </div>
+                        <form>
+                            <div class="custom-control custom-radio custom-control mb-5 mt-20">
+                                <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
+                                <label class="custom-control-label fs-16 f-500" for="customRadio">Cash on Delivery</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control">
+                                <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
+                                <label class="custom-control-label fs-16 f-500" for="customRadio2">PayPal</label>
+                            </div>
+                        </form>
+                        <a href="" class="btn btn-block btn-blue mt-15">PLACE YOUR ORDER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- checkout end -->

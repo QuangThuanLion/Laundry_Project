@@ -1,0 +1,126 @@
+﻿@model IEnumerable<LaundryStore.Models.Material>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Page Header Start -->
+<section class="page--header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Page Title Start -->
+                <h2 class="page--title h5">Material</h2>
+                <!-- Page Title End -->
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Material</a></li>
+                    <li class="breadcrumb-item active"><span>List Material</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Header End -->
+<!-- Main Content Start -->
+<section class="main--content">
+    <div class="panel">
+        <!-- Records Header Start -->
+        <div class="records--header">
+            <div class="title fa-shopping-bag">
+                <h3 class="h3">Material Management <a href="#" class="btn btn-sm btn-outline-info">Manage Material</a></h3>
+                <p>Found Total 1,330 Products</p>
+            </div>
+
+            <div class="actions">
+                <form action="#" class="search flex-wrap flex-md-nowrap">
+                    <input type="text" class="form-control" placeholder="Material Name..." required>
+                    <select name="select" class="form-control">
+                        <option value="" selected>Material</option>
+                    </select>
+                    <button type="submit" class="btn btn-rounded"><i class="fa fa-search"></i></button>
+                </form>
+
+                <a class="addProduct btn btn-lg btn-rounded btn-warning" title="Create" href="@Url.Action("Create", "Materials")">
+                    <span>ADD MATERIAL</span>
+                </a>
+            </div>
+        </div>
+        <!-- Records Header End -->
+    </div>
+
+    <div class="panel">
+        <!-- Records List Start -->
+        <div class="records--list" data-title="Material Listing">
+            <table id="recordsListView">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th class="not-sortable">Name</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        <th>Provider</th>
+                        <th>Description</th>
+                        <th>Available</th>
+                        <th class="not-sortable">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.materialName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Provider.providerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.description)
+                            </td>
+                            <td>
+                                @if (item.available == true)
+                                {
+                                    <span class="label label-success">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-danger">No</span>
+                                }
+                            </td>
+                            <td>
+                                <span>
+                                    <a title="Detail" href="@Url.Action("Details", "Materials", new { id = item.id })">
+                                        <i style="color:orange" class="fas fa-info"></i>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a title="Edit" href="@Url.Action("Edit", "Materials", new { id = item.id })">
+                                        <i style="color:blue" class="fas fa-edit"></i>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a title="Delete" href="@Url.Action("Delete", "Materials", new { id = item.id })">
+                                        <i style="color:red" class="fas fa-trash-alt"></i>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <!-- Records List End -->
+    </div>
+</section>
+<!-- Main Content End -->

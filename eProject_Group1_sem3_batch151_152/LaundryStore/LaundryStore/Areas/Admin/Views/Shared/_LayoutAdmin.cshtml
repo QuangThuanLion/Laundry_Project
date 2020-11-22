@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en" class="no-outlines">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- ==== Document Title ==== -->
+    <title>Dashboard - Admin</title>
+
+    <!-- ==== Document Meta ==== -->
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- ==== Favicon ==== -->
+    <link rel="icon" href="~/Assets/Admin/vendors/assets/img/favicon.png" type="image/png">
+
+    <!-- ==== Google Font ==== -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700%7CMontserrat:400,500">
+
+    <!-- Stylesheets -->
+    <link href="~/Assets/Admin/vendors/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/perfect-scrollbar.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/morris.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/jquery-jvectormap.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/horizontal-timeline.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/weather-icons.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/dropzone.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/ion.rangeSlider.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/ion.rangeSlider.skinFlat.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/datatables.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/fullcalendar.min.css" rel="stylesheet" />
+    <link href="~/Assets/Admin/vendors/assets/css/style.css" rel="stylesheet" />
+    <!-- Page Level Stylesheets -->
+
+</head>
+<body>
+
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+        <!-- Navbar Start -->
+        <header class="navbar navbar-fixed">
+            <!-- Navbar Header Start -->
+            <div class="navbar--header">
+                <!-- Logo Start -->
+                <a href="#" class="logo">
+                    <img src="~/Assets/Admin/vendors/assets/img/logo.png" />
+                </a>
+                <!-- Logo End -->
+                <!-- Sidebar Toggle Button Start -->
+                <a href="#" class="navbar--btn" data-toggle="sidebar" title="Toggle Sidebar">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <!-- Sidebar Toggle Button End -->
+            </div>
+            <!-- Navbar Header End -->
+            <!-- Sidebar Toggle Button Start -->
+            <a href="#" class="navbar--btn" data-toggle="sidebar" title="Toggle Sidebar">
+                <i class="fa fa-bars"></i>
+            </a>
+            <!-- Sidebar Toggle Button End -->
+            <!-- Navbar Search Start -->
+            <div class="navbar--search">
+                <form action="#">
+                    <input type="search" name="search" class="form-control" placeholder="Search Something..." required>
+                    <button class="btn-link"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <!-- Navbar Search End -->
+
+            <div class="navbar--nav ml-auto">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa fa-bell"></i>
+                            <span class="badge text-white bg-blue">7</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa fa-envelope"></i>
+                            <span class="badge text-white bg-blue">4</span>
+                        </a>
+                    </li>
+
+                    <!-- Nav Language Start -->
+                    <li class="nav-item dropdown nav-language">
+                        <a href="#" class="nav-link" data-toggle="dropdown">
+                            <img src="~/Assets/Admin/vendors/assets/img/flags/us.png" />
+                            <span>English</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="">
+                                    <img src="~/Assets/Admin/vendors/assets/img/flags/de.png" />
+                                    <span>English</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="~/Assets/Admin/vendors/assets/img/flags/fr.png" />
+                                    <span>VietNamese</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Nav Language End -->
+                    <!-- Nav User Start -->
+                    <li class="nav-item dropdown nav--user online">
+                        <a href="#" class="nav-link" data-toggle="dropdown">
+                            <img src="~/Assets/Admin/vendors/assets/img/adminThuan.jpg" alt="" class="rounded-circle" />
+                            <span>Thuan Nguyen</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="far fa-user"></i>Profile</a></li>
+                            <li><a href="#"><i class="fa fa-lock"></i>Lock Screen</a></li>
+                            <li><a href="#"><i class="fa fa-power-off"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                    <!-- Nav User End -->
+                </ul>
+            </div>
+        </header>
+        <!-- Navbar End -->
+        <!-- Sidebar Start -->
+        <aside class="sidebar" data-trigger="scrollbar">
+            <!-- Sidebar Profile Start -->
+            <div class="sidebar--profile">
+                <div class="profile--img">
+                    <a href="#">
+                        <img src="~/Assets/Admin/vendors/assets/img/adminThuan.jpg" alt="" class="rounded-circle" />
+                    </a>
+                </div>
+
+                <div class="profile--name">
+                    <a href="#" class="btn-link">Thuan Nguyen</a>
+                </div>
+
+                <div class="profile--nav">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" title="User Profile">
+                                <i class="fa fa-user"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" title="Lock Screen">
+                                <i class="fa fa-lock"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" title="Logout">
+                                <i class="fa fa-sign-out-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Sidebar Profile End -->
+            <!-- Sidebar Navigation Start -->
+            <div class="sidebar--nav">
+                <ul>
+                    <li>
+                        <ul>
+                            <li class="active">
+                                <a href="/Admin/DashBoard/Index">
+                                    <i class="fa fa-home"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Employees/Index">
+                                    <i class="fa fa-user"></i>
+                                    <span>Employee Management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-users"></i>
+                                    <span>Customer Management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-user"></i>
+                                    <span>Worker Management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-product-hunt"></i>
+                                    <span>Product Management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>Order Management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Materials/Index">
+                                    <i class="far fa-sticky-note"></i>
+                                    <span>Material Management</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Category Management</a>
+
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-th"></i>
+                                    <span>Product Category</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-th"></i>
+                                    <span>Post Category</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-th"></i>
+                                    <span>Provider Category</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Blog Management</a>
+
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-newspaper"></i>
+                                    <span>Post</span>
+                                </a>
+
+                                <ul>
+                                    <li><a href="#">Date</a></li>
+                                    <li><a href="#">Weeks</a></li>
+                                    <li><a href="#">Months</a></li>
+                                    <li><a href="#">Quarters</a></li>
+                                    <li><a href="#">Years</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-wpforms"></i>
+                                    <span>Post Statistics</span>
+                                </a>
+
+                                <ul>
+                                    <li><a href="#">Date</a></li>
+                                    <li><a href="#">Weeks</a></li>
+                                    <li><a href="#">Months</a></li>
+                                    <li><a href="#">Quarters</a></li>
+                                    <li><a href="#">Years</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Cost Statistics</a>
+
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-money-bill-alt"></i>
+                                    <span>Sales Statistics</span>
+                                </a>
+
+                                <ul>
+                                    <li><a href="#">Date</a></li>
+                                    <li><a href="#">Weeks</a></li>
+                                    <li><a href="#">Months</a></li>
+                                    <li><a href="#">Quarters</a></li>
+                                    <li><a href="#">Years</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-money-bill-alt"></i>
+                                    <span>Due Payment</span>
+                                </a>
+
+                                <ul>
+                                    <li><a href="#">Date</a></li>
+                                    <li><a href="#">Weeks</a></li>
+                                    <li><a href="#">Months</a></li>
+                                    <li><a href="#">Quarters</a></li>
+                                    <li><a href="#">Years</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-money-bill-alt"></i>
+                                    <span>Employee Salary</span>
+                                </a>
+
+                                <ul>
+                                    <li><a href="#">Months</a></li>
+                                    <li><a href="#">Quarters</a></li>
+                                    <li><a href="#">Years</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="far fa-money-bill-alt"></i>
+                                    <span>Worker Salary</span>
+                                </a>
+
+                                <ul>
+                                    <li><a href="#">Months</a></li>
+                                    <li><a href="#">Quarters</a></li>
+                                    <li><a href="#">Years</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar Navigation End -->
+        </aside>
+        <!-- Sidebar End -->
+        <!-- Main Container Start -->
+        <main class="main--container">
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
+            <!-- /.content-wrapper -->
+            <!-- Main Footer Start -->
+            <footer class="main--footer main--footer-light">
+                <p>Copyright &copy; <a href="#">Admin</a>. All Rights Reserved.</p>
+            </footer>
+            <!-- Main Footer End -->
+        </main>
+        <!-- Main Container End -->
+    </div>
+    <!-- Wrapper End -->
+    @RenderSection("scriptsEdit", required: false)
+    <!-- Scripts -->
+    <script src="~/Assets/Admin/vendors/assets/js/jquery.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/jquery-ui.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/perfect-scrollbar.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/jquery.sparkline.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/raphael.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/morris.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/select2.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/jquery-jvectormap.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/jquery-jvectormap-world-mill.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/horizontal-timeline.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/jquery.validate.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/jquery.steps.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/dropzone.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/ion.rangeSlider.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/datatables.min.js"></script>
+    <script src="~/Assets/Admin/vendors/assets/js/main.js"></script>
+    <!-- Page Level Scripts -->
+
+</body>
+</html>
