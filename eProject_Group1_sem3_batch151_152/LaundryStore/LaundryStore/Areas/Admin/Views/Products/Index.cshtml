@@ -5,114 +5,196 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.productName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.viewCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.discount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createdDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createdBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.modifyDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.modifyBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pieceType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pricePiece)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.kgType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.priceKg)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.categoryName)
-        </th>
-        <th></th>
-    </tr>
+<!-- Page Header Start -->
+<section class="page--header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Page Title Start -->
+                <h2 class="page--title h5">Product</h2>
+                <!-- Page Title End -->
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Product</a></li>
+                    <li class="breadcrumb-item active"><span>List Product</span></li>
+                </ul>
+            </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.productName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.viewCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createdDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createdBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.modifyDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.modifyBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pieceType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pricePiece)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.kgType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.priceKg)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.categoryName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+            <div class="col-lg-6">
+                <!-- Summary Widget Start -->
+                <div class="summary--widget">
+                    <div class="summary--item">
+                        <p class="summary--chart" data-trigger="sparkline" data-type="bar" data-width="5" data-height="38" data-color="#009378">2,9,7,9,11,9,7,5,7,7,9,11</p>
+
+                        <p class="summary--title">This Month</p>
+                        <p class="summary--stats text-green">2,371,527</p>
+                    </div>
+
+                    <div class="summary--item">
+                        <p class="summary--chart" data-trigger="sparkline" data-type="bar" data-width="5" data-height="38" data-color="#e16123">2,3,7,7,9,11,9,7,9,11,9,7</p>
+
+                        <p class="summary--title">Last Month</p>
+                        <p class="summary--stats text-orange">2,527,371</p>
+                    </div>
+                </div>
+                <!-- Summary Widget End -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Header End -->
+<!-- Main Content Start -->
+
+@if (@ViewData["message"] != null)
+{
+    <div class="alert alert-@ViewData["alert"]" role="alert">
+        @ViewData["message"]
+    </div>
 }
 
-</table>
+<section class="main--content">
+    <div class="panel">
+        <!-- Records Header Start -->
+        <div class="records--header">
+            <div class="title fa-shopping-bag">
+                <h3 class="h3">Employee Management <a href="#" class="btn btn-sm btn-outline-info">Manage Product</a></h3>
+                <p>Found Total 1,330 Products</p>
+            </div>
+
+            <div class="actions">
+                <form action="#" class="search flex-wrap flex-md-nowrap">
+                    <input type="text" class="form-control" placeholder="Employee Name..." required>
+                    <select name="select" class="form-control">
+                        <option value="" selected>Product Role</option>
+                    </select>
+                    <button type="submit" class="btn btn-rounded"><i class="fa fa-search"></i></button>
+                </form>
+
+                <a class="addProduct btn btn-lg btn-rounded btn-warning" title="Create" href="@Url.Action("Create", "Products")">
+                    <span>ADD PRODUCT</span>
+                </a>
+            </div>
+        </div>
+        <!-- Records Header End -->
+    </div>
+
+    <div class="panel">
+        <!-- Records List Start -->
+        <div class="records--list" data-title="Employee Listing">
+            <table id="recordsListView">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th class="not-sortable">Image</th>
+                        <th>Product Name</th>
+                        <th>Category Name</th>
+                        <th>Piece Type</th>
+                        <th>Price</th>
+                        <th>Kg Type</th>
+                        <th>Price</th>
+                        <th class="not-sortable">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            <img width="70" height="70" src="~/@item.image" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.productName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.categoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pieceType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pricePiece)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.kgType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.priceKg)
+                        </td>
+                        <td>
+                            <span>
+                                <a title="Detail" href="@Url.Action("Details", "Products", new { id = item.id })">
+                                    <i style="color:orange" class="fas fa-info"></i>
+                                </a>
+                            </span>
+                            <span>
+                                <a title="Edit" href="@Url.Action("Edit", "Products", new { id = item.id })">
+                                    <i style="color:blue" class="fas fa-edit"></i>
+                                </a>
+                            </span>
+                            <span>
+                                @*href="@Url.Action("Delete", "Employees", new { id = item.id })*@
+                                <a class="delete-link" title="Delete" href="@Url.Action("Delete", "Products", new { id = item.id })">
+                                    <i style="color:red" class="fas fa-trash-alt"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- Records List End -->
+    </div>
+</section>
+<div class="body-content">
+
+</div>
+<!-- Main Content End -->
+@section scriptsEdit{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link href="~/Assets/Admin/resources/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Assets/Admin/resources/sweetalert/sweetalert2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+}
+
+<script type="text/javascript">
+
+    $('.delete-link').click(function (e) {
+        var a_href = $(this).attr('href'); /* Lấy giá trị của thuộc tính href */
+        e.preventDefault(); /* Không thực hiện action mặc định */
+        $.ajax({ /* Gửi request lên server */
+            url: a_href, /* Nội dung trong Delete.cshtml cụ thể là deleteModal div được server trả về */
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) { /* Sau khi nhận được giá */
+                $('.body-content').prepend(data); /* body-content div (định nghĩa trong _Layout.cshtml) sẽ thêm deleteModal div vào dưới cùng */
+                $('#deleteModal').modal('show'); /* Hiển thị deleteModal div dưới kiểu modal */
+            },
+            error: function (error) {
+                errorDelete();
+            }
+        })
+    });
+
+    function successDelete() {
+        swal({
+            title: "Xóa thành công !",
+            text: "Dữ liệu đã xóa khỏi hệ thống",
+            icon: "success",
+        });
+    }
+
+    function errorDelete() {
+        swal({
+            title: "Hủy bỏ !",
+            text: "Quá trình thất bại",
+            icon: "error"
+        });
+    }
+
+</script>

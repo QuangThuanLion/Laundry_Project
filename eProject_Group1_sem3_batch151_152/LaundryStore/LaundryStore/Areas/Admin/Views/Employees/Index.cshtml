@@ -45,6 +45,14 @@
 </section>
 <!-- Page Header End -->
 <!-- Main Content Start -->
+
+@if (@ViewData["message"] != null)
+{
+    <div class="alert alert-@ViewData["alert"]" role="alert">
+        @ViewData["message"]
+    </div>
+}
+
 <section class="main--content">
     <div class="panel">
         <!-- Records Header Start -->
@@ -95,7 +103,7 @@
                                 @Html.DisplayFor(modelItem => item.id)
                             </td>
                             <td>
-                                <img width="70" height="70" src="~/@item.avatar"/>
+                                <img width="70" height="70" src="~/@item.avatar" />
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.fullname)
