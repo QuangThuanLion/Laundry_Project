@@ -771,6 +771,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Assets\Admin\resources\image\" />
+    <Folder Include="Assets\Admin\resources\product\" />
     <Folder Include="Assets\Client\resources\" />
   </ItemGroup>
   <ItemGroup>
