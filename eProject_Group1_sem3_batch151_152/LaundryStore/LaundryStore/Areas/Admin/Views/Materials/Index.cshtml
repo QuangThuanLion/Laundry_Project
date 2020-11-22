@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- Page Header Start -->
 <section class="page--header">
@@ -109,7 +111,7 @@
                                     </a>
                                 </span>
                                 <span>
-                                    <a title="Delete" href="@Url.Action("Delete", "Materials", new { id = item.id })">
+                                    <a class="delete-link" title="Delete" href="@Url.Action("Delete", "Materials", new { id = item.id })">
                                         <i style="color:red" class="fas fa-trash-alt"></i>
                                     </a>
                                 </span>
@@ -124,3 +126,52 @@
     </div>
 </section>
 <!-- Main Content End -->
+
+
+<div class="body-content">
+
+</div>
+<!-- Main Content End -->
+@section scriptsEdit{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link href="~/Assets/Admin/resources/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Assets/Admin/resources/sweetalert/sweetalert2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+}
+
+<script type="text/javascript">
+
+    $('.delete-link').click(function (e) {
+        var a_href = $(this).attr('href'); /* Lấy giá trị của thuộc tính href */
+        e.preventDefault(); /* Không thực hiện action mặc định */
+        $.ajax({ /* Gửi request lên server */
+            url: a_href, /* Nội dung trong Delete.cshtml cụ thể là deleteModal div được server trả về */
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) { /* Sau khi nhận được giá */
+                $('.body-content').prepend(data); /* body-content div (định nghĩa trong _Layout.cshtml) sẽ thêm deleteModal div vào dưới cùng */
+                $('#deleteModal').modal('show'); /* Hiển thị deleteModal div dưới kiểu modal */
+            },
+            error: function (error) {
+                errorDelete();
+            }
+        })
+    });
+
+    function successDelete() {
+        swal({
+            title: "Xóa thành công !",
+            text: "Dữ liệu đã xóa khỏi hệ thống",
+            icon: "success",
+        });
+    }
+
+    function errorDelete() {
+        swal({
+            title: "Hủy bỏ !",
+            text: "Quá trình thất bại",
+            icon: "error"
+        });
+    }
+
+</script>
