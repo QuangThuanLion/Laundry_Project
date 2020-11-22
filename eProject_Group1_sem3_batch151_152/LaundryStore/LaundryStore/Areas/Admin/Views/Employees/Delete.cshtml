@@ -23,8 +23,8 @@
                 @using (Html.BeginForm("Delete", "Employees", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
-                    <button type="button" class="btn btn-info" data-dismiss="modal"><b>Cancel</b></button>
-                    <button type="submit" class="btn btn-warning" style="margin-top:0px;"><b>Yes, delete it !</b></button>
+                    <button type="button" class="btn btn-info cancel" data-dismiss="modal"><b>Cancel</b></button>
+                    <button type="submit" class="btn btn-warning yes"><b>Yes, delete it !</b></button>
                 }
             </div><!-- /.modal-footer -->
         </div>
@@ -34,5 +34,13 @@
 <style>
     .editModalFooter {
         justify-content: center;
+    }
+    .cancel {
+        width: 205px;
+        margin-right: 10px
+    }
+    .yes {
+        width: 205px;
+        margin-top: 0px
     }
 </style>
