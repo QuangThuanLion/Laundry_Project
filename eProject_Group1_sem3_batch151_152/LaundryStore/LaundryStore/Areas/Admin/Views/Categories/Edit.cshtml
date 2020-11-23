@@ -1,4 +1,4 @@
-﻿@model LaundryStore.Models.PostCategory
+﻿@model LaundryStore.Models.Category
 
 @{
     ViewBag.Title = "Edit";
@@ -24,15 +24,15 @@
                 <!-- Records Header Start -->
                 <div class="records--header">
                     <div class="title fa-shopping-bag">
-                        <h3 class="h3">Post Category Management</h3>
+                        <h3 class="h3">Category Management</h3>
                     </div>
                     <div class="actions">
-                        <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "PostCategories")">
+                        <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "Categories")">
                             <span>BACK</span>
                         </a>
                         <div style="margin-right:10px" class="addProduct btn btn-sm btn-rounded btn-warning">
                             <div>
-                                <button type="submit" class="btn btn-warning"><b>UPDATE POST CATEGORY</b></button>
+                                <button type="submit" class="btn btn-warning"><b>UPDATE CATEGORY</b></button>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                 <!-- Edit Product Start -->
                 <div class="records--body">
                     <div class="title">
-                        <h6 class="h6">EDIT POST CATEGORY</h6>
+                        <h6 class="h6">EDIT CATEGORY</h6>
                     </div>
 
                     <!-- Tabs Nav Start -->
@@ -61,14 +61,14 @@
                         <div class="tab-pane fade show active" id="tab01">
                             <div class="row">
                                 <div class="form-group col-sm-6">
-                                    <b><span>Post Category Name</span></b>
-                                    @Html.EditorFor(model => model.categoryNamePost, new { htmlAttributes = new { @class = "form-control", @required = true } })
-                                    @Html.ValidationMessageFor(model => model.categoryNamePost, "", new { @class = "text-danger" })
+                                    <b><span>Category Name</span></b>
+                                    @Html.EditorFor(model => model.categoryName, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.categoryName, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <b><span>Post Category Code</span></b>
-                                    @Html.EditorFor(model => model.categoryCodePost, new { htmlAttributes = new { @class = "form-control", @required = true } })
-                                    @Html.ValidationMessageFor(model => model.categoryCodePost, "", new { @class = "text-danger" })
+                                    <b><span>Category Code</span></b>
+                                    @Html.EditorFor(model => model.categoryCode, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.categoryCode, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="row">

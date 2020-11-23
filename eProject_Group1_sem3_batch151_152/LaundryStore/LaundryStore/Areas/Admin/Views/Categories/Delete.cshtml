@@ -1,4 +1,4 @@
-﻿@model LaundryStore.Models.PostCategory
+﻿@model LaundryStore.Models.Category
 
 @{
     Layout = null;
@@ -16,11 +16,11 @@
                 </button>
             </div>
             <div class="modal-body" style="text-align:center">
-                <h3><b>Are you sure delete post categories ?</b></h3>
-                <h4>You will not be able to recover this post categories !</h4>
+                <h3><b>Are you sure delete categories ?</b></h3>
+                <h4>You will not be able to recover this categories !</h4>
             </div>
             <div class="modal-footer editModalFooter">
-                @using (Html.BeginForm("Delete", "PostCategories", FormMethod.Post))
+                @using (Html.BeginForm("Delete", "Categories", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     <button type="button" class="btn btn-info cancel" data-dismiss="modal"><b>Cancel</b></button>
