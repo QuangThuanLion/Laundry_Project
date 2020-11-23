@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LaundryStore.Models;
+using LaundryStore.Utils;
 
 namespace LaundryStore.Areas.Admin.Controllers
 {
@@ -15,9 +17,16 @@ namespace LaundryStore.Areas.Admin.Controllers
         private LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
 
         // GET: Admin/Customers
-        public ActionResult Index()
+        public ActionResult Index(string message = null)
         {
-            var customers = db.Customers.Include(c => c.County).Include(c => c.Role);
+            string result = Request.QueryString["message"];
+            if (message != null)
+            {
+                Dictionary<string, string> viewData = MessageUtil.getMessage(result);
+                ViewData["message"] = viewData["message"];
+                ViewData["alert"] = viewData["alert"];
+            }
+            var customers = db.Customers.Include(c => c.County).Include(c => c.Role).Where(c => c.status==true);
             return View(customers.ToList());
         }
 
@@ -49,13 +58,29 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,email,password,fullname,phone,gender,dayOfBirth,address,avatar,idCounty,activated,status,createdDate,modifyDate,modifyBy,roleId")] Customer customer)
+        public ActionResult Create([Bind(Include = "id,email,password,fullname,phone,gender,dayOfBirth,address,avatar,idCounty,activated,status,createdDate,modifyDate,modifyBy,roleId")] Customer customer,
+                                    HttpPostedFileBase avatar)
         {
             if (ModelState.IsValid)
             {
+                string path = Server.MapPath("/Assets/Admin/resources/customer");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (customer.avatar != null)
+                {
+                    avatar.SaveAs(path + "/" + avatar.FileName);
+                    customer.avatar = "Assets/Admin/resources/customer/" + avatar.FileName;
+                }
+                else
+                {
+                    customer.avatar = "Assets/Admin/resources/customer/" + "customerDefault.jpg";
+                }
+
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return new RedirectResult(url: "/Admin/Customers/Index?message=insert_success");
             }
 
             ViewBag.idCounty = new SelectList(db.Counties, "id", "name", customer.idCounty);
@@ -85,13 +110,29 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,email,password,fullname,phone,gender,dayOfBirth,address,avatar,idCounty,activated,status,createdDate,modifyDate,modifyBy,roleId")] Customer customer)
+        public ActionResult Edit([Bind(Include = "id,email,password,fullname,phone,gender,dayOfBirth,address,avatar,idCounty,activated,status,createdDate,modifyDate,modifyBy,roleId")] Customer customer,
+                                HttpPostedFileBase avatar)
         {
             if (ModelState.IsValid)
             {
+                string path = Server.MapPath("/Assets/Admin/resources/customer");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (customer.avatar != null)
+                {
+                    avatar.SaveAs(path + "/" + avatar.FileName);
+                    customer.avatar = "Assets/Admin/resources/customer/" + avatar.FileName;
+                }
+                else
+                {
+                    customer.avatar = "Assets/Admin/resources/customer/" + "customerDefault.jpg";
+                }
+
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return new RedirectResult(url: "/Admin/Customers/Index?message=update_success");
             }
             ViewBag.idCounty = new SelectList(db.Counties, "id", "name", customer.idCounty);
             ViewBag.roleId = new SelectList(db.Roles, "id", "name", customer.roleId);
@@ -119,9 +160,9 @@ namespace LaundryStore.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(long id)
         {
             Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            customer.status = false;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return new RedirectResult(url: "/Admin/Customers/Index?message=delete_success");
         }
 
         protected override void Dispose(bool disposing)

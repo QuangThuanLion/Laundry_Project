@@ -5,135 +5,144 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<!-- Main Content Start -->
+<section class="main--content">
+    <div class="panel container-fluid">
+        <!-- Records Header Start -->
+        <div class="records--header">
+            <div class="title fa-shopping-bag">
+                <h3 class="h3">Customer Management<a href="#" class="btn btn-sm btn-outline-info">Customer Detail</a></h3>
+            </div>
+            <div class="actions">
+                <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "Customers")">
+                    <span>BACK</span>
+                </a>
+                <a class="addProduct btn btn-lg btn-rounded btn-warning" title="Edit" href="@Url.Action("Edit", "Customers", new { id = Model.id })">
+                    <span>EDIT CUSTOMER</span>
+                </a>
+            </div>
+        </div>
+        <!-- Records Header End -->
+    </div>
 
-<div>
-    <h4>Customer</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+    <div class="panel">
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+        <!-- View Order Start -->
+        <div class="records--body">
+            <div class="title">
+                <h6 class="h6"><span class="text-lightergray">Detail Customer</span></h6>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
+            <!-- Tabs Nav Start -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#tab01" data-toggle="tab" class="nav-link active">Detail</a>
+                </li>
+            </ul>
+            <!-- Tabs Nav End -->
+            <!-- Tab Content Start -->
+            <div class="tab-content">
+                <!-- Tab Pane Start -->
+                <div class="tab-pane fade show active" id="tab01">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="subtitle">Other Information</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
+                            <table class="table table-simple">
+                                <tbody>
+                                    <tr>
+                                        <td>Id</td>
+                                        <th>@Html.DisplayFor(model => model.id)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <th>@Html.DisplayFor(model => model.email)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Full Name</td>
+                                        <th>@Html.DisplayFor(model => model.fullname)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <th>@Html.DisplayFor(model => model.phone)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <th>@Html.DisplayFor(model => model.gender)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Date Of Birth</td>
+                                        <th>@Html.DisplayFor(model => model.dayOfBirth)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <th>@Html.DisplayFor(model => model.address)</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fullname)
-        </dt>
+                        <div class="col-md-6">
+                            <h4 class="subtitle">Other Information</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.fullname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.dayOfBirth)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dayOfBirth)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.avatar)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.avatar)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.activated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.activated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createdDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createdDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.modifyDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.modifyDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.modifyBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.modifyBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.County.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.County.name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Role.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Role.name)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                            <table class="table table-simple">
+                                <tbody>
+                                    <tr>
+                                        <td>CreatedDate</td>
+                                        <th>@Html.DisplayFor(model => model.createdDate)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>ModifiedDate</td>
+                                        <th>@Html.DisplayFor(model => model.modifyDate)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>ModifiedBy</td>
+                                        <th>@Html.DisplayFor(model => model.modifyBy)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>County</td>
+                                        <th>@Html.DisplayFor(model => model.County.name)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Role</td>
+                                        <th>@Html.DisplayFor(model => model.Role.name)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <th>
+                                            @if (Model.status == true)
+                                            {
+                                                <span class="label label-success">Yes</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-danger">No</span>
+                                            }
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>Activated</td>
+                                        <th>
+                                            @if (Model.activated == true)
+                                            {
+                                                <span class="label label-success">Actived</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-danger">Inactive</span>
+                                            }
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab Pane End -->
+            </div>
+            <!-- Tab Content End -->
+        </div>
+        <!-- View Order End -->
+    </div>
+</section>
+<!-- Main Content End -->

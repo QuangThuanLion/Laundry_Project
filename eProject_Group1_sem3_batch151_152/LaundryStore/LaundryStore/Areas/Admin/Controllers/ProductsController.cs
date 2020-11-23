@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LaundryStore.Models;
+using LaundryStore.Utils;
 
 namespace LaundryStore.Areas.Admin.Controllers
 {
@@ -16,9 +17,16 @@ namespace LaundryStore.Areas.Admin.Controllers
         private LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
 
         // GET: Admin/Products
-        public ActionResult Index()
+        public ActionResult Index(string message = null)
         {
-            var products = db.Products.Include(p => p.Category);
+            string result = Request.QueryString["message"];
+            if (message != null)
+            {
+                Dictionary<string, string> viewData = MessageUtil.getMessage(result);
+                ViewData["message"] = viewData["message"];
+                ViewData["alert"] = viewData["alert"];
+            }
+            var products = db.Products.Include(p => p.Category).Where(e => e.status == true);
             return View(products.ToList());
         }
 
@@ -50,7 +58,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,productName,categoryId,description,image,viewCount,discount,createdDate,createdBy,modifyDate,modifyBy,pieceType,pricePiece,kgType,priceKg,status")] Product product,
-                                    HttpPostedFileBase image)
+                                    HttpPostedFileBase image, string pieceType, string kgType)
         {
             if (ModelState.IsValid)
             {
@@ -66,12 +74,13 @@ namespace LaundryStore.Areas.Admin.Controllers
                 }
                 else
                 {
-                    product.image = "Assets/Admin/resources/product/" + "userDefault.jpg";
+                    product.image = "Assets/Admin/resources/product/" + "defaultProduct.jpg";
                 }
-
+                product.pieceType = pieceType;
+                product.kgType = kgType;
                 db.Products.Add(product);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return new RedirectResult(url: "/Admin/Products/Index?message=insert_success");
             }
 
             ViewBag.categoryId = new SelectList(db.Categories, "id", "categoryName", product.categoryId);
@@ -99,13 +108,29 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,productName,categoryId,description,image,viewCount,discount,createdDate,createdBy,modifyDate,modifyBy,pieceType,pricePiece,kgType,priceKg,status")] Product product)
+        public ActionResult Edit([Bind(Include = "id,productName,categoryId,description,image,viewCount,discount,createdDate,createdBy,modifyDate,modifyBy,pieceType,pricePiece,kgType,priceKg,status")] Product product,
+                                  HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                string path = Server.MapPath("/Assets/Admin/resources/product");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (product.image != null)
+                {
+                    image.SaveAs(path + "/" + image.FileName);
+                    product.image = "Assets/Admin/resources/product/" + image.FileName;
+                }
+                else
+                {
+                    product.image = "Assets/Admin/resources/product/" + "defaultProduct.jpg";
+                }
+
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return new RedirectResult(url: "/Admin/Products/Index?message=update_success");
             }
             ViewBag.categoryId = new SelectList(db.Categories, "id", "categoryName", product.categoryId);
             return View(product);
@@ -132,9 +157,9 @@ namespace LaundryStore.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            product.status = false;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return new RedirectResult(url: "/Admin/Products/Index?message=delete_success");
         }
 
         protected override void Dispose(bool disposing)
