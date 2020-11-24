@@ -50,5 +50,7 @@ namespace LaundryStore.Models
         public virtual PayMentMethod PayMentMethod { get; set; }
         public virtual ShippingAdress ShippingAdress { get; set; }
         public virtual Status Status1 { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Employee Employee1 { get; set; }
     }
 }

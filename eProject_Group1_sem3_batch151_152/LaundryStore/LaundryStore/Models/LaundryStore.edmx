@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LAUNDRY_PROJECTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LAUNDRY_PROJECTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountRoles">
           <Key>
             <PropertyRef Name="id" />
@@ -410,6 +410,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_employeeIdConfirm">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="employeeIdConfirm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_employeeIdPayRoll">
           <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="PayRollsEmployees" Type="Self.PayRollsEmployees" Multiplicity="*" />
@@ -419,6 +431,18 @@
             </Principal>
             <Dependent Role="PayRollsEmployees">
               <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employeeIdShipping">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="employeeIdShipping" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -638,9 +662,17 @@
             <End Role="Employees" EntitySet="Employees" />
             <End Role="AccountRoles" EntitySet="AccountRoles" />
           </AssociationSet>
+          <AssociationSet Name="fk_employeeIdConfirm" Association="Self.fk_employeeIdConfirm">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="fk_employeeIdPayRoll" Association="Self.fk_employeeIdPayRoll">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="PayRollsEmployees" EntitySet="PayRollsEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employeeIdShipping" Association="Self.fk_employeeIdShipping">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="fk_idCounty" Association="Self.fk_idCounty">
             <End Role="Counties" EntitySet="Counties" />
@@ -699,8 +731,7 @@
             <End Role="Works" EntitySet="Works" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LAUNDRY_PROJECTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -832,6 +863,8 @@
           <Property Name="activated" Type="Boolean" />
           <NavigationProperty Name="AccountRoles" Relationship="Self.fk_employeeId" FromRole="Employees" ToRole="AccountRoles" />
           <NavigationProperty Name="PayRollsEmployees" Relationship="Self.fk_employeeIdPayRoll" FromRole="Employees" ToRole="PayRollsEmployees" />
+          <NavigationProperty Name="Orders" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdConfirm" FromRole="Employee" ToRole="Order" />
+          <NavigationProperty Name="Orders1" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdShipping" FromRole="Employee" ToRole="Order" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -910,6 +943,8 @@
           <NavigationProperty Name="PayMentMethod" Relationship="Self.fk_paymentMethodId" FromRole="Orders" ToRole="PayMentMethods" />
           <NavigationProperty Name="ShippingAdress" Relationship="Self.fk_shippingId" FromRole="Orders" ToRole="ShippingAdress" />
           <NavigationProperty Name="Status1" Relationship="Self.fk_statusId" FromRole="Orders" ToRole="Status" />
+          <NavigationProperty Name="Employee" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdConfirm" FromRole="Order" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdShipping" FromRole="Order" ToRole="Employee" />
         </EntityType>
         <EntityType Name="PayMentMethod">
           <Key>
@@ -1439,7 +1474,39 @@
             <End Role="Workers" EntitySet="Workers" />
             <End Role="Works" EntitySet="Works" />
           </AssociationSet>
+          <AssociationSet Name="fk_employeeIdConfirm" Association="LAUNDRY_PROJECTModel.fk_employeeIdConfirm">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employeeIdShipping" Association="LAUNDRY_PROJECTModel.fk_employeeIdShipping">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="fk_employeeIdConfirm">
+          <End Type="LAUNDRY_PROJECTModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="employeeIdConfirm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employeeIdShipping">
+          <End Type="LAUNDRY_PROJECTModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="employeeIdShipping" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

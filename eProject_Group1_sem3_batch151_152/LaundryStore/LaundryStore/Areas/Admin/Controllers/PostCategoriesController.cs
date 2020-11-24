@@ -10,6 +10,7 @@ using LaundryStore.Models;
 
 namespace LaundryStore.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "ROLE_ADMIN, ROLE_EMPLOYEE")]
     public class PostCategoriesController : Controller
     {
         private LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
