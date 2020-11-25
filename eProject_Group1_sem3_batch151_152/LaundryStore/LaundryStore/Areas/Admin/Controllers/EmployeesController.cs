@@ -27,7 +27,7 @@ namespace LaundryStore.Areas.Admin.Controllers
                 ViewData["alert"] = viewData["alert"];
             }
             List<Employee> list = null;
-            list = db.Employees.Where(e => e.status == true).ToList();
+            list = db.Employees.Where(e => e.status == true).ToList();  
             return View(list);
         }
 
