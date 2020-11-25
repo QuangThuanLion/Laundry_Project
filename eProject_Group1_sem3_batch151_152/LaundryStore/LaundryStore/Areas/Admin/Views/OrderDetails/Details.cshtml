@@ -1,0 +1,67 @@
+﻿@model LaundryStore.Models.OrderDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.productName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.productName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.int }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

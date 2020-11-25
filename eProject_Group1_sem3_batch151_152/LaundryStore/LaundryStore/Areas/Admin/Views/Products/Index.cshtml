@@ -47,13 +47,6 @@
 <!-- Page Header End -->
 <!-- Main Content Start -->
 
-@if (@ViewData["message"] != null)
-{
-    <div class="alert alert-@ViewData["alert"]" role="alert">
-        @ViewData["message"]
-    </div>
-}
-
 <section class="main--content">
     <div class="panel">
         <!-- Records Header Start -->
@@ -80,6 +73,13 @@
         <!-- Records Header End -->
     </div>
 
+    @if (@ViewData["message"] != null)
+    {
+        <div class="alert alert-@ViewData["alert"]" role="alert">
+            @ViewData["message"]
+        </div>
+    }
+
     <div class="panel">
         <!-- Records List Start -->
         <div class="records--list" data-title="Product Listing">
@@ -100,49 +100,49 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.id)
-                        </td>
-                        <td>
-                            <img width="70" height="70" src="~/@item.image" />
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.productName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Category.categoryName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.pieceType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.pricePiece)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.kgType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.priceKg)
-                        </td>
-                        <td>
-                            <span>
-                                <a title="Detail" href="@Url.Action("Details", "Products", new { id = item.id })">
-                                    <i style="color:orange" class="fas fa-info"></i>
-                                </a>
-                            </span>
-                            <span>
-                                <a title="Edit" href="@Url.Action("Edit", "Products", new { id = item.id })">
-                                    <i style="color:blue" class="fas fa-edit"></i>
-                                </a>
-                            </span>
-                            <span>
-                                <a class="delete-link" title="Delete" href="@Url.Action("Delete", "Products", new { id = item.id })">
-                                    <i style="color:red" class="fas fa-trash-alt"></i>
-                                </a>
-                            </span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
+                            <td>
+                                <img width="70" height="70" src="~/@item.image" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.productName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.categoryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.pieceType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.pricePiece)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.kgType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.priceKg)
+                            </td>
+                            <td>
+                                <span>
+                                    <a title="Detail" href="@Url.Action("Details", "Products", new { id = item.id })">
+                                        <i style="color:orange" class="fas fa-info"></i>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a title="Edit" href="@Url.Action("Edit", "Products", new { id = item.id })">
+                                        <i style="color:blue" class="fas fa-edit"></i>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a class="delete-link" title="Delete" href="@Url.Action("Delete", "Products", new { id = item.id })">
+                                        <i style="color:red" class="fas fa-trash-alt"></i>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>

@@ -11,8 +11,7 @@ namespace LaundryStore.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,6 +19,8 @@ namespace LaundryStore.Models
         {
             this.AccountRoles = new HashSet<AccountRole>();
             this.PayRollsEmployees = new HashSet<PayRollsEmployee>();
+            this.Orders = new HashSet<Order>();
+            this.Orders1 = new HashSet<Order>();
         }
     
         public long id { get; set; }
@@ -48,5 +49,9 @@ namespace LaundryStore.Models
         public virtual ICollection<AccountRole> AccountRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayRollsEmployee> PayRollsEmployees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders1 { get; set; }
     }
 }

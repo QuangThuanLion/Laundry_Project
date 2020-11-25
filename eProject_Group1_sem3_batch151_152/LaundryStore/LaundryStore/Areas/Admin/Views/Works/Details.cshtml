@@ -1,0 +1,59 @@
+﻿@model LaundryStore.Models.Work
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Work</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dateStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Worker.workerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Worker.workerName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

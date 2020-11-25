@@ -46,13 +46,6 @@
 <!-- Page Header End -->
 <!-- Main Content Start -->
 
-@if (@ViewData["message"] != null)
-{
-    <div class="alert alert-@ViewData["alert"]" role="alert">
-        @ViewData["message"]
-    </div>
-}
-
 <section class="main--content">
     <div class="panel">
         <!-- Records Header Start -->
@@ -78,6 +71,13 @@
         </div>
         <!-- Records Header End -->
     </div>
+
+    @if (@ViewData["message"] != null)
+    {
+        <div class="alert alert-@ViewData["alert"]" role="alert">
+            @ViewData["message"]
+        </div>
+    }
 
     <div class="panel">
         <!-- Records List Start -->

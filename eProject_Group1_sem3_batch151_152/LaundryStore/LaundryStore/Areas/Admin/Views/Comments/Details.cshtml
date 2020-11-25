@@ -1,0 +1,83 @@
+﻿@model LaundryStore.Models.Comment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modifyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modifyDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modifyBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modifyBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.News.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.News.title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,163 @@
+﻿@model LaundryStore.Models.PayRollsWorker
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PayRollsWorker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dayOff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dayOff)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dayWork)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dayWork)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hourOfDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hourOfDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salaryToMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salaryToMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unitSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unitSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fromDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fromDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.toDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.toDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.standardWorkDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.standardWorkDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalWorkDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalWorkDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.baseSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.baseSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mainSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mainSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subsidySalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subsidySalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalOverTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalOverTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.overtimePay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.overtimePay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Worker.workerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Worker.workerName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -12,6 +12,7 @@ using LaundryStore.Utils;
 
 namespace LaundryStore.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "ROLE_ADMIN")]
     public class EmployeesController : Controller
     {
         private LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
@@ -19,10 +20,9 @@ namespace LaundryStore.Areas.Admin.Controllers
         // GET: Admin/Employees
         public ActionResult Index(string message = null)
         {
-            string result = Request.QueryString["message"];
             if (message != null)
             {
-                Dictionary<string, string> viewData = MessageUtil.getMessage(result);
+                Dictionary<string, string> viewData = MessageUtil.getMessage(message);
                 ViewData["message"] = viewData["message"];
                 ViewData["alert"] = viewData["alert"];
             }
@@ -43,6 +43,13 @@ namespace LaundryStore.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            List<AccountRole> listAccount = db.AccountRoles.Where(x => x.employeeId == employee.id).ToList();
+            string[] arrayRole = new string[listAccount.Count];
+            for (int i = 0; i < listAccount.Count; i++)
+            {
+                arrayRole[i] = listAccount[i].Role.name;
+            }
+            
             return View(employee);
         }
 

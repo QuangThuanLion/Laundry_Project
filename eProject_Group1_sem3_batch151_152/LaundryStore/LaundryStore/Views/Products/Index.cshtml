@@ -1,0 +1,118 @@
+﻿@model IEnumerable<LaundryStore.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.viewCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modifyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modifyBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pieceType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pricePiece)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kgType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priceKg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.categoryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.productName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.viewCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modifyDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modifyBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pieceType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pricePiece)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kgType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.priceKg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.categoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

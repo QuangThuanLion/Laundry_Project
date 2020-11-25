@@ -36,6 +36,16 @@ namespace LaundryStore.Utils
                 result.Add("message", SystemConstant.DELETE_SUCCESS);
                 result.Add("alert", SystemConstant.ALERT_SUCCESS);
             }
+            else if (message.Equals("invalid_email"))
+            {
+                result.Add("message", SystemConstant.INVALID_USERNAME);
+                result.Add("alert", SystemConstant.ALERT_WARNING);
+            }
+            else if (message.Equals("invalid_password"))
+            {
+                result.Add("message", SystemConstant.INVALID_PASSWORD);
+                result.Add("alert", SystemConstant.ALERT_WARNING);
+            }
             return result;
         }
     }

@@ -1,0 +1,75 @@
+﻿@model LaundryStore.Models.DuePayment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DuePayment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.totalDebt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalDebt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fromDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fromDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.toDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.toDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

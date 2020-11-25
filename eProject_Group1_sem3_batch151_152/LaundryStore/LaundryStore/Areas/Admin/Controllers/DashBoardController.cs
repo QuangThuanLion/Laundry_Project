@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace LaundryStore.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "ROLE_ADMIN, ROLE_EMPLOYEE")]
     public class DashBoardController : Controller
     {
         // GET: Admin/DashBoard
