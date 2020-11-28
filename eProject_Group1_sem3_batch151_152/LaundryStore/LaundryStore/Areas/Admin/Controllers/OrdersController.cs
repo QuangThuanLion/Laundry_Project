@@ -17,7 +17,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         // GET: Admin/Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Customer).Include(o => o.PayMentMethod).Include(o => o.ShippingAdress).Include(o => o.Status1);
+            var orders = db.Orders.Include(o => o.Customer).Include(o => o.PayMentMethod).Include(o => o.ShippingAdress).Include(o => o.Status1).Include(o => o.Employee).Include(o => o.Employee1);
             return View(orders.ToList());
         }
 
@@ -43,6 +43,8 @@ namespace LaundryStore.Areas.Admin.Controllers
             ViewBag.paymentMethodId = new SelectList(db.PayMentMethods, "id", "paymentName");
             ViewBag.shippingId = new SelectList(db.ShippingAdresses, "id", "addressName");
             ViewBag.statusId = new SelectList(db.Status, "id", "statusName");
+            ViewBag.employeeIdConfirm = new SelectList(db.Employees, "id", "email");
+            ViewBag.employeeIdShipping = new SelectList(db.Employees, "id", "email");
             return View();
         }
 
@@ -64,6 +66,8 @@ namespace LaundryStore.Areas.Admin.Controllers
             ViewBag.paymentMethodId = new SelectList(db.PayMentMethods, "id", "paymentName", order.paymentMethodId);
             ViewBag.shippingId = new SelectList(db.ShippingAdresses, "id", "addressName", order.shippingId);
             ViewBag.statusId = new SelectList(db.Status, "id", "statusName", order.statusId);
+            ViewBag.employeeIdConfirm = new SelectList(db.Employees, "id", "email", order.employeeIdConfirm);
+            ViewBag.employeeIdShipping = new SelectList(db.Employees, "id", "email", order.employeeIdShipping);
             return View(order);
         }
 
@@ -79,10 +83,12 @@ namespace LaundryStore.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.customerId = new SelectList(db.Customers, "id", "email", order.customerId);
+            ViewBag.customerId = new SelectList(db.Customers, "id", "fullname", order.customerId);
             ViewBag.paymentMethodId = new SelectList(db.PayMentMethods, "id", "paymentName", order.paymentMethodId);
             ViewBag.shippingId = new SelectList(db.ShippingAdresses, "id", "addressName", order.shippingId);
             ViewBag.statusId = new SelectList(db.Status, "id", "statusName", order.statusId);
+            ViewBag.employeeIdConfirm = new SelectList(db.Employees, "id", "fullname", order.employeeIdConfirm);
+            ViewBag.employeeIdShipping = new SelectList(db.Employees, "id", "fullname", order.employeeIdShipping);
             return View(order);
         }
 
@@ -103,6 +109,8 @@ namespace LaundryStore.Areas.Admin.Controllers
             ViewBag.paymentMethodId = new SelectList(db.PayMentMethods, "id", "paymentName", order.paymentMethodId);
             ViewBag.shippingId = new SelectList(db.ShippingAdresses, "id", "addressName", order.shippingId);
             ViewBag.statusId = new SelectList(db.Status, "id", "statusName", order.statusId);
+            ViewBag.employeeIdConfirm = new SelectList(db.Employees, "id", "email", order.employeeIdConfirm);
+            ViewBag.employeeIdShipping = new SelectList(db.Employees, "id", "email", order.employeeIdShipping);
             return View(order);
         }
 

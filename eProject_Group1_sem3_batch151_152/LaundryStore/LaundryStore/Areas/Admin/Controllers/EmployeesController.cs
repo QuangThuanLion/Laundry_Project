@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using LaundryStore.Common;
 using LaundryStore.Models;
 using LaundryStore.Utils;
 
@@ -27,7 +28,7 @@ namespace LaundryStore.Areas.Admin.Controllers
                 ViewData["alert"] = viewData["alert"];
             }
             List<Employee> list = null;
-            list = db.Employees.Where(e => e.status == true).ToList();
+            list = db.Employees.Where(e => e.status == true && e.activated == true).ToList();
             return View(list);
         }
 
@@ -49,7 +50,7 @@ namespace LaundryStore.Areas.Admin.Controllers
             {
                 arrayRole[i] = listAccount[i].Role.name;
             }
-            
+            ViewBag.RoleEmployee = arrayRole[0];
             return View(employee);
         }
 
@@ -69,30 +70,60 @@ namespace LaundryStore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string path = Server.MapPath("/Assets/Admin/resources/image");
-                if (!Directory.Exists(path))
+                var checkEmail = db.Employees.Where(x => x.email.Equals(employee.email)).FirstOrDefault();
+                if (checkEmail == null)
                 {
-                    Directory.CreateDirectory(path);
-                }
-                if (employee.avatar != null)
-                {
-                    avatar.SaveAs(path + "/" + avatar.FileName);
-                    employee.avatar = "Assets/Admin/resources/image/" + avatar.FileName;
+                    string path = Server.MapPath("/Assets/Admin/resources/image");
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    if (employee.avatar != null)
+                    {
+                        avatar.SaveAs(path + "/" + avatar.FileName);
+                        employee.avatar = "Assets/Admin/resources/image/" + avatar.FileName;
+                    }
+                    else
+                    {
+                        employee.avatar = "Assets/Admin/resources/image/" + "userDefault.jpg";
+                    }
+                    AccountRole account = new AccountRole();
+                    account.employeeId = employee.id;
+                    account.roleId = Convert.ToInt32(role);
+                    employee.createdDate = DateTime.Now;
+                    employee.dateEnd = DateTime.Now.AddYears(1);
+                    employee.createdBy = Session["username_Employee"].ToString();
+                    employee.status = true;
+                    employee.activated = false;
+
+                    db.AccountRoles.Add(account);
+                    db.Employees.Add(employee);
+                    db.SaveChanges();
+
+                    SendEmail.SendMail("Gửi từ Laundry Store, Xác nhận người dùng ! ", employee.email, " Bạn vừa đăng kí thành công tài khoản tại Laundry Store !" +
+                       " Với tên đăng nhập : " + employee.email +
+                       " Để kích hoạt tài khoản vừa đăng kí, vui lòng xác nhận tại đường dẫn tại đây: " + "https://localhost:44335/Admin/Employees/ActiveEmail?username=" + employee.email);
+
+                    return new RedirectResult(url: "/Admin/Employees/Index?message=confirm_email");
                 } else
                 {
-                    employee.avatar = "Assets/Admin/resources/image/" + "userDefault.jpg";
-                }
+                    return new RedirectResult(url: "/Admin/Employees/Index?message=email_exists");
+                }                        
+            }
+            return View(employee);
+        }
 
-                AccountRole account = new AccountRole();
-                account.employeeId = employee.id;
-                account.roleId = Convert.ToInt32(role);
-                db.AccountRoles.Add(account);
-                db.Employees.Add(employee);
+        // nhận xác nhân email
+        public ActionResult ActiveEmail(string username)
+        {
+
+            Employee employee = db.Employees.Where(x => x.email.Equals(username)).SingleOrDefault();
+            if (employee != null)
+            {
+                employee.activated = true;
                 db.SaveChanges();
                 return new RedirectResult(url: "/Admin/Employees/Index?message=insert_success");
-                //return RedirectToAction("Index");
             }
-
             return View(employee);
         }
 
@@ -140,6 +171,8 @@ namespace LaundryStore.Areas.Admin.Controllers
                 AccountRole account = new AccountRole();
                 account.employeeId = employee.id;
                 account.roleId = Convert.ToInt32(role);
+                employee.modifyDate = DateTime.Now;
+                employee.modifyBy = Session["username_Employee"].ToString();
                 db.AccountRoles.Add(account);
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();

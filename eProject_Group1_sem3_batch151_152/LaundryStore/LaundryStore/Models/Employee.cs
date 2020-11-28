@@ -18,8 +18,8 @@ namespace LaundryStore.Models
         public Employee()
         {
             this.AccountRoles = new HashSet<AccountRole>();
-            this.PayRollsEmployees = new HashSet<PayRollsEmployee>();
             this.Orders = new HashSet<Order>();
+            this.PayRollsEmployees = new HashSet<PayRollsEmployee>();
             this.Orders1 = new HashSet<Order>();
         }
     
@@ -48,9 +48,9 @@ namespace LaundryStore.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccountRole> AccountRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PayRollsEmployee> PayRollsEmployees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PayRollsEmployee> PayRollsEmployees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders1 { get; set; }
     }

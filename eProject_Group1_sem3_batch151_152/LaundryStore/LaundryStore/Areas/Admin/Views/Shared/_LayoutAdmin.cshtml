@@ -117,12 +117,12 @@
                     <li class="nav-item dropdown nav--user online">
                         <a href="#" class="nav-link" data-toggle="dropdown">
                             <img src="~/Assets/Admin/vendors/assets/img/adminThuan.jpg" alt="" class="rounded-circle" />
-                            <span>Thuan Nguyen</span>
+                            <span>@Session["username_Employee"]</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="far fa-user"></i>Profile</a></li>
+                            <li><a href="/Admin/Account/infoProfile/@Session["id_Employee"]"><i class="far fa-user"></i>Profile</a></li>
                             <li><a href="#"><i class="fa fa-lock"></i>Lock Screen</a></li>
                             <li><a href="/Admin/Account/Logout"><i class="fa fa-power-off"></i>Logout</a></li>
                         </ul>
@@ -143,13 +143,13 @@
                 </div>
 
                 <div class="profile--name">
-                    <a href="#" class="btn-link">Thuan Nguyen</a>
+                    <a href="#" class="btn-link">@Session["username_Employee"]</a>
                 </div>
 
                 <div class="profile--nav">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" title="User Profile">
+                            <a href="/Admin/Account/infoProfile/@Session["id_Employee"]" class="nav-link" title="User Profile">
                                 <i class="fa fa-user"></i>
                             </a>
                         </li>
@@ -374,6 +374,7 @@
     <script src="~/Assets/Admin/vendors/assets/js/ion.rangeSlider.min.js"></script>
     <script src="~/Assets/Admin/vendors/assets/js/datatables.min.js"></script>
     <script src="~/Assets/Admin/vendors/assets/js/main.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <!-- Page Level Scripts -->
 
 </body>

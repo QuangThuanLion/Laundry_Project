@@ -5,143 +5,142 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<!-- Main Content Start -->
+<section class="main--content">
+    <div class="panel container-fluid">
+        <!-- Records Header Start -->
+        <div class="records--header">
+            <div class="title fa-shopping-bag">
+                <h3 class="h3">Order Management<a href="#" class="btn btn-sm btn-outline-info">Order Detail</a></h3>
+            </div>
+            <div class="actions">
+                <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "Orders")">
+                    <span>BACK</span>
+                </a>
+                <a class="addProduct btn btn-lg btn-rounded btn-warning" title="Edit" href="@Url.Action("Edit", "Orders", new { id = Model.id })">
+                    <span>EDIT ORDER</span>
+                </a>
+            </div>
+        </div>
+        <!-- Records Header End -->
+    </div>
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.orderDate)
-        </dt>
+    <div class="panel">
 
-        <dd>
-            @Html.DisplayFor(model => model.orderDate)
-        </dd>
+        <!-- View Order Start -->
+        <div class="records--body">
+            <div class="title">
+                <h6 class="h6"><span class="text-lightergray">Detail Order</span></h6>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.endDate)
-        </dt>
+            <!-- Tabs Nav Start -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#tab01" data-toggle="tab" class="nav-link active">Detail</a>
+                </li>
+            </ul>
+            <!-- Tabs Nav End -->
+            <!-- Tab Content Start -->
+            <div class="tab-content">
+                <!-- Tab Pane Start -->
+                <div class="tab-pane fade show active" id="tab01">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="subtitle">Other Information</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.endDate)
-        </dd>
+                            <table class="table table-simple">
+                                <tbody>
+                                    <tr>
+                                        <td>Id</td>
+                                        <th>@Html.DisplayFor(model => model.id)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Order Date</td>
+                                        <th>@Html.DisplayFor(model => model.orderDate)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone Customer</td>
+                                        <th>@Html.DisplayFor(model => model.Employee.phone)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Name Customer</td>
+                                        <th>@Html.DisplayFor(model => model.Customer.fullname)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <th>@Html.DisplayFor(model => model.address)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>PayMent Status</td>
+                                        <th>@Html.DisplayFor(model => model.paymentStatus)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Amount</td>
+                                        <th> @Html.DisplayFor(model => model.amount)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <th>@Html.DisplayFor(model => model.address)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <th>@Html.DisplayFor(model => model.description)</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.address)
-        </dt>
+                        <div class="col-md-6">
+                            <h4 class="subtitle">Other Information</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.paymentStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.paymentStatus)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.amount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.amount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createdBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createdBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employeeIdConfirm)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employeeIdConfirm)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employeeIdShipping)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employeeIdShipping)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.totalDebt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.totalDebt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer.email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Customer.email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PayMentMethod.paymentName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PayMentMethod.paymentName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippingAdress.addressName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAdress.addressName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status1.statusName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status1.statusName)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                            <table class="table table-simple">
+                                <tbody>
+                                    <tr>
+                                        <td>Created By</td>
+                                        <th>@Html.DisplayFor(model => model.createdBy)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Debt</td>
+                                        <th>@Html.DisplayFor(model => model.totalDebt)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <th>@Html.DisplayFor(model => model.type)</th>
+                                    <tr>
+                                    <tr>
+                                        <td>End Date</td>
+                                        <th>@Html.DisplayFor(model => model.endDate)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Payment Method</td>
+                                        <th>@Html.DisplayFor(model => model.PayMentMethod.paymentName)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping Address</td>
+                                        <th>@Html.DisplayFor(model => model.ShippingAdress.addressName)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Order Status</td>
+                                        <th>@Html.DisplayFor(model => model.Status1.statusName)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Employee Confirm</td>
+                                        <th>@Html.DisplayFor(model => model.Employee.fullname)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Employee Shipping</td>
+                                        <th>@Html.DisplayFor(model => model.Employee1.fullname)</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab Pane End -->
+            </div>
+            <!-- Tab Content End -->
+        </div>
+        <!-- View Order End -->
+    </div>
+</section>
+<!-- Main Content End -->

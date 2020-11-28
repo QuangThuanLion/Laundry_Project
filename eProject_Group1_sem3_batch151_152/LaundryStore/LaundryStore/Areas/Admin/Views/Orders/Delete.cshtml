@@ -1,153 +1,48 @@
 ﻿@model LaundryStore.Models.Order
 
 @{
-    ViewBag.Title = "Delete";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+   Layout = null;
 }
 
-<h2>Delete</h2>
+<!DOCTYPE html>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.orderDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.orderDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.endDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.endDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.paymentStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.paymentStatus)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.amount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.amount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createdBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createdBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employeeIdConfirm)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employeeIdConfirm)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.employeeIdShipping)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.employeeIdShipping)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.totalDebt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.totalDebt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer.email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Customer.email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PayMentMethod.paymentName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PayMentMethod.paymentName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippingAdress.addressName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAdress.addressName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status1.statusName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status1.statusName)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<!-- Modal -->
+<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle" style="font-size:40px; margin:0 44%; color:orange" ;></i>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <h3><b>Are you sure delete order ?</b></h3>
+                <h4>You will not be able to recover this order !</h4>
+            </div>
+            <div class="modal-footer editModalFooter">
+                @using (Html.BeginForm("Delete", "Orders", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <button type="button" class="btn btn-info cancel" data-dismiss="modal"><b>Cancel</b></button>
+                    <button type="submit" class="btn btn-warning yes"><b>Yes, delete it !</b></button>
+                }
+            </div><!-- /.modal-footer -->
         </div>
-    }
+    </div>
 </div>
+
+<style>
+    .editModalFooter {
+        justify-content: center;
+    }
+
+    .cancel {
+        width: 205px;
+        margin-right: 10px
+    }
+
+    .yes {
+        width: 205px;
+        margin-top: 0px
+    }
+</style>

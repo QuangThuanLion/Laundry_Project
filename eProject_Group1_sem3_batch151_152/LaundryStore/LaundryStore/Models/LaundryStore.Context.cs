@@ -32,11 +32,8 @@ namespace LaundryStore.Models
         public virtual DbSet<County> Counties { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DuePayment> DuePayments { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<PayMentMethod> PayMentMethods { get; set; }
         public virtual DbSet<PayRollsEmployee> PayRollsEmployees { get; set; }
         public virtual DbSet<PayRollsWorker> PayRollsWorkers { get; set; }
@@ -48,5 +45,8 @@ namespace LaundryStore.Models
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<Worker> Workers { get; set; }
         public virtual DbSet<Work> Works { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }

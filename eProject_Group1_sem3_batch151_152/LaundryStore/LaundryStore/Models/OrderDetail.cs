@@ -14,7 +14,7 @@ namespace LaundryStore.Models
     
     public partial class OrderDetail
     {
-        public long @int { get; set; }
+        public long id { get; set; }
         public long orderId { get; set; }
         public int productId { get; set; }
         public Nullable<double> discount { get; set; }

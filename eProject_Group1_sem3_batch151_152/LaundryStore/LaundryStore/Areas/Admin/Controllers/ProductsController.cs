@@ -78,6 +78,8 @@ namespace LaundryStore.Areas.Admin.Controllers
                 }
                 product.pieceType = pieceType;
                 product.kgType = kgType;
+                product.createdDate = DateTime.Now;
+                product.createdBy = Session["username"].ToString();
                 db.Products.Add(product);
                 db.SaveChanges();
                 return new RedirectResult(url: "/Admin/Products/Index?message=insert_success");
@@ -128,6 +130,8 @@ namespace LaundryStore.Areas.Admin.Controllers
                     product.image = "Assets/Admin/resources/product/" + "defaultProduct.jpg";
                 }
 
+                product.modifyDate = DateTime.Now;
+                product.modifyBy = Session["username"].ToString();
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return new RedirectResult(url: "/Admin/Products/Index?message=update_success");

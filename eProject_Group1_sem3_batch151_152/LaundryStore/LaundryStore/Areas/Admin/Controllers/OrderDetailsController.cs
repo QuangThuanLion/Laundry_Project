@@ -49,7 +49,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "int,orderId,productId,discount,price,type,status")] OrderDetail orderDetail)
+        public ActionResult Create([Bind(Include = "id,orderId,productId,discount,price,type,status")] OrderDetail orderDetail)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "int,orderId,productId,discount,price,type,status")] OrderDetail orderDetail)
+        public ActionResult Edit([Bind(Include = "id,orderId,productId,discount,price,type,status")] OrderDetail orderDetail)
         {
             if (ModelState.IsValid)
             {

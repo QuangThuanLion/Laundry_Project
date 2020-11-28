@@ -78,6 +78,7 @@ namespace LaundryStore.Areas.Admin.Controllers
                     customer.avatar = "Assets/Admin/resources/customer/" + "customerDefault.jpg";
                 }
 
+                customer.createdDate = DateTime.Now;
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return new RedirectResult(url: "/Admin/Customers/Index?message=insert_success");
@@ -130,6 +131,8 @@ namespace LaundryStore.Areas.Admin.Controllers
                     customer.avatar = "Assets/Admin/resources/customer/" + "customerDefault.jpg";
                 }
 
+                customer.modifyDate = DateTime.Now;
+                customer.modifyBy = Session["username"].ToString();
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return new RedirectResult(url: "/Admin/Customers/Index?message=update_success");

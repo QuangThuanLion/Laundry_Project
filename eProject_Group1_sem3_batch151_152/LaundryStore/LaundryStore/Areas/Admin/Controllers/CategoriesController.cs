@@ -53,6 +53,8 @@ namespace LaundryStore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.createdDate = DateTime.Now;
+                category.createdBy = Session["username"].ToString();
                 db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -85,6 +87,8 @@ namespace LaundryStore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.modifyDate = DateTime.Now;
+                category.modifyBy = Session["username"].ToString();
                 db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

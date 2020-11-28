@@ -104,17 +104,17 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.employeeIdConfirm, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.employeeIdConfirm, "employeeIdConfirm", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.employeeIdConfirm, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("employeeIdConfirm", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.employeeIdConfirm, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.employeeIdShipping, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.employeeIdShipping, "employeeIdShipping", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.employeeIdShipping, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("employeeIdShipping", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.employeeIdShipping, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -17,5 +17,7 @@ namespace LaundryStore.Constant
         public static readonly string ALERT_WARNING = "warning";
         public static readonly string INVALID_USERNAME = "Account does't exist. Please check again !";
         public static readonly string INVALID_PASSWORD = "Incorrect password. Please check again !";
+        public static readonly string EMAIL_CONFIRM = "Verification code just sent to your inbox, please check it now !";
+        public static readonly string EMAIL_EXISTS = "Email already exists !, please enter another email";
     }
 }

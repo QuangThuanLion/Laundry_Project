@@ -189,6 +189,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Common\ManagementProvider.cs" />
+    <Compile Include="Common\SendEmail.cs" />
     <Compile Include="Constant\SystemConstant.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -449,6 +450,7 @@
     <Content Include="Assets\Admin\vendors\loginPage\vendor\select2\select2.js" />
     <Content Include="Assets\Admin\vendors\loginPage\vendor\select2\select2.min.css" />
     <Content Include="Assets\Admin\vendors\loginPage\vendor\select2\select2.min.js" />
+    <Content Include="Assets\Client\vendors\img\logo\logo_head.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -771,8 +773,6 @@
     <Content Include="Areas\Admin\Views\DuePayments\Details.cshtml" />
     <Content Include="Areas\Admin\Views\DuePayments\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DuePayments\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\OrderDetails\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\OrderDetails\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PayMentMethods\Create.cshtml" />
     <Content Include="Areas\Admin\Views\PayMentMethods\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\PayMentMethods\Details.cshtml" />
@@ -819,6 +819,14 @@
     <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Employees\ActiveEmail.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\infoProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\forgotPassword.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -863,6 +871,7 @@
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Common\EmailTemplate\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

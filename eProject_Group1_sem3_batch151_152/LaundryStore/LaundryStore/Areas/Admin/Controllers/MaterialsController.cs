@@ -53,6 +53,8 @@ namespace LaundryStore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                material.createdDate = DateTime.Now;
+                material.createdBy = Session["username"].ToString();
                 db.Materials.Add(material);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -87,6 +89,8 @@ namespace LaundryStore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                material.modifyDate = DateTime.Now;
+                material.modifyBy = Session["username"].ToString();
                 db.Entry(material).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

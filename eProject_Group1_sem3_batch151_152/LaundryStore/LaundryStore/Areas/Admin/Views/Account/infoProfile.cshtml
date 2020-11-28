@@ -1,0 +1,249 @@
+﻿@model LaundryStore.Models.Employee
+
+@{
+    ViewBag.Title = "infoProfile";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.createdDate)
+        @Html.HiddenFor(model => model.createdBy)
+        @Html.HiddenFor(model => model.modifyDate)
+        @Html.HiddenFor(model => model.modifyBy)
+        @Html.HiddenFor(model => model.activated)
+        @Html.HiddenFor(model => model.dateEnd)
+        @Html.HiddenFor(model => model.dateStart)
+        @Html.HiddenFor(model => model.contractSalary)
+        @Html.HiddenFor(model => model.unitSalary)
+        @Html.HiddenFor(model => model.workTime)
+        @Html.HiddenFor(model => model.schedule)
+        @Html.HiddenFor(model => model.status)
+        @Html.HiddenFor(model => model.activated)
+        @Html.HiddenFor(model => model.email)
+        <input type="hidden" name="roleEmployee" value="@ViewBag.RoleEmployee" />
+        <input type="hidden" id="currentPass" name="currentPass" value="@ViewBag.PasswordEmployee" />
+        <input type="hidden" id="idEmployee" name="idEmployee" value="@ViewBag.IdEmployee" />
+
+        <!-- Main Content Start -->
+        <section class="main--content">
+            <div class="panel">
+                <!-- Records Header Start -->
+                <div class="records--header">
+                    <div class="title fa-shopping-bag">
+                        <h3 class="h3">Employee<a href="#" class="btn btn-sm btn-outline-info">Edit</a></h3>
+                    </div>
+                    <div class="actions">
+                        <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "Employees")">
+                            <span>BACK</span>
+                        </a>
+                        <div style="margin-right:10px" class="addProduct btn btn-sm btn-rounded btn-warning">
+                            <div>
+                                <button type="submit" class="btn btn-warning"><b>UPDATE</b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Records Header End -->
+            </div>
+
+            @if (@ViewData["message"] != null)
+            {
+                <div class="alert alert-@ViewData["alert"]" role="alert">
+                    @ViewData["message"]
+                </div>
+            }
+
+            <div class="panel">
+
+                <!-- Edit Product Start -->
+                <div class="records--body">
+                    <div class="title">
+                        <h6 class="h6">EDIT EMPLOYEE</h6>
+                    </div>
+
+                    <!-- Tabs Nav Start -->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a href="#tab01" data-toggle="tab" class="nav-link active">Edit</a>
+                        </li>
+                    </ul>
+                    <!-- Tabs Nav End -->
+                    <!-- Tab Content Start -->
+                    <div class="tab-content">
+                        <!-- Tab Pane Start -->
+                        <div class="tab-pane fade show active" id="tab01">
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b><span>Full Name</span></b>
+                                    @Html.EditorFor(model => model.fullname, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.fullname, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b><span>Phone</span></b>
+                                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b><span>Gender</span></b>
+                                    @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b><span>Day Of Birth</span></b>
+                                    @Html.EditorFor(model => model.dayOfBirth, new { htmlAttributes = new { @class = "form-control", @required = true, @type = "Date"}})
+                                    @Html.ValidationMessageFor(model => model.dayOfBirth, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b><span>Avatar</span></b>
+                                    <input class="form-control" type="file" name="avatar" />
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b><span>password</span></b>
+                                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @required = true, @type = "password", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b><span>Address</span></b>
+                                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", @required = true } })
+                                    @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <!-- Button trigger modal -->
+                                    <b><span>Change Password</span></b>
+                                    <p>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                            Change Password
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <i class="fas fa-exclamation-triangle" style="font-size:40px; margin:0 44%; color:orange" ;></i>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" style="text-align:center">
+                                            <div class="row">
+                                                <b><span>Current Password</span></b>
+                                                <input class="form-control" type="text" id="currentPassword" name="currentPassword" required="required"/>
+                                            </div>
+                                            <div class="row">
+                                                <b><span>New Password</span></b>
+                                                <input class="form-control" type="text" id="newPassword" name="newPassword" required="required"/>
+                                            </div>
+                                            <div class="row">
+                                                <b><span>Confirm Password</span></b>
+                                                <input class="form-control" type="text" id="confirmPassword" name="confirmPassword" required="required"/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer editModalFooter">
+                                            <button class="btn btn-warning yes" onclick="changePassword()">Save changes</button>
+                                            <button type="button" class="btn btn-info cancel" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tab Pane End -->
+                    </div>
+                    <!-- Tab Content End -->
+                </div>
+                <!-- Edit Product End -->
+            </div>
+        </section>
+    </div>
+    <!-- Main Content End -->
+}
+<link href="~/Assets/Admin/resources/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Assets/Admin/resources/sweetalert/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<style>
+    .editModalFooter {
+        justify-content: center;
+    }
+
+    .cancel {
+        width: 205px;
+        margin-right: 10px
+    }
+
+    .yes {
+        width: 205px;
+        margin-top: 0px
+    }
+</style>
+<script>
+    function successChange() {
+        swal({
+            title: "Update Successfully !",
+            text: "Updated password information was successfully ",
+            icon: "success",
+        });
+    }
+
+    function errorUpdateCurrentPass() {
+        swal({
+            title: "Update Error !",
+            text: "Current passwords do not match",
+            icon: "error"
+        });
+    }
+
+    function errorUpdateConfirmPass() {
+        swal({
+            title: "Update Error !",
+            text: "Confirm passwords do not match",
+            icon: "error"
+        });
+    }
+
+    function changePassword() {
+        var currentPassword = document.getElementById("currentPassword").value;
+        var newPassword = document.getElementById("newPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var currentPass = document.getElementById("currentPass").value;
+        var idEmployee = document.getElementById("idEmployee").value;
+        if (currentPassword != currentPass) {
+            errorUpdateCurrentPass();
+        } else {
+            if (confirmPassword != newPassword) {
+                errorUpdateConfirmPass();
+            } else {
+                $.ajax({
+                    type: "post",
+                    url: "/Admin/Account/changePassword/",
+                    data: {
+                        id: idEmployee,
+                        newPass: newPassword
+                    },
+                    success: function (response) {
+                        if (response == 1) {
+                            $("#exampleModal").modal('hide');
+                            successChange();
+                        }
+                    },
+                    error: function (error) {
+                        errorUpdate();
+                    }
+                })
+            }
+        }
+    }
+</script>

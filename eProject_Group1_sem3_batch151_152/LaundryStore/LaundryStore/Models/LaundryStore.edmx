@@ -152,9 +152,9 @@
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
-            <PropertyRef Name="int" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="int" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="orderId" Type="bigint" Nullable="false" />
           <Property Name="productId" Type="int" Nullable="false" />
           <Property Name="discount" Type="float" />
@@ -742,8 +742,8 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="employeeId" Type="Int64" Nullable="false" />
           <Property Name="roleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.fk_employeeId" FromRole="AccountRoles" ToRole="Employees" />
           <NavigationProperty Name="Role" Relationship="Self.fk_roleId" FromRole="AccountRoles" ToRole="Roles" />
+          <NavigationProperty Name="Employee" Relationship="LAUNDRY_PROJECTModel.fk_employeeId" FromRole="AccountRole" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Barcode">
           <Key>
@@ -754,7 +754,7 @@
           <Property Name="codeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="createdDate" Type="DateTime" Precision="3" />
           <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Order" Relationship="Self.fk_orderIdBarCode" FromRole="Barcodes" ToRole="Orders" />
+          <NavigationProperty Name="Order" Relationship="LAUNDRY_PROJECTModel.fk_orderIdBarCode" FromRole="Barcode" ToRole="Order" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -818,8 +818,8 @@
           <NavigationProperty Name="Comments" Relationship="Self.fk_customerComment" FromRole="Customers" ToRole="Comments" />
           <NavigationProperty Name="County" Relationship="Self.fk_idCounty" FromRole="Customers" ToRole="Counties" />
           <NavigationProperty Name="DuePayments" Relationship="Self.fk_customerIdDebt" FromRole="Customers" ToRole="DuePayments" />
-          <NavigationProperty Name="Orders" Relationship="Self.fk_customerIdOrder" FromRole="Customers" ToRole="Orders" />
           <NavigationProperty Name="Role" Relationship="Self.fk_RoleCustomerId" FromRole="Customers" ToRole="Roles" />
+          <NavigationProperty Name="Orders" Relationship="LAUNDRY_PROJECTModel.fk_customerIdOrder" FromRole="Customer" ToRole="Order" />
         </EntityType>
         <EntityType Name="DuePayment">
           <Key>
@@ -834,37 +834,7 @@
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Customer" Relationship="Self.fk_customerIdDebt" FromRole="DuePayments" ToRole="Customers" />
-          <NavigationProperty Name="Order" Relationship="Self.fk_orderIdDebt" FromRole="DuePayments" ToRole="Orders" />
-        </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fullname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="Int64" />
-          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dayOfBirth" Type="DateTime" Precision="3" />
-          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="dateStart" Type="DateTime" Precision="3" />
-          <Property Name="dateEnd" Type="DateTime" Precision="3" />
-          <Property Name="contractSalary" Type="Int64" />
-          <Property Name="unitSalary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="workTime" Type="Int32" />
-          <Property Name="schedule" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="createdDate" Type="DateTime" Precision="3" />
-          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="modifyDate" Type="DateTime" Precision="3" />
-          <Property Name="modifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="status" Type="Boolean" />
-          <Property Name="activated" Type="Boolean" />
-          <NavigationProperty Name="AccountRoles" Relationship="Self.fk_employeeId" FromRole="Employees" ToRole="AccountRoles" />
-          <NavigationProperty Name="PayRollsEmployees" Relationship="Self.fk_employeeIdPayRoll" FromRole="Employees" ToRole="PayRollsEmployees" />
-          <NavigationProperty Name="Orders" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdConfirm" FromRole="Employee" ToRole="Order" />
-          <NavigationProperty Name="Orders1" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdShipping" FromRole="Employee" ToRole="Order" />
+          <NavigationProperty Name="Order" Relationship="LAUNDRY_PROJECTModel.fk_orderIdDebt" FromRole="DuePayment" ToRole="Order" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -901,58 +871,13 @@
           <NavigationProperty Name="Comments" Relationship="Self.fk_newId" FromRole="News" ToRole="Comments" />
           <NavigationProperty Name="PostCategory" Relationship="Self.fk_categoryPostId" FromRole="News" ToRole="PostCategories" />
         </EntityType>
-        <EntityType Name="OrderDetail">
-          <Key>
-            <PropertyRef Name="int" />
-          </Key>
-          <Property Name="int" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="orderId" Type="Int64" Nullable="false" />
-          <Property Name="productId" Type="Int32" Nullable="false" />
-          <Property Name="discount" Type="Double" />
-          <Property Name="price" Type="Int32" />
-          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="status" Type="Boolean" />
-          <NavigationProperty Name="Order" Relationship="Self.fk_orderId" FromRole="OrderDetails" ToRole="Orders" />
-          <NavigationProperty Name="Product" Relationship="Self.fk_productOrderId" FromRole="OrderDetails" ToRole="Products" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="customerId" Type="Int64" />
-          <Property Name="orderDate" Type="DateTime" Precision="3" />
-          <Property Name="endDate" Type="DateTime" Precision="3" />
-          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="paymentMethodId" Type="Int32" />
-          <Property Name="paymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="amount" Type="Int32" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="statusId" Type="Int32" />
-          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="shippingId" Type="Int32" />
-          <Property Name="employeeIdConfirm" Type="Int64" />
-          <Property Name="employeeIdShipping" Type="Int64" />
-          <Property Name="totalDebt" Type="Int32" />
-          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="Boolean" />
-          <NavigationProperty Name="Barcodes" Relationship="Self.fk_orderIdBarCode" FromRole="Orders" ToRole="Barcodes" />
-          <NavigationProperty Name="Customer" Relationship="Self.fk_customerIdOrder" FromRole="Orders" ToRole="Customers" />
-          <NavigationProperty Name="DuePayments" Relationship="Self.fk_orderIdDebt" FromRole="Orders" ToRole="DuePayments" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.fk_orderId" FromRole="Orders" ToRole="OrderDetails" />
-          <NavigationProperty Name="PayMentMethod" Relationship="Self.fk_paymentMethodId" FromRole="Orders" ToRole="PayMentMethods" />
-          <NavigationProperty Name="ShippingAdress" Relationship="Self.fk_shippingId" FromRole="Orders" ToRole="ShippingAdress" />
-          <NavigationProperty Name="Status1" Relationship="Self.fk_statusId" FromRole="Orders" ToRole="Status" />
-          <NavigationProperty Name="Employee" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdConfirm" FromRole="Order" ToRole="Employee" />
-          <NavigationProperty Name="Employee1" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdShipping" FromRole="Order" ToRole="Employee" />
-        </EntityType>
         <EntityType Name="PayMentMethod">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="paymentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.fk_paymentMethodId" FromRole="PayMentMethods" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="LAUNDRY_PROJECTModel.fk_paymentMethodId" FromRole="PayMentMethod" ToRole="Order" />
         </EntityType>
         <EntityType Name="PayRollsEmployee">
           <Key>
@@ -977,7 +902,7 @@
           <Property Name="overtimePay" Type="Int64" />
           <Property Name="totalSalary" Type="Int64" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employee" Relationship="Self.fk_employeeIdPayRoll" FromRole="PayRollsEmployees" ToRole="Employees" />
+          <NavigationProperty Name="Employee" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdPayRoll" FromRole="PayRollsEmployee" ToRole="Employee" />
         </EntityType>
         <EntityType Name="PayRollsWorker">
           <Key>
@@ -1040,7 +965,7 @@
           <Property Name="priceKg" Type="Int32" />
           <Property Name="status" Type="Boolean" />
           <NavigationProperty Name="Category" Relationship="Self.fk_categoryId" FromRole="Products" ToRole="Categories" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.fk_productOrderId" FromRole="Products" ToRole="OrderDetails" />
+          <NavigationProperty Name="OrderDetails" Relationship="LAUNDRY_PROJECTModel.fk_productOrderId" FromRole="Product" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="Provider">
           <Key>
@@ -1070,7 +995,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="addressName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.fk_shippingId" FromRole="ShippingAdress" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="LAUNDRY_PROJECTModel.fk_shippingId" FromRole="ShippingAdress" ToRole="Order" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -1079,7 +1004,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="statusName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="color" Type="Int32" />
-          <NavigationProperty Name="Orders" Relationship="Self.fk_statusId" FromRole="Status" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="LAUNDRY_PROJECTModel.fk_statusId" FromRole="Status" ToRole="Order" />
         </EntityType>
         <EntityType Name="Worker">
           <Key>
@@ -1114,18 +1039,6 @@
           <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Worker" Relationship="Self.fk_workerIdWork" FromRole="Works" ToRole="Workers" />
         </EntityType>
-        <Association Name="fk_employeeId">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
-          <End Role="AccountRoles" Type="Self.AccountRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="AccountRoles">
-              <PropertyRef Name="employeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_roleId">
           <End Role="Roles" Type="Self.Role" Multiplicity="1" />
           <End Role="AccountRoles" Type="Self.AccountRole" Multiplicity="*" />
@@ -1135,18 +1048,6 @@
             </Principal>
             <Dependent Role="AccountRoles">
               <PropertyRef Name="roleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_orderIdBarCode">
-          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
-          <End Role="Barcodes" Type="Self.Barcode" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Barcodes">
-              <PropertyRef Name="orderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1210,18 +1111,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_customerIdOrder">
-          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="customerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_RoleCustomerId">
           <End Role="Roles" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
@@ -1231,30 +1120,6 @@
             </Principal>
             <Dependent Role="Customers">
               <PropertyRef Name="roleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_orderIdDebt">
-          <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
-          <End Role="DuePayments" Type="Self.DuePayment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="DuePayments">
-              <PropertyRef Name="orderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_employeeIdPayRoll">
-          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
-          <End Role="PayRollsEmployees" Type="Self.PayRollsEmployee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employees">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PayRollsEmployees">
-              <PropertyRef Name="employeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1279,66 +1144,6 @@
             </Principal>
             <Dependent Role="News">
               <PropertyRef Name="categoryPostId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_orderId">
-          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="orderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_productOrderId">
-          <End Role="Products" Type="Self.Product" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="productId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_paymentMethodId">
-          <End Role="PayMentMethods" Type="Self.PayMentMethod" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PayMentMethods">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="paymentMethodId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_shippingId">
-          <End Role="ShippingAdress" Type="Self.ShippingAdress" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ShippingAdress">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="shippingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_statusId">
-          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Status">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="statusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1374,11 +1179,8 @@
           <EntitySet Name="Counties" EntityType="Self.County" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="DuePayments" EntityType="Self.DuePayment" />
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Materials" EntityType="Self.Material" />
           <EntitySet Name="News" EntityType="Self.News" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="PayMentMethods" EntityType="Self.PayMentMethod" />
           <EntitySet Name="PayRollsEmployees" EntityType="Self.PayRollsEmployee" />
           <EntitySet Name="PayRollsWorkers" EntityType="Self.PayRollsWorker" />
@@ -1390,17 +1192,9 @@
           <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="Workers" EntityType="Self.Worker" />
           <EntitySet Name="Works" EntityType="Self.Work" />
-          <AssociationSet Name="fk_employeeId" Association="Self.fk_employeeId">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="AccountRoles" EntitySet="AccountRoles" />
-          </AssociationSet>
           <AssociationSet Name="fk_roleId" Association="Self.fk_roleId">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="AccountRoles" EntitySet="AccountRoles" />
-          </AssociationSet>
-          <AssociationSet Name="fk_orderIdBarCode" Association="Self.fk_orderIdBarCode">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="Barcodes" EntitySet="Barcodes" />
           </AssociationSet>
           <AssociationSet Name="fk_categoryId" Association="Self.fk_categoryId">
             <End Role="Categories" EntitySet="Categories" />
@@ -1422,21 +1216,9 @@
             <End Role="Customers" EntitySet="Customers" />
             <End Role="DuePayments" EntitySet="DuePayments" />
           </AssociationSet>
-          <AssociationSet Name="fk_customerIdOrder" Association="Self.fk_customerIdOrder">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="fk_RoleCustomerId" Association="Self.fk_RoleCustomerId">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Customers" EntitySet="Customers" />
-          </AssociationSet>
-          <AssociationSet Name="fk_orderIdDebt" Association="Self.fk_orderIdDebt">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="DuePayments" EntitySet="DuePayments" />
-          </AssociationSet>
-          <AssociationSet Name="fk_employeeIdPayRoll" Association="Self.fk_employeeIdPayRoll">
-            <End Role="Employees" EntitySet="Employees" />
-            <End Role="PayRollsEmployees" EntitySet="PayRollsEmployees" />
           </AssociationSet>
           <AssociationSet Name="fk_providerId" Association="Self.fk_providerId">
             <End Role="Providers" EntitySet="Providers" />
@@ -1446,26 +1228,6 @@
             <End Role="PostCategories" EntitySet="PostCategories" />
             <End Role="News" EntitySet="News" />
           </AssociationSet>
-          <AssociationSet Name="fk_orderId" Association="Self.fk_orderId">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="fk_productOrderId" Association="Self.fk_productOrderId">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="fk_paymentMethodId" Association="Self.fk_paymentMethodId">
-            <End Role="PayMentMethods" EntitySet="PayMentMethods" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="fk_shippingId" Association="Self.fk_shippingId">
-            <End Role="ShippingAdress" EntitySet="ShippingAdresses" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="fk_statusId" Association="Self.fk_statusId">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="fk_workerIdPayRoll" Association="Self.fk_workerIdPayRoll">
             <End Role="Workers" EntitySet="Workers" />
             <End Role="PayRollsWorker" EntitySet="PayRollsWorkers" />
@@ -1474,15 +1236,167 @@
             <End Role="Workers" EntitySet="Workers" />
             <End Role="Works" EntitySet="Works" />
           </AssociationSet>
+          <EntitySet Name="Employees" EntityType="LAUNDRY_PROJECTModel.Employee" />
+          <EntitySet Name="Orders" EntityType="LAUNDRY_PROJECTModel.Order" />
+          <AssociationSet Name="fk_employeeId" Association="LAUNDRY_PROJECTModel.fk_employeeId">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="AccountRole" EntitySet="AccountRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_orderIdBarCode" Association="LAUNDRY_PROJECTModel.fk_orderIdBarCode">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Barcode" EntitySet="Barcodes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_customerIdOrder" Association="LAUNDRY_PROJECTModel.fk_customerIdOrder">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_orderIdDebt" Association="LAUNDRY_PROJECTModel.fk_orderIdDebt">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="DuePayment" EntitySet="DuePayments" />
+          </AssociationSet>
           <AssociationSet Name="fk_employeeIdConfirm" Association="LAUNDRY_PROJECTModel.fk_employeeIdConfirm">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employeeIdPayRoll" Association="LAUNDRY_PROJECTModel.fk_employeeIdPayRoll">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="PayRollsEmployee" EntitySet="PayRollsEmployees" />
           </AssociationSet>
           <AssociationSet Name="fk_employeeIdShipping" Association="LAUNDRY_PROJECTModel.fk_employeeIdShipping">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="fk_paymentMethodId" Association="LAUNDRY_PROJECTModel.fk_paymentMethodId">
+            <End Role="PayMentMethod" EntitySet="PayMentMethods" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_shippingId" Association="LAUNDRY_PROJECTModel.fk_shippingId">
+            <End Role="ShippingAdress" EntitySet="ShippingAdresses" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_statusId" Association="LAUNDRY_PROJECTModel.fk_statusId">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <EntitySet Name="OrderDetails" EntityType="LAUNDRY_PROJECTModel.OrderDetail" />
+          <AssociationSet Name="fk_orderId" Association="LAUNDRY_PROJECTModel.fk_orderId">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_productOrderId" Association="LAUNDRY_PROJECTModel.fk_productOrderId">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fullname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="Int64" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dayOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateStart" Type="DateTime" Precision="3" />
+          <Property Name="dateEnd" Type="DateTime" Precision="3" />
+          <Property Name="contractSalary" Type="Int64" />
+          <Property Name="unitSalary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="workTime" Type="Int32" />
+          <Property Name="schedule" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="modifyDate" Type="DateTime" Precision="3" />
+          <Property Name="modifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="activated" Type="Boolean" />
+          <NavigationProperty Name="AccountRoles" Relationship="LAUNDRY_PROJECTModel.fk_employeeId" FromRole="Employee" ToRole="AccountRole" />
+          <NavigationProperty Name="Orders" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdConfirm" FromRole="Employee" ToRole="Order" />
+          <NavigationProperty Name="PayRollsEmployees" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdPayRoll" FromRole="Employee" ToRole="PayRollsEmployee" />
+          <NavigationProperty Name="Orders1" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdShipping" FromRole="Employee" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerId" Type="Int64" />
+          <Property Name="orderDate" Type="DateTime" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="paymentMethodId" Type="Int32" />
+          <Property Name="paymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="statusId" Type="Int32" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="shippingId" Type="Int32" />
+          <Property Name="employeeIdConfirm" Type="Int64" />
+          <Property Name="employeeIdShipping" Type="Int64" />
+          <Property Name="totalDebt" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="Barcodes" Relationship="LAUNDRY_PROJECTModel.fk_orderIdBarCode" FromRole="Order" ToRole="Barcode" />
+          <NavigationProperty Name="Customer" Relationship="LAUNDRY_PROJECTModel.fk_customerIdOrder" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="DuePayments" Relationship="LAUNDRY_PROJECTModel.fk_orderIdDebt" FromRole="Order" ToRole="DuePayment" />
+          <NavigationProperty Name="Employee" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdConfirm" FromRole="Order" ToRole="Employee" />
+          <NavigationProperty Name="Employee1" Relationship="LAUNDRY_PROJECTModel.fk_employeeIdShipping" FromRole="Order" ToRole="Employee" />
+          <NavigationProperty Name="PayMentMethod" Relationship="LAUNDRY_PROJECTModel.fk_paymentMethodId" FromRole="Order" ToRole="PayMentMethod" />
+          <NavigationProperty Name="ShippingAdress" Relationship="LAUNDRY_PROJECTModel.fk_shippingId" FromRole="Order" ToRole="ShippingAdress" />
+          <NavigationProperty Name="Status1" Relationship="LAUNDRY_PROJECTModel.fk_statusId" FromRole="Order" ToRole="Status" />
+          <NavigationProperty Name="OrderDetails" Relationship="LAUNDRY_PROJECTModel.fk_orderId" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <Association Name="fk_employeeId">
+          <End Type="LAUNDRY_PROJECTModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="LAUNDRY_PROJECTModel.AccountRole" Role="AccountRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AccountRole">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_orderIdBarCode">
+          <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="LAUNDRY_PROJECTModel.Barcode" Role="Barcode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Barcode">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_customerIdOrder">
+          <End Type="LAUNDRY_PROJECTModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_orderIdDebt">
+          <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="LAUNDRY_PROJECTModel.DuePayment" Role="DuePayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DuePayment">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_employeeIdConfirm">
           <End Type="LAUNDRY_PROJECTModel.Employee" Role="Employee" Multiplicity="0..1" />
           <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="*" />
@@ -1492,6 +1406,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="employeeIdConfirm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employeeIdPayRoll">
+          <End Type="LAUNDRY_PROJECTModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="LAUNDRY_PROJECTModel.PayRollsEmployee" Role="PayRollsEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PayRollsEmployee">
+              <PropertyRef Name="employeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1507,7 +1433,81 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="fk_paymentMethodId">
+          <End Type="LAUNDRY_PROJECTModel.PayMentMethod" Role="PayMentMethod" Multiplicity="0..1" />
+          <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PayMentMethod">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="paymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_shippingId">
+          <End Type="LAUNDRY_PROJECTModel.ShippingAdress" Role="ShippingAdress" Multiplicity="0..1" />
+          <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShippingAdress">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="shippingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_statusId">
+          <End Type="LAUNDRY_PROJECTModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="statusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderId" Type="Int64" Nullable="false" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="discount" Type="Double" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="Order" Relationship="LAUNDRY_PROJECTModel.fk_orderId" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="LAUNDRY_PROJECTModel.fk_productOrderId" FromRole="OrderDetail" ToRole="Product" />
+        </EntityType>
+        <Association Name="fk_orderId">
+          <End Type="LAUNDRY_PROJECTModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="LAUNDRY_PROJECTModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_productOrderId">
+          <End Type="LAUNDRY_PROJECTModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="LAUNDRY_PROJECTModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1607,33 +1607,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.Employee">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="fullname" ColumnName="fullname" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="dayOfBirth" ColumnName="dayOfBirth" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="avatar" ColumnName="avatar" />
-                <ScalarProperty Name="dateStart" ColumnName="dateStart" />
-                <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
-                <ScalarProperty Name="contractSalary" ColumnName="contractSalary" />
-                <ScalarProperty Name="unitSalary" ColumnName="unitSalary" />
-                <ScalarProperty Name="workTime" ColumnName="workTime" />
-                <ScalarProperty Name="schedule" ColumnName="schedule" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
-                <ScalarProperty Name="modifyBy" ColumnName="modifyBy" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="activated" ColumnName="activated" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Materials">
             <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.Material">
               <MappingFragment StoreEntitySet="Materials">
@@ -1664,42 +1637,6 @@
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
                 <ScalarProperty Name="modifyBy" ColumnName="modifyBy" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.OrderDetail">
-              <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="int" ColumnName="int" />
-                <ScalarProperty Name="orderId" ColumnName="orderId" />
-                <ScalarProperty Name="productId" ColumnName="productId" />
-                <ScalarProperty Name="discount" ColumnName="discount" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="customerId" ColumnName="customerId" />
-                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
-                <ScalarProperty Name="endDate" ColumnName="endDate" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="paymentMethodId" ColumnName="paymentMethodId" />
-                <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
-                <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="statusId" ColumnName="statusId" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="shippingId" ColumnName="shippingId" />
-                <ScalarProperty Name="employeeIdConfirm" ColumnName="employeeIdConfirm" />
-                <ScalarProperty Name="employeeIdShipping" ColumnName="employeeIdShipping" />
-                <ScalarProperty Name="totalDebt" ColumnName="totalDebt" />
-                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1866,6 +1803,69 @@
                 <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="activated" ColumnName="activated" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="modifyBy" ColumnName="modifyBy" />
+                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="schedule" ColumnName="schedule" />
+                <ScalarProperty Name="workTime" ColumnName="workTime" />
+                <ScalarProperty Name="unitSalary" ColumnName="unitSalary" />
+                <ScalarProperty Name="contractSalary" ColumnName="contractSalary" />
+                <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+                <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="dayOfBirth" ColumnName="dayOfBirth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="totalDebt" ColumnName="totalDebt" />
+                <ScalarProperty Name="employeeIdShipping" ColumnName="employeeIdShipping" />
+                <ScalarProperty Name="employeeIdConfirm" ColumnName="employeeIdConfirm" />
+                <ScalarProperty Name="shippingId" ColumnName="shippingId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="statusId" ColumnName="statusId" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="paymentStatus" ColumnName="paymentStatus" />
+                <ScalarProperty Name="paymentMethodId" ColumnName="paymentMethodId" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
