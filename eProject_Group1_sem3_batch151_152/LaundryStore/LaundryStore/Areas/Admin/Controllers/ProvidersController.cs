@@ -104,6 +104,21 @@ namespace LaundryStore.Areas.Admin.Controllers
             return View(provider);
         }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Provider provider = db.Providers.Find(id);
+            if (provider == null)
+            {
+                return HttpNotFound();
+            }
+            return View(provider);
+        }
+
+
         // POST: Admin/Providers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
