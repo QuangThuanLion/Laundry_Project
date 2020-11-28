@@ -17,7 +17,9 @@ namespace LaundryStore.Areas.Admin.Controllers
         // GET: Admin/Providers
         public ActionResult Index()
         {
-            return View(db.Providers.ToList());
+            List<Provider> list = null;
+            list = db.Providers.Where(e => e.status == true).ToList();
+            return View(list);
         }
 
         // GET: Admin/Providers/Details/5
@@ -110,7 +112,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Provider provider = db.Providers.Find(id);
-            db.Providers.Remove(provider);
+            provider.status = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
