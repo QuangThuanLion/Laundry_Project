@@ -5,95 +5,71 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<h2>Create</h2>
 
 
-@using (Html.BeginForm("Create", "Providers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
+    
     <div class="form-horizontal">
+        <h4>Provider</h4>
+        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <!-- Main Content Start -->
-        <section class="main--content">
-            <div class="panel">
-                <!-- Records Header Start -->
-                <div class="records--header">
-                    <div class="title fa-shopping-bag">
-                        <h3 class="h3">Category Management</h3>
-                    </div>
-                    <div class="actions">
-                        <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "PostCategories")">
-                            <span>BACK</span>
-                        </a>
-                        <div style="margin-right:10px" class="addProduct btn btn-sm btn-rounded btn-warning">
-                            <div>
-                                <button type="submit" class="btn btn-warning"><b>CREATE POST CATEGORY</b></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Records Header End -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.providerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.providerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.providerName, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="panel">
-
-                <!-- Edit Product Start -->
-                <div class="records--body">
-                    <div class="title">
-                        <h6 class="h6">CREATE POST CATEGORY</h6>
-                    </div>
-
-                    <!-- Tabs Nav Start -->
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a href="#tab01" data-toggle="tab" class="nav-link active">Create</a>
-                        </li>
-                    </ul>
-                    <!-- Tabs Nav End -->
-                    <!-- Tab Content Start -->
-                    <div class="tab-content">
-                        <!-- Tab Pane Start -->
-                        <div class="tab-pane fade show active" id="tab01">
-                            <div class="row">
-                                <div class="form-group col-sm-6">
-                                    <b><span>Provider Name</span></b>
-                                    @Html.EditorFor(model => model.providerName, new { htmlAttributes = new { @class = "form-control", @required = true } })
-                                    @Html.ValidationMessageFor(model => model.providerName, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <b><span>Id</span></b>
-                                    @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control", @required = true } })
-                                    @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-sm-6">
-                                    <b><span>Phone</span></b>
-                                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @required = true } })
-                                    @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <div class="checkbox">
-                                        <b><span>Email</span></b>
-                                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <div class="checkbox">
-                                        <b><span>Address</span></b>
-                                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Tab Pane End -->
-                    </div>
-                    <!-- Tab Content End -->
-                </div>
-                <!-- Edit Product End -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
             </div>
-        </section>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.status)
+                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
