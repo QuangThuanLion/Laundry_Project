@@ -38,12 +38,12 @@ namespace LaundryStore.Areas.Admin.Controllers
                     {
                         var passwordCheck = account.password.Equals(password);
                         if (passwordCheck)
-                        {
-                            FormsAuthentication.SetAuthCookie(email, false);
+                        { 
                             Session["username_Employee"] = account.fullname;
                             Session["email_Employee"] = account.email;
                             Session["password_Employee"] = account.password;
                             Session["id_Employee"] = account.id;
+                            FormsAuthentication.SetAuthCookie(email, false);
                             return RedirectToAction("Index", "DashBoard");
                         } else
                         {
