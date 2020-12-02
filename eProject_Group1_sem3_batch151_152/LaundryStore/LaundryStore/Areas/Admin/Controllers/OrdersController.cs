@@ -33,18 +33,21 @@ namespace LaundryStore.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            List<OrderDetail> orderDetail = db.OrderDetails.Where(o => o.orderId == id).ToList();
+            ViewBag.ListOrderDetail = orderDetail;
+            ViewBag.OrderId = order.id;
             return View(order);
         }
 
         // GET: Admin/Orders/Create
         public ActionResult Create()
         {
-            ViewBag.customerId = new SelectList(db.Customers, "id", "email");
+            ViewBag.customerId = new SelectList(db.Customers, "id", "fullname");
             ViewBag.paymentMethodId = new SelectList(db.PayMentMethods, "id", "paymentName");
             ViewBag.shippingId = new SelectList(db.ShippingAdresses, "id", "addressName");
             ViewBag.statusId = new SelectList(db.Status, "id", "statusName");
-            ViewBag.employeeIdConfirm = new SelectList(db.Employees, "id", "email");
-            ViewBag.employeeIdShipping = new SelectList(db.Employees, "id", "email");
+            ViewBag.employeeIdConfirm = new SelectList(db.Employees, "id", "fullname");
+            ViewBag.employeeIdShipping = new SelectList(db.Employees, "id", "fullname");
             return View();
         }
 
@@ -53,16 +56,26 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,customerId,orderDate,endDate,address,paymentMethodId,paymentStatus,amount,description,statusId,createdBy,shippingId,employeeIdConfirm,employeeIdShipping,totalDebt,type,status")] Order order)
+        public ActionResult Create([Bind(Include = "id,customerId,orderDate,endDate,address,paymentMethodId,paymentStatus,amount,description,statusId,createdBy,shippingId,employeeIdConfirm,employeeIdShipping,totalDebt,type,status")]
+                                    Order order, string package)
         {
             if (ModelState.IsValid)
             {
+                order.orderDate = DateTime.Now;
+                if (order.paymentStatus == "done")
+                {
+                    order.endDate = DateTime.Now;
+                }
+                order.createdBy = Session["username_Employee"].ToString();
+                order.employeeIdConfirm = Int32.Parse(Session["id_Employee"].ToString());
+                order.status = true;
+                order.type = package;
                 db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.customerId = new SelectList(db.Customers, "id", "email", order.customerId);
+            ViewBag.customerId = new SelectList(db.Customers, "id", "name", order.customerId);
             ViewBag.paymentMethodId = new SelectList(db.PayMentMethods, "id", "paymentName", order.paymentMethodId);
             ViewBag.shippingId = new SelectList(db.ShippingAdresses, "id", "addressName", order.shippingId);
             ViewBag.statusId = new SelectList(db.Status, "id", "statusName", order.statusId);
@@ -101,6 +114,10 @@ namespace LaundryStore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (order.paymentStatus == "done")
+                {
+                    order.endDate = DateTime.Now;
+                }
                 db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

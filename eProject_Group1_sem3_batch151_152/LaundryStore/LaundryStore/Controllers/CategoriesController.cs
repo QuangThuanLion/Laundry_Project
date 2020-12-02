@@ -10,119 +10,112 @@ using LaundryStore.Models;
 
 namespace LaundryStore.Controllers
 {
-    public class NewsController : Controller
+    public class CategoriesController : Controller
     {
         private LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
 
-        // GET: News
+        // GET: Categories
         public ActionResult Index()
         {
-            var news = db.News.Include(n => n.PostCategory);
-            return View(news.ToList());
+            return View(db.Categories.ToList());
         }
 
-
-        public ActionResult RenderBlog()
+        public ActionResult RenderCategories()
         {
-            var news = db.News.Include(n => n.PostCategory);
-            return PartialView("_RenderBlog", news.ToList());
+            return PartialView("_RenderCategories", db.Categories.ToList());
         }
 
-        // GET: News/Details/5
+        // GET: Categories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(category);
         }
 
-        // GET: News/Create
+        // GET: Categories/Create
         public ActionResult Create()
         {
-            ViewBag.categoryPostId = new SelectList(db.PostCategories, "id", "categoryNamePost");
             return View();
         }
 
-        // POST: News/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,title,thumbnail,shortDescription,content,categoryPostId,createdDate,createdBy,modifyDate,modifyBy,status")] News news)
+        public ActionResult Create([Bind(Include = "id,categoryName,categoryCode,description,createdDate,createdBy,modifyDate,modifyBy,status")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.News.Add(news);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.categoryPostId = new SelectList(db.PostCategories, "id", "categoryNamePost", news.categoryPostId);
-            return View(news);
+            return View(category);
         }
 
-        // GET: News/Edit/5
+        // GET: Categories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.categoryPostId = new SelectList(db.PostCategories, "id", "categoryNamePost", news.categoryPostId);
-            return View(news);
+            return View(category);
         }
 
-        // POST: News/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,title,thumbnail,shortDescription,content,categoryPostId,createdDate,createdBy,modifyDate,modifyBy,status")] News news)
+        public ActionResult Edit([Bind(Include = "id,categoryName,categoryCode,description,createdDate,createdBy,modifyDate,modifyBy,status")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(news).State = EntityState.Modified;
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.categoryPostId = new SelectList(db.PostCategories, "id", "categoryNamePost", news.categoryPostId);
-            return View(news);
+            return View(category);
         }
 
-        // GET: News/Delete/5
+        // GET: Categories/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
-            if (news == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View(category);
         }
 
-        // POST: News/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            News news = db.News.Find(id);
-            db.News.Remove(news);
+            Category category = db.Categories.Find(id);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

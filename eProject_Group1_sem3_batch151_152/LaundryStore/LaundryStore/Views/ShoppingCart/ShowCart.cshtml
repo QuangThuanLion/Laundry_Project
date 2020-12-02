@@ -9,13 +9,12 @@
     <div class="container">
         <div class="row z-5 mt-85 align-items-center">
             <div class="col-lg-7 text-center text-lg-left">
-                <h1 class="blue">Service</h1>
+                <h1 class="blue">GIỎ HÀNG</h1>
             </div>
         </div>
     </div>
 }
 <!-- inner banner end -->
-
 <!-- cart area start -->
 <!-- cart start -->
 <section class="cart pt-90 pb-90">
@@ -26,73 +25,35 @@
                     <table class="cart-table">
                         <thead>
                             <tr>
-                                <th class="prdt_remove">Delete</th>
-                                <th class="prdt_thumb">Image</th>
-                                <th class="prdt_name">Product</th>
-                                <th class="prdt-price">Price</th>
-                                <th class="prdt_quantity">Quantity</th>
-                                <th class="prdt_total">Total</th>
+                                <th class="prdt_thumb">Hình</th>
+                                <th class="prdt_name">Tên Dịch Vụ</th>
+                                <th class="prdt-price">Giá</th>
+                                <th class="prdt_quantity">Số Lượng</th>
+                                <th class="prdt_quantity">Giảm Giá</th>
+                                <th class="prdt_quantity">Loại Dịch Vụ</th>
+                                <th class="prdt_total">Tổng</th>
+                                <th class="prdt_remove">Xóa</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="prdt-remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>
-                                <td class="prdt-thumb">
-                                    <a href="#"><img src="~/Assets/Client/vendors/img/shop/prdt1.jpg" /></a>                                   
-                                </td>
-                                <td class="prdt-name"><a href="#">Broom and Dustpan</a></td>
-                                <td class="prdt-price">$12.00</td>
-                                <td class="prdt-quantity">
-                                    <label>Quantity</label>
-                                    <input class="form-control" min="1" max="100" value="1" type="number">
-                                </td>
-                                <td class="prdt-total">$120.0</td>
-                            </tr>
-                            <tr>
-                                <td class="prdt-remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>
-                                <td class="prdt-thumb">
-                                    <a href="#"><img src="~/Assets/Client/vendors/img/shop/prdt2.jpg" /></a>                                   
-                                </td>
-                                <td class="prdt-name"><a href="#">Eko Clean Combo</a></td>
-                                <td class="prdt-price">$78.00</td>
-                                <td class="prdt-quantity">
-                                    <label>Quantity</label>
-                                    <input class="form-control" min="1" max="100" value="1" type="number">
-                                </td>
-                                <td class="prdt-total">$78.00</td>
-                            </tr>
-                            <tr>
-                                <td class="prdt-remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>
-                                <td class="prdt-thumb">
-                                    <a href="#"><img src="~/Assets/Client/vendors/img/shop/prdt3.jpg" /></a>                                  
-                                </td>
-                                <td class="prdt-name"><a href="#">Clean Orange</a></td>
-                                <td class="prdt-price">$20.00</td>
-                                <td class="prdt-quantity">
-                                    <label>Quantity</label>
-                                    <input class="form-control" min="1" max="100" value="1" type="number">
-                                </td>
-                                <td class="prdt-total">$20.00</td>
-                            </tr>
-                            <tr>
-                                <td class="prdt-remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>
-                                <td class="prdt-thumb">
-                                    <a href="#"><img src="~/Assets/Client/vendors/img/shop/prdt4.jpg" /></a>                                 
-                                </td>
-                                <td class="prdt-name"><a href="#">Broom and Dustpan</a></td>
-                                <td class="prdt-price">$15.00</td>
-                                <td class="prdt-quantity">
-                                    <label>Quantity</label>
-                                    <input class="form-control" min="1" max="100" value="1" type="number">
-                                </td>
-                                <td class="prdt-total">$15.0</td>
-                            </tr>
-                            <tr>
-                                <td colspan="6" class="text-right">
-                                    <a href="" class="btn btn-black btn-md update-cart">UPDATE CART</a>
-                                    <a href="" class="clear-cart f-left">CLEAR CART</a>
-                                </td>
-                            </tr>
+                            @foreach (var item in ViewBag.listCart)
+                            {
+                                <tr>
+                                    <td class="prdt-thumb">
+                                        <img width="70" height="70" src="~/@item.image" />
+                                    </td>
+                                    <td class="prdt-name">@item.productName</td>
+                                    <td class="prdt-price">@item.price</td>
+                                    <td class="prdt-quantity">
+                                        <label>Số Lượng</label>
+                                        <input class="form-control" min="1" max="100" value="@item.quantity" type="number">
+                                    </td>
+                                    <td class="prdt-total">@item.discount</td>
+                                    <td class="prdt-total">@item.type</td>
+                                    <td class="prdt-total">@item.total</td>
+                                    <td class="prdt-remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -119,10 +80,9 @@
                 </div>
                 <div class="inner-cart-box">
                     <ul class="total-table">
-                        <li><span>Sub Total:</span>$1000.00</li>
-                        <li><span>Tax :</span>$15.00</li>
-                        <li class="total"><span>TOTAL:</span>$1015.00</li>
+                        <li class="total"><span>TOTAL:</span>@ViewBag.total VNĐ</li>
                     </ul>
+                    <hr />
                     <div class="text-center text-sm-right">
                         <a href="/ShoppingCart/Checkout" class="btn btn-blue mt-10">Proceed to Checkout</a>
                     </div>
@@ -133,3 +93,9 @@
 </section>
 <!-- cart end -->
 <!-- cart area end -->
+
+<style>
+    .inner-cart-box {
+        height: 170px !important;
+    }
+</style>

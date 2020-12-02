@@ -11,7 +11,48 @@
         <!-- Records Header Start -->
         <div class="records--header">
             <div class="title fa-shopping-bag">
-                <h3 class="h3">Order Management<a href="#" class="btn btn-sm btn-outline-info">Order Detail</a></h3>
+                <h3 class="h3">Order Management<a data-toggle="modal" data-target="#exampleModal" href="#" class="btn btn-sm btn-outline-info">Order Detail</a></h3>
+            </div>
+            <!-- Button trigger modal -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fab fa-expeditedssl" style="font-size:40px; margin:0 44%; color:orange" ;></i>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="text-align:center">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Order Id</th>
+                                        <th>Product Name</th>
+                                        <th>Discount</th>
+                                        <th>Price</th>
+                                        <th>Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var od in ViewBag.ListOrderDetail)
+                                    {
+                                        <tr>
+                                            <td>@od.id</td>
+                                            <td>@od.orderId</td>
+                                            <td>@od.Product.productName</td>
+                                            <td>@od.discount</td>
+                                            <td>@od.price</td>
+                                            <td>@od.type</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>                     
+                    </div>
+                </div>
             </div>
             <div class="actions">
                 <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "Orders")">

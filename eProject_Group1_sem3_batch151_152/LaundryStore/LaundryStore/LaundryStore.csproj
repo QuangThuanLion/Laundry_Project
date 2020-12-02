@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>LaundryStore.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataModel\CartItem.cs" />
     <Compile Include="Models\DuePayment.cs">
       <DependentUpon>LaundryStore.tt</DependentUpon>
     </Compile>
@@ -450,6 +452,7 @@
     <Content Include="Assets\Admin\vendors\loginPage\vendor\select2\select2.js" />
     <Content Include="Assets\Admin\vendors\loginPage\vendor\select2\select2.min.css" />
     <Content Include="Assets\Admin\vendors\loginPage\vendor\select2\select2.min.js" />
+    <Content Include="Assets\Client\resources\js\laundry.js" />
     <Content Include="Assets\Client\vendors\img\logo\logo_head.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -872,6 +875,11 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Common\EmailTemplate\Index.cshtml" />
+    <Content Include="Views\Home\_RenderCategories.cshtml" />
+    <Content Include="Views\Home\_RenderBlog.cshtml" />
+    <Content Include="Views\Categories\_RenderCategories.cshtml" />
+    <Content Include="Views\News\_RenderBlog.cshtml" />
+    <Content Include="Views\Products\_RenderProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -879,7 +887,6 @@
     <Folder Include="Assets\Admin\resources\customer\" />
     <Folder Include="Assets\Admin\resources\image\" />
     <Folder Include="Assets\Admin\resources\product\" />
-    <Folder Include="Assets\Client\resources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

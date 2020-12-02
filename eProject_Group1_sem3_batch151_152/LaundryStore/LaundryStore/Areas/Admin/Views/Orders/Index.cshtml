@@ -99,46 +99,46 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.orderDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Customer.fullname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PayMentMethod.paymentName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.amount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status1.statusName)
-                        </td>
-                        <td>
-                            <span>
-                                <a title="Detail" href="@Url.Action("Details", "Orders", new { id = item.id })">
-                                    <i style="color:orange" class="fas fa-info"></i>
-                                </a>
-                            </span>
-                            <span>
-                                <a title="Edit" href="@Url.Action("Edit", "Orders", new { id = item.id })">
-                                    <i style="color:blue" class="fas fa-edit"></i>
-                                </a>
-                            </span>
-                            <span>
-                                <a class="delete-link" title="Delete" href="@Url.Action("Delete", "Orders", new { id = item.id })">
-                                    <i style="color:red" class="fas fa-trash-alt"></i>
-                                </a>
-                            </span>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.orderDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Customer.fullname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PayMentMethod.paymentName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status1.statusName)
+                            </td>
+                            <td>
+                                <span>
+                                    <a title="Detail" href="@Url.Action("Details", "Orders", new { id = item.id })">
+                                        <i style="color:orange" class="fas fa-info"></i>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a title="Edit" href="@Url.Action("Edit", "Orders", new { id = item.id })">
+                                        <i style="color:blue" class="fas fa-edit"></i>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a class="delete-link" title="Delete" href="@Url.Action("Delete", "Orders", new { id = item.id })">
+                                        <i style="color:red" class="fas fa-trash-alt"></i>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>

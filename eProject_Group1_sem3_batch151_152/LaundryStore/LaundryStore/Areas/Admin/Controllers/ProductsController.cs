@@ -57,8 +57,8 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,productName,categoryId,description,image,viewCount,discount,createdDate,createdBy,modifyDate,modifyBy,pieceType,pricePiece,kgType,priceKg,status")] Product product,
-                                    HttpPostedFileBase image, string pieceType, string kgType)
+        public ActionResult Create([Bind(Include = "id,productName,categoryId,description,image,viewCount,discount,createdDate,createdBy,modifyDate,modifyBy,type,price,status")] Product product,
+                                    HttpPostedFileBase image, string pakageType, int priceKg, int pricePackage)
         {
             if (ModelState.IsValid)
             {
@@ -76,10 +76,17 @@ namespace LaundryStore.Areas.Admin.Controllers
                 {
                     product.image = "Assets/Admin/resources/product/" + "defaultProduct.jpg";
                 }
-                product.pieceType = pieceType;
-                product.kgType = kgType;
+
                 product.createdDate = DateTime.Now;
-                product.createdBy = Session["username"].ToString();
+                product.createdBy = Session["username_Employee"].ToString();
+                product.type = "kg";
+                product.status = true;
+                product.price = priceKg;
+                db.Products.Add(product);
+                db.SaveChanges();
+
+                product.type = pakageType;
+                product.price = pricePackage;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return new RedirectResult(url: "/Admin/Products/Index?message=insert_success");
@@ -110,7 +117,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,productName,categoryId,description,image,viewCount,discount,createdDate,createdBy,modifyDate,modifyBy,pieceType,pricePiece,kgType,priceKg,status")] Product product,
+        public ActionResult Edit([Bind(Include = "id,productName,categoryId,description,image,viewCount,discount,createdDate,createdBy,modifyDate,modifyBy,type,price,status")] Product product,
                                   HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
@@ -131,7 +138,7 @@ namespace LaundryStore.Areas.Admin.Controllers
                 }
 
                 product.modifyDate = DateTime.Now;
-                product.modifyBy = Session["username"].ToString();
+                product.modifyBy = Session["username_Employee"].ToString();
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return new RedirectResult(url: "/Admin/Products/Index?message=update_success");

@@ -38,7 +38,6 @@ namespace LaundryStore.Models
         public virtual DbSet<PayRollsEmployee> PayRollsEmployees { get; set; }
         public virtual DbSet<PayRollsWorker> PayRollsWorkers { get; set; }
         public virtual DbSet<PostCategory> PostCategories { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Provider> Providers { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<ShippingAdress> ShippingAdresses { get; set; }
@@ -48,5 +47,6 @@ namespace LaundryStore.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }

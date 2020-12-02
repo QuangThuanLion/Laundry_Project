@@ -36,6 +36,7 @@
           <Property Name="modifyDate" Type="datetime" />
           <Property Name="modifyBy" Type="nvarchar" MaxLength="255" />
           <Property Name="status" Type="bit" />
+          <Property Name="image" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Comments">
           <Key>
@@ -268,10 +269,8 @@
           <Property Name="createdBy" Type="nvarchar" MaxLength="255" />
           <Property Name="modifyDate" Type="datetime" />
           <Property Name="modifyBy" Type="nvarchar" MaxLength="255" />
-          <Property Name="pieceType" Type="nvarchar" MaxLength="10" />
-          <Property Name="pricePiece" Type="int" />
-          <Property Name="kgType" Type="nvarchar" MaxLength="10" />
-          <Property Name="priceKg" Type="int" />
+          <Property Name="type" Type="nvarchar" MaxLength="10" />
+          <Property Name="price" Type="int" />
           <Property Name="status" Type="bit" />
         </EntityType>
         <EntityType Name="Providers">
@@ -769,7 +768,8 @@
           <Property Name="modifyDate" Type="DateTime" Precision="3" />
           <Property Name="modifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Boolean" />
-          <NavigationProperty Name="Products" Relationship="Self.fk_categoryId" FromRole="Categories" ToRole="Products" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="LAUNDRY_PROJECTModel.fk_categoryId" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -944,29 +944,6 @@
           <Property Name="status" Type="Boolean" />
           <NavigationProperty Name="News" Relationship="Self.fk_categoryPostId" FromRole="PostCategories" ToRole="News" />
         </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="productName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="categoryId" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="viewCount" Type="Int32" />
-          <Property Name="discount" Type="Double" />
-          <Property Name="createdDate" Type="DateTime" Precision="3" />
-          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="modifyDate" Type="DateTime" Precision="3" />
-          <Property Name="modifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="pieceType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="pricePiece" Type="Int32" />
-          <Property Name="kgType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="priceKg" Type="Int32" />
-          <Property Name="status" Type="Boolean" />
-          <NavigationProperty Name="Category" Relationship="Self.fk_categoryId" FromRole="Products" ToRole="Categories" />
-          <NavigationProperty Name="OrderDetails" Relationship="LAUNDRY_PROJECTModel.fk_productOrderId" FromRole="Product" ToRole="OrderDetail" />
-        </EntityType>
         <EntityType Name="Provider">
           <Key>
             <PropertyRef Name="id" />
@@ -1048,18 +1025,6 @@
             </Principal>
             <Dependent Role="AccountRoles">
               <PropertyRef Name="roleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_categoryId">
-          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
-          <End Role="Products" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="categoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1185,7 +1150,6 @@
           <EntitySet Name="PayRollsEmployees" EntityType="Self.PayRollsEmployee" />
           <EntitySet Name="PayRollsWorkers" EntityType="Self.PayRollsWorker" />
           <EntitySet Name="PostCategories" EntityType="Self.PostCategory" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Providers" EntityType="Self.Provider" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="ShippingAdresses" EntityType="Self.ShippingAdress" />
@@ -1195,10 +1159,6 @@
           <AssociationSet Name="fk_roleId" Association="Self.fk_roleId">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="AccountRoles" EntitySet="AccountRoles" />
-          </AssociationSet>
-          <AssociationSet Name="fk_categoryId" Association="Self.fk_categoryId">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Products" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="fk_customerComment" Association="Self.fk_customerComment">
             <End Role="Customers" EntitySet="Customers" />
@@ -1282,6 +1242,11 @@
           <AssociationSet Name="fk_orderId" Association="LAUNDRY_PROJECTModel.fk_orderId">
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <EntitySet Name="Products" EntityType="LAUNDRY_PROJECTModel.Product" />
+          <AssociationSet Name="fk_categoryId" Association="LAUNDRY_PROJECTModel.fk_categoryId">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="fk_productOrderId" Association="LAUNDRY_PROJECTModel.fk_productOrderId">
             <End Role="Product" EntitySet="Products" />
@@ -1495,6 +1460,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="categoryId" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="viewCount" Type="Int32" />
+          <Property Name="discount" Type="Double" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="modifyDate" Type="DateTime" Precision="3" />
+          <Property Name="modifyBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="Category" Relationship="LAUNDRY_PROJECTModel.fk_categoryId" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="OrderDetails" Relationship="LAUNDRY_PROJECTModel.fk_productOrderId" FromRole="Product" ToRole="OrderDetail" />
+        </EntityType>
+        <Association Name="fk_categoryId">
+          <End Type="LAUNDRY_PROJECTModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="LAUNDRY_PROJECTModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_productOrderId">
           <End Type="LAUNDRY_PROJECTModel.Product" Role="Product" Multiplicity="1" />
           <End Type="LAUNDRY_PROJECTModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
@@ -1536,6 +1534,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.Category">
               <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
                 <ScalarProperty Name="categoryCode" ColumnName="categoryCode" />
@@ -1714,28 +1713,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.Product">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="productName" ColumnName="productName" />
-                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="viewCount" ColumnName="viewCount" />
-                <ScalarProperty Name="discount" ColumnName="discount" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
-                <ScalarProperty Name="modifyBy" ColumnName="modifyBy" />
-                <ScalarProperty Name="pieceType" ColumnName="pieceType" />
-                <ScalarProperty Name="pricePiece" ColumnName="pricePiece" />
-                <ScalarProperty Name="kgType" ColumnName="kgType" />
-                <ScalarProperty Name="priceKg" ColumnName="priceKg" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Providers">
             <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.Provider">
               <MappingFragment StoreEntitySet="Providers">
@@ -1865,6 +1842,26 @@
                 <ScalarProperty Name="discount" ColumnName="discount" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
                 <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="LAUNDRY_PROJECTModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="modifyBy" ColumnName="modifyBy" />
+                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="viewCount" ColumnName="viewCount" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

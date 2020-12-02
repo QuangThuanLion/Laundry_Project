@@ -31,10 +31,8 @@ namespace LaundryStore.Models
         public string createdBy { get; set; }
         public Nullable<System.DateTime> modifyDate { get; set; }
         public string modifyBy { get; set; }
-        public string pieceType { get; set; }
-        public Nullable<int> pricePiece { get; set; }
-        public string kgType { get; set; }
-        public Nullable<int> priceKg { get; set; }
+        public string type { get; set; }
+        public Nullable<int> price { get; set; }
         public Nullable<bool> status { get; set; }
     
         public virtual Category Category { get; set; }

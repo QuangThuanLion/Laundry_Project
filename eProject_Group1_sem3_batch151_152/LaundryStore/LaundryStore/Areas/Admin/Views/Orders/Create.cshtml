@@ -5,154 +5,123 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
-        <h4>Order</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.customerId, "customerId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("customerId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.customerId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.orderDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.orderDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.orderDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.paymentMethodId, "paymentMethodId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("paymentMethodId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.paymentMethodId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.paymentStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.paymentStatus, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.paymentStatus, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.statusId, "statusId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("statusId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.statusId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.createdBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.createdBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.createdBy, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.shippingId, "shippingId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("shippingId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.shippingId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.employeeIdConfirm, "employeeIdConfirm", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("employeeIdConfirm", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.employeeIdConfirm, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.employeeIdShipping, "employeeIdShipping", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("employeeIdShipping", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.employeeIdShipping, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.totalDebt, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.totalDebt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.totalDebt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.status)
-                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+        <!-- Main Content Start -->
+        <section class="main--content">
+            <div class="panel">
+                <!-- Records Header Start -->
+                <div class="records--header">
+                    <div class="title fa-shopping-bag">
+                        <h3 class="h3">Order Management<a href="#" class="btn btn-sm btn-outline-info">Order Create</a></h3>
+                    </div>
+                    <div class="actions">
+                        <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "Orders")">
+                            <span>BACK</span>
+                        </a>
+                        <div style="margin-right:10px" class="addProduct btn btn-sm btn-rounded btn-warning">
+                            <div>
+                                <button type="submit" class="btn btn-warning"><b>CREATE ORDER</b></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- Records Header End -->
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="panel">
+
+                <!-- Edit Product Start -->
+                <div class="records--body">
+                    <div class="title">
+                        <h6 class="h6">CREATE ORDER</h6>
+                    </div>
+
+                    <!-- Tabs Nav Start -->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a href="#tab01" data-toggle="tab" class="nav-link active">Create</a>
+                        </li>
+                    </ul>
+                    <!-- Tabs Nav End -->
+                    <!-- Tab Content Start -->
+                    <div class="tab-content">
+                        <!-- Tab Pane Start -->
+                        <div class="tab-pane fade show active" id="tab01">
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b><span>Full Name</span></b>
+                                    @Html.DropDownList("customerId", null,"------Select------" ,htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.customerId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b><span>Address</span></b>
+                                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b><span>PayMent Method</span></b>
+                                    @Html.DropDownList("paymentMethodId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.paymentMethodId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="role"><b>PayMent Status</b></label>
+                                    <select id="paymentstatus" name="paymentstatus" class="form-control" required>
+                                        <option value="doing">doing</option>
+                                        <option value="done">done</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b><span>Amount</span></b>
+                                    @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b><span>Descriptions</span></b>
+                                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b><span>Status</span></b>
+                                    <div class="checkbox">
+                                        @Html.DropDownList("statusId", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.statusId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="package"><b>Package</b></label>
+                                    <select id="package" name="package" class="form-control" required>
+                                        <option>--Select Package--</option>
+                                        <option value="piece">Piece</option>
+                                        <option value="kg">Kg</option>
+                                        <option value="week">Week</option>
+                                        <option value="month">Month</option>
+                                        <option value="quarter">Quarter</option>
+                                        <option value="year">Year</option>
+                                        <option value="spa">Spa</option>
+                                        <option value="hotel">Hotel</option>
+                                        <option value="resort">Resort</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tab Pane End -->
+                    </div>
+                    <!-- Tab Content End -->
+                </div>
+                <!-- Edit Product End -->
             </div>
-        </div>
+        </section>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

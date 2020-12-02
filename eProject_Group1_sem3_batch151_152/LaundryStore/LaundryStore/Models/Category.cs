@@ -29,6 +29,7 @@ namespace LaundryStore.Models
         public Nullable<System.DateTime> modifyDate { get; set; }
         public string modifyBy { get; set; }
         public Nullable<bool> status { get; set; }
+        public string image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }

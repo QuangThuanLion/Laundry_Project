@@ -20,6 +20,24 @@ namespace LaundryStore.Controllers
             var products = db.Products.Include(p => p.Category);
             return View(products.ToList());
         }
+        /**
+         * render product detail based on categoryId
+         */
+        public ActionResult DetailProduct(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List<Product> products = db.Products.Where(x => x.categoryId == id).ToList();
+            List<Category> category = db.Categories.ToList();
+            ViewBag.ListCategory = category;
+            if (products == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_RenderProduct", products);
+        }
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)

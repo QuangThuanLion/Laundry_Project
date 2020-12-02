@@ -1,0 +1,238 @@
+﻿@model IEnumerable<LaundryStore.Models.Product>
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_layoutOtherPage.cshtml";
+}
+
+<!-- inner banner start -->
+@section scripts{
+    <div class="container">
+        <div class="row z-5 mt-85 align-items-center">
+            <div class="col-lg-7 text-center text-lg-left">
+                <h1 class="blue">BẢNG GIÁ CHI TIẾT</h1>
+            </div>
+        </div>
+    </div>
+}
+<!-- inner banner end -->
+<!-- service detaiil start -->
+<section class="blog-detail pt-95 pb-65">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-5">
+                <div class="servvice-link-list mb-30">
+                    <ul>
+                        @foreach (var ct in ViewBag.ListCategory)
+                        {
+                            <li><a href="/Products/DetailProduct/@ct.id"><i class="fas fa-chevron-right"></i>@ct.categoryName</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="right-box bg-light-white mb-30">
+                    <div class="right-box-head">
+                        <h4 class="fs-22">Search</h4>
+                    </div>
+                    <div class="right-box-content">
+                        <form action="#" class="relative mt-10 mb-10">
+                            <input type="text" class="form-control input-white search-white" id="search2" placeholder="Search here..">
+                            <i class="fas fa-search transform-v-center blue"></i>
+                        </form>
+                    </div>
+                </div>
+                <a href="" class="btn mb-30 btn-block btn-blue-border">
+                    <i class="far fa-file-pdf mr-10"></i> Download Brochure
+                </a>
+                <div class="right-box bg-light-white mb-30">
+                    <div class="right-box-head">
+                        <h4 class="fs-22">Popular Posts</h4>
+                    </div>
+                    <div class="right-box-content ">
+                        <a href="" class="popular-post d-flex align-items-center">
+                            <div class="popular-post-img mr-20">
+                                <img src="~/Assets/Client/vendors/img/blog/blog-sml1.jpg" />
+                                <div class="full-cover bg-blue-op-8 transition-4">
+                                    <i class="fas fa-external-link-alt transform-center"></i>
+                                </div>
+                            </div>
+                            <div class="popular-post-text">
+                                <p class="mb-5 black">Lorem ipsum dolor sit amet, consecte..</p>
+                                <span>June 25, 2020</span>
+                            </div>
+                        </a>
+                        <a href="" class="popular-post d-flex align-items-center">
+                            <div class="popular-post-img mr-20">
+                                <img src="~/Assets/Client/vendors/img/blog/blog-sml2.jpg" />
+                                <div class="full-cover bg-blue-op-8 transition-4">
+                                    <i class="fas fa-external-link-alt transform-center"></i>
+                                </div>
+                            </div>
+                            <div class="popular-post-text">
+                                <p class="mb-5 black">Maecenas commodo nisl vel leo dapib..</p>
+                                <span>May 16, 2020</span>
+                            </div>
+                        </a>
+                        <a href="" class="popular-post d-flex align-items-center">
+                            <div class="popular-post-img mr-20">
+                                <img src="~/Assets/Client/vendors/img/blog/blog-sml3.jpg" />
+                                <div class="full-cover bg-blue-op-8 transition-4">
+                                    <i class="fas fa-external-link-alt transform-center"></i>
+                                </div>
+                            </div>
+                            <div class="popular-post-text">
+                                <p class="mb-5 black">Donec bibendum, neque et auctorm..</p>
+                                <span>April 11, 2020</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="right-box bg-light-white mb-30">
+                    <div class="right-box-head">
+                        <h4 class="fs-22">Follow Us</h4>
+                    </div>
+                    <div class="right-box-content">
+                        <div class="social-profile mt-10 mb-10">
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-google-plus-g"></i>
+                            </a>
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-box bg-blue mb-30">
+                    <ul class="contacts-list blue-contacts">
+                        <li class="mb-15">
+                            <span class="icon"><i class="fas fa-phone blue"></i></span>
+                            <span class="sub-head">Call Us Now</span>
+                            <p>+123 456 7890</p>
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fas fa-envelope blue"></i></span>
+                            <span class="sub-head">Send Us a Mail</span>
+                            <p>info@example.com</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-7">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>BẢNG GIÁ</h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <button style="float:right" type="submit" class="btn btn-md btn-success" onclick="addToCart()"><b>ĐĂNG KÍ GIẶT</b></button>
+                        </div>
+                    </div>
+                    <table class="table table-bordered" style="text-align:center">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>HÌNH ẢNH</th>
+                                <th>TÊN DỊCH VỤ</th>
+                                <th>LOẠI DỊCH VỤ</th>
+                                <th>GIÁ DỊCH VỤ</th>
+                                <th>GIẢM GIÁ (%)</th>
+                                <th>CHỌN DỊCH VỤ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ var value = 1;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @(value++)
+                                    </td>
+                                    <td>
+                                        <img width="70" height="70" src="~/@item.image" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.productName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.discount)
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="checkbox_@item.id" value="@item.id"/>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="service-detail-text">
+                    <div class="hr-1 opacity-1 bg-black mt-5 mb-25"></div>
+                    <h4 class="fs-19 f-700 mb-10 mb-md-15 lh-13">Our house cleaning service includes:</h4>
+                    <ul class="check-list type-2-c half-list">
+                        <li><i class="far fa-check-square"></i>Cobwebs removed </li>
+                        <li><i class="far fa-check-square"></i>Furniture cleaned </li>
+                        <li><i class="far fa-check-square"></i>Range hood & stove top cleaned</li>
+                        <li><i class="far fa-check-square"></i>Floors vacuumed</li>
+                        <li><i class="far fa-check-square"></i>Range hood & stove top cleaned</li>
+                        <li><i class="far fa-check-square"></i>Tile area behind tub cleaned </li>
+                        <li><i class="far fa-check-square"></i>Floors swept & mopped</li>
+                        <li><i class="far fa-check-square"></i>Sink cleaned / Chrome polished </li>
+                    </ul>
+                    <div class="hr-1 opacity-1 bg-black mt-30 mb-25"></div>
+                    <h4 class="fs-19 f-700 mb-15">Frequently asked questions</h4>
+                    <div class="faq-boxes">
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header collapsed" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" role="button">
+                                    <h5 class="mb-0">
+                                        What cleaning supplies do I have to provide?<i class="fas fa-plus"></i>
+                                    </h5>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header  collapsed" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" role="button">
+                                    <h5 class="mb-0">
+                                        How can i book via website?<i class="fas fa-plus"></i>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header collapsed" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="button">
+                                    <h5 class="mb-0">
+                                        Aorem ipsum dolor sit amet consecte?<i class="fas fa-plus"></i>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- service detaiil end -->
