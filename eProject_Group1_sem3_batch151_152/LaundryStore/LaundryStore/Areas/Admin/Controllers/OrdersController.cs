@@ -56,8 +56,8 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,customerId,orderDate,endDate,address,paymentMethodId,paymentStatus,amount,description,statusId,createdBy,shippingId,employeeIdConfirm,employeeIdShipping,totalDebt,type,status")]
-                                    Order order, string package)
+        public ActionResult Create([Bind(Include = "id,customerId,orderDate,endDate,address,paymentMethodId,paymentStatus,amount,description,statusId,createdBy,shippingId,employeeIdConfirm,employeeIdShipping,totalDebt,totalOrder,status")]
+                                    Order order)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +69,6 @@ namespace LaundryStore.Areas.Admin.Controllers
                 order.createdBy = Session["username_Employee"].ToString();
                 order.employeeIdConfirm = Int32.Parse(Session["id_Employee"].ToString());
                 order.status = true;
-                order.type = package;
                 db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,7 +109,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,customerId,orderDate,endDate,address,paymentMethodId,paymentStatus,amount,description,statusId,createdBy,shippingId,employeeIdConfirm,employeeIdShipping,totalDebt,type,status")] Order order)
+        public ActionResult Edit([Bind(Include = "id,customerId,orderDate,endDate,address,paymentMethodId,paymentStatus,amount,description,statusId,createdBy,shippingId,employeeIdConfirm,employeeIdShipping,totalDebt,totalOrder,status")] Order order)
         {
             if (ModelState.IsValid)
             {

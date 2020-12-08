@@ -21,6 +21,7 @@ namespace LaundryStore.Models
         public Nullable<int> price { get; set; }
         public string type { get; set; }
         public Nullable<bool> status { get; set; }
+        public Nullable<long> totalPrice { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

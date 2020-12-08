@@ -9,199 +9,215 @@
     <div class="container">
         <div class="row z-5 mt-85 align-items-center">
             <div class="col-lg-7 text-center text-lg-left">
-                <h1 class="blue">Checkout</h1>
+                <h1 class="blue">Xác nhận thanh toán đơn hàng</h1>
             </div>
         </div>
     </div>
 }
 <!-- inner banner end -->
-
 <!-- checkout start -->
-    <section class="checkout pt-90 pb-90">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7">
-                    <div class="left-checkout mb-md-30">
+<section class="checkout pt-90 pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="left-checkout mb-md-30">
+                    @if (@ViewData["message"] != null)
+                    {
+                        <div class="alert alert-@ViewData["alert"]" role="alert">
+                            @ViewData["message"]
+                        </div>
+                    }
+                    @if (Session["id_Customer"] == null)
+                    {
                         <div class="login-section">
                             <div id="accordion1">
                                 <div class="card">
                                     <div class="card-header" id="heading1" data-toggle="collapse" role="button" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                        <h5 class="mb-0 rbt fs-15">Registered Customer Login Here</h5>
+                                        <h5 class="mb-0 rbt fs-15">Đăng Nhập Để Nhận Được Nhiều Ưu Đãi Từ Đơn Hàng Của Bạn</h5>
                                     </div>
                                     <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordion1">
                                         <div class="card-body">
-                                            <form action="#">
-                                                <p class="mb-20">If you have an account with us, please log in.</p>
+                                            <form action="LoginToCheckOut" method="post">
+                                                <p class="mb-20">Nếu bạn đã có tài khoản, vui lòng đăng nhập tại đây</p>
                                                 <div class="form-group">
-                                                    <label for="email">Email address*</label>
-                                                    <input type="email" class="form-control input-white" placeholder="Email address" id="email">
-                                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                                    <label for="email">Email *</label>
+                                                    <input type="email" class="form-control input-white" placeholder="Email address" id="email" required="required" name="email">
+                                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i>Vui lòng nhập email !</p>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="pwd">Password*</label>
-                                                    <input type="password" class="form-control input-white" placeholder="Password" id="pwd">
-                                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                                                    <label for="pwd">Mật Khẩu *</label>
+                                                    <input type="password" class="form-control input-white" placeholder="Password" id="password" required="required" name="password">
+                                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i>Vui lòng nhập mật khẩu</p>
                                                 </div>
-                                                <div class="custom-control mb-10 custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="chk19" name="chk19">
-                                                    <label class="custom-control-label" for="chk19">Remember me</label>
-                                                </div>
-                                                <button type="submit" class="btn btn-blue btn-md mb-5">LOGIN</button>
+                                                <button type="submit" class="btn btn-blue btn-md mb-5">ĐĂNG NHẬP</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="heading2" data-toggle="collapse" role="button" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                        <h5 class="mb-0 rbt fs-15"> Are You a New Customer?</h5>
+                                        <h5 class="mb-0 rbt fs-15">Bạn Là Khách Hàng Mới ?</h5>
                                     </div>
                                     <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion1">
                                         <div class="card-body">
-                                            <h5 class="mb-20 ">Register with us for future convenience.</h5>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="chk20" name="chk20">
-                                                <label class="custom-control-label" for="chk20">Checkout as a guest</label>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. veniam, quis nostrud nostrud exercitation laboris.</p>
-                                            <a href="" class="btn btn-blue btn-md">Create Account</a>
+                                            <h5 class="mb-20 ">Đăng kí tài khoản để nhận được nhiều ưu đãi hơn</h5>
+                                            <a href="/Account/RegisterAccount" class="btn btn-blue btn-md">Tạo tài khoản</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="bill-section">
-                            <h3 class="f-700 mb-15 mt-35">Billing Details</h3>
-                            <form action="#" class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="fname">First Name *</label>
-                                    <input type="text" class="form-control input-white" id="fname" placeholder="First Name">
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="lname">Last Name *</label>
-                                    <input type="text" class="form-control input-white" id="lname" placeholder="Last Name">
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Email">Email *</label>
-                                    <input type="email" class="form-control input-white" id="Email" placeholder="Email">
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="phone">Phone Number *</label>
-                                    <input type="text" class="form-control input-white" id="phone" placeholder="Phone Number">
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="Company">Company Name *</label>
-                                    <input type="text" class="form-control input-white" id="Company" placeholder="Company Name">
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="Address">Address *</label>
-                                    <input type="text" class="form-control input-white mb-15" id="Address" placeholder="Address Line 1">
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                    <input type="text" class="form-control input-white" id="Address2" placeholder="Address Line 2">
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="country">Country*</label>
-                                    <select class="form-control input-white" id="country">
-                                        <option>Country 1</option>
-                                        <option>Country 2</option>
-                                        <option>Country 3</option>
-                                    </select>
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="state">State*</label>
-                                    <select class="form-control input-white" id="state">
-                                        <option>State 1</option>
-                                        <option>State 2</option>
-                                        <option>State 3</option>
-                                    </select>
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Town">Town*</label>
-                                    <input type="text" class="form-control input-white" id="Town" placeholder="Town">
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Post">Post code*</label>
-                                    <input type="text" class="form-control input-white" id="Post" placeholder="Post code">
-                                    <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
-                                </div>
-                                <div class="form-group form-check">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="chk18" name="chk18">
-                                        <label class="custom-control-label" for="chk18">Have read and agree to the <a href="" class="underline">Privacy Policy </a></label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="order-note">
-                            <h3 class=" f-700 mb-15 mt-15">Order Summary</h3>
-                            <div class="form-group mb-0">
-                                <textarea class="form-control input-white" rows="5" id="comment" placeholder="Notes about your order"></textarea>
+                    }
+                    <div class="bill-section">
+                        <h3 class="f-700 mb-15 mt-35">THÔNG TIN CỦA BẠN</h3>
+                        <form action="#" class="row">
+                            <div class="form-group col-md-12">
+                                <label for="fname">Họ tên người nhận *</label>
+                                <input type="text" class="form-control input-white" id="fname" placeholder="Họ tên của bạn" value="@ViewBag.customerName" required="required">
                                 <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="your-order bg-light-white">
-                        <h3 class="f-700 mb-20">Your Order</h3>
-                        <div class="ordered">
-                            <ul>
-                                <li class="odered-items">
-                                    <img src="~/Assets/Client/vendors/img/shop/prdt1.jpg" />                                 
-                                    <div class="details">
-                                        <h4 class="rbt">Persil Micro Clean</h4>
-                                        <div class="quantity">2 x <span>$50.00</span></div>
-                                        <a href=""><i class="fas fa-times"></i></a>
-                                    </div>
-                                </li>
-                                <li class="odered-items">
-                                    <img src="~/Assets/Client/vendors/img/shop/prdt2.jpg" />
-                                    <div class="details">
-                                        <h4 class="rbt">Dish Soap</h4>
-                                        <div class="quantity">1 x <span>$50.00</span></div>
-                                        <a href=""><i class="fas fa-times"></i></a>
-                                    </div>
-                                </li>
-                                <li class="odered-items">
-                                    <img src="~/Assets/Client/vendors/img/shop/prdt3.jpg" />
-                                    <div class="details">
-                                        <h4 class="rbt">Mop With a Bucket</h4>
-                                        <div class="quantity">1 x <span>$50.00</span></div>
-                                        <a href=""><i class="fas fa-times"></i></a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="price-detail mb-15">
-                            <ul class="total-table mt-5">
-                                <li><span>Sub Total:</span>$1000.00</li>
-                                <li><span>Tax :</span>$15.00</li>
-                                <li><span>Shipping Cost:</span>$10.00</li>
-                                <li class="total"><span>TOTAL:</span>$1025.00</li>
-                            </ul>
-                        </div>
-                        <form>
-                            <div class="custom-control custom-radio custom-control mb-5 mt-20">
-                                <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
-                                <label class="custom-control-label fs-16 f-500" for="customRadio">Cash on Delivery</label>
+                            <div class="form-group col-md-12">
+                                <label for="Email">Email người nhận *</label>
+                                <input type="email" class="form-control input-white" id="Email" placeholder="Email của bạn" value="@ViewBag.emailCustomer" required="required">
+                                <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
                             </div>
-                            <div class="custom-control custom-radio custom-control">
-                                <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
-                                <label class="custom-control-label fs-16 f-500" for="customRadio2">PayPal</label>
+                            <div class="form-group col-md-12">
+                                <label for="phone">Điện thoại người nhận *</label>
+                                <input type="text" class="form-control input-white" id="phone" placeholder="Số điện thoại của bạn" value="@ViewBag.phoneCustomer" required="required">
+                                <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="city">Tỉnh thành *</label>
+                                <select class="form-control input-white" id="city">
+                                    <option>Đà Nẵng</option>
+                                </select>
+                                <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="county">Chọn quận huyện *</label>
+                                <select class="form-control input-white" id="county" name="county" required="required">
+                                    <option value="1">Quận Hải Châu - (30VNĐ)</option>
+                                    <option value="2">Quận Cẩm Lệ - (40VNĐ)</option>
+                                    <option value="3">Quận Thanh Khê - (50VNĐ)</option>
+                                    <option value="4">Quận Liên Chiểu - (60VNĐ)</option>
+                                    <option value="5">Quận Ngũ Hành Sơn - (70VNĐ)</option>
+                                    <option value="6">Quận Sơn Trà - (80VNĐ)</option>
+                                    <option value="7">Huyện Hòa Vang - (90VNĐ)</option>
+                                    <option value="8">Huyện Hoàng Sa - (100VNĐ)</option>
+                                </select>
+                                <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="Address">Địa chỉ người nhận *</label>
+                                <input type="text" class="form-control input-white mb-15" id="address" placeholder="Địa chỉ của bạn" value="@ViewBag.addressCustomer" required="required">
+                                <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
                             </div>
                         </form>
-                        <a href="" class="btn btn-block btn-blue mt-15">PLACE YOUR ORDER</a>
+                    </div>
+                    <div class="order-note">
+                        <h3 class=" f-700 mb-15 mt-15">Ghi chú</h3>
+                        <div class="form-group mb-0">
+                            <textarea class="form-control input-white" rows="5" id="comment" placeholder="Ghi chú thêm về đơn hàng"></textarea>
+                            <p class="required-field" style="display: none;"><i class="fas fa-times"></i> This field is required.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-5">
+                <div class="your-order bg-light-white">
+                    <h3 class="f-700 mb-20">Đơn hàng của bạn</h3>
+                    <div class="ordered">
+                        <ul>
+                            @foreach (var item in ViewBag.listCart)
+                            {
+                                <li class="odered-items">
+                                    <img width="70" height="70" src="~/@item.image" />
+                                    <div class="details">
+                                        <h4 class="rbt">@item.productName</h4>
+                                        <div class="quantity">@item.quantity x <span>@item.price VNĐ x @item.type</span></div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="price-detail mb-15">
+                        <ul class="total-table mt-5">
+                            <li><span>Tổng Đơn Hàng:</span>$1000.00</li>
+                            <li><span id="shipmentCost">Phí Ship:</span>0 VNĐ</li>
+                            <li class="total"><span>TỔNG THANH TOÁN:</span>@ViewBag.total</li>
+                        </ul>
+                    </div>
+                    <form>
+                        <div class="m_ht_gh">
+                            <div class="t_ht_gh">
+                                <i class="fa fa-university" aria-hidden="true"></i>
+                                Hình thức giặt
+                            </div>
+                            <ul class="ul_ht_gh">
+                                <li>
+                                    <label>
+                                        <input class="hinhthuc_giat" type="radio" name="hinhthuc" value="1" checked="checked" onclick="hinhthucnhan1()">
+                                        Khách tự mang đồ đến cửa hàng
+                                    </label>
+                                    <div class="tt_ht_gh f-detail clearfix hinhthuc_show" id="hinhthuc_show1" val="0" style="display:none;">
+                                        <strong style="margin-top:20px; width:100%; float:left;">CỬA HÀNG GIẶT ỦI TIỆN LỢI LAUNDRY CITY</strong><br/>
+                                        <strong>Địa chỉ:</strong> 31 Yên Bái - Quận Hải Châu - Tp. Đà Nẵng<br>
+                                        <strong>Điện thoại:</strong> 0123456789 -789456123 - 023678945<br>
+                                        <strong>Hotline:</strong> +0123456789<br>
+                                        <strong>Email:</strong> <a href="https://localhost:44335/Home/Index" rel="nofollow">laundrycity@gmail.com</a><br>
+                                        <strong>Website:</strong> <a href="https://localhost:44335/Home/Index">laundrycity.com</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input class="hinhthuc_giat" type="radio" name="hinhthuc" value="2" onclick="hinhthucnhan2()">
+                                        Nhân viên tới lấy đồ tận nơi (<b>Có phí: <b id="phi_hinhthucnhan">0</b>đ</b>)
+                                    </label>
+                                    <div class="tt_ht_gh f-detail clearfix hinhthuc_show" id="hinhthuc_show2" val="0" style="display:none;">
+                                        <p><b>Quý khách phải chịu thêm khoản phí để nhân viên tới lấy đồ đi giặt</b></p>
+                                        <p><b>Phí tùy thuộc địa điểm Tỉnh thành/ Quận huyện quý khách chọn</b></p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div><!-- End .m_ht_gh -->
+                        <div class="m_ktt_gh">
+                            <div class="t_ht_gh">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                Hình thức giao hàng
+                            </div>
+                            <ul class="ul_ht_gh">
+                                <li>
+                                    <label>
+                                        <input class="kieu_check" type="radio" name="kieu" value="1" checked="checked" onclick="hinhthucgiao1()">
+                                        Đến cửa hàng nhận đồ
+                                    </label>
+                                    <div class="tt_ht_gh f-detail clearfix kieu_show" id="kieu_show1" val="0" style="display:none;">
+                                        <strong style="margin-top:20px; width:100%; float:left;">CỬA HÀNG GIẶT ỦI TIỆN LỢI LAUNDRY CITY</strong><br/>
+                                        <strong>Địa chỉ:</strong> 31 Yên Bái - Quận Hải Châu - Tp. Đà Nẵng<br>
+                                        <strong>Điện thoại:</strong> 0123456789 -789456123 - 023678945<br>
+                                        <strong>Hotline:</strong> +0123456789<br>
+                                        <strong>Email:</strong> <a href="https://localhost:44335/Home/Index" rel="nofollow">laundrycity@gmail.com</a><br>
+                                        <strong>Website:</strong> <a href="https://localhost:44335/Home/Index">laundrycity.com</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input class="kieu_check" type="radio" id="kieu2" name="kieu" value="2" onclick="hinhthucgiao2()">
+                                        Giao tận nhà cho khách (<b>Có phí: <b id="phi_giao">0</b>đ</b>)
+                                    </label>
+                                    <div class="tt_ht_gh f-detail clearfix kieu_show" id="kieu_show2" val="0" style="display:none;">
+                                        <p><b>Quý khách phải chịu thêm khoản phí để nhân viên giao hàng tận nơi</b></p>
+                                        <p><b>Phí tùy thuộc địa điểm Tỉnh thành/ Quận huyện quý khách chọn</b></p>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div><!-- End .m_ktt_gh -->
+                    </form>
+                    <button type="submit" class="btn btn-block btn-blue mt-15" onclick="purchase()">ĐẶT HÀNG</button>
+                </div>
+            </div>
         </div>
-    </section>
-    <!-- checkout end -->
+    </div>
+</section>
+<!-- checkout end -->

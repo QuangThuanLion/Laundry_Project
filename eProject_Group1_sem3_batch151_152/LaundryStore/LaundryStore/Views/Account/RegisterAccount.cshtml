@@ -9,13 +9,12 @@
     <div class="container">
         <div class="row z-5 mt-85 align-items-center">
             <div class="col-lg-7 text-center text-lg-left">
-                <h1 class="blue">RegisterAccount</h1>
+                <h1 class="blue">Đăng kí tài khoản</h1>
             </div>
         </div>
     </div>
 }
 <!-- inner banner end -->
-
 <!-- Login area start -->
 <section class="login pt-100 pb-100">
     <div class="container">
@@ -26,33 +25,34 @@
             </div>
             <div class="col-xl-5 col-lg-6 ">
                 <div class="form-area bg-blue">
-                    <h2 class="f-700 mb-5 white">Create an Account</h2>
-                    <p class="white">Quisque enim ipsum, commodo et venenatis rutrum, luctus in enim venenatis.</p>
-                    <form action="#">
+                    <h2 class="f-700 mb-5 white">Đăng kí tài khoản</h2>
+                    <p class="white">
+                        Đăng kí tài khoản trở thành khách hàng thành viên của Laundry City để nhận được
+                        nhiều ưu đãi từ cửa hàng chúng tôi.
+                    </p>
+                    <form action="RegisterAccount" method="post">
+                        @if (@ViewData["message"] != null)
+                        {
+                            <div class="alert alert-@ViewData["alert"]" role="alert">
+                                @ViewData["message"]
+                            </div>
+                        }
                         <div class="form-group relative mb-25 mb-sm-20">
-                            <input type="email" class="form-control input-lg input-white shadow-5" id="email" placeholder="Email">
+                            <input type="email" class="form-control input-lg input-white shadow-5" id="email" name="email" placeholder="Email" required="required">
                             <i class="far fa-envelope transform-v-center"></i>
                         </div>
                         <div class="form-group relative mb-20 mb-sm-20">
-                            <input type="password" class="form-control input-lg input-white shadow-5" id="pwd" placeholder="Password">
+                            <input type="password" class="form-control input-lg input-white shadow-5" id="password" name="password" placeholder="Mật khẩu" required="required">
                             <i class="fas fa-lock transform-v-center"></i>
                         </div>
                         <div class="form-group relative mb-20 mb-sm-20">
-                            <input type="password" class="form-control input-lg input-white shadow-5" id="pwd" placeholder="Confirm Password">
+                            <input type="password" class="form-control input-lg input-white shadow-5" id="confirmPassword" name="confirmPassword" placeholder="Xác nhận mật khẩu" required="required">
                             <i class="fas fa-lock transform-v-center"></i>
                         </div>
-                        <div class="form-group form-check pl-0">
-                            <div class="d-flex justify-content-between">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
-                                    <label class="custom-control-label fs-13" for="customCheck1"><span class="label-check white">Remember me</span></label>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-black btn-block mt-20">SIGNUP</button>
+                        <button type="submit" class="btn btn-black btn-block mt-20">ĐĂNG KÍ</button>
                         <div class="signup-login text-center">
                             <p class="mt-15 fs-13 white">
-                                Already a member?<a href="" class="ml-5 mb-0 d-inline-block  white">Login</a>
+                                Bạn đã có tài khoản?<a href="/Account/Login" class="ml-5 mb-0 d-inline-block  white">Đăng nhập</a>
                             </p>
                         </div>
                     </form>

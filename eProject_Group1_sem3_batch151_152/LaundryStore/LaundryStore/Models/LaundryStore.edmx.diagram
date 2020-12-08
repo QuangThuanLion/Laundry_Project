@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Category" Width="1.5" PointX="6.375" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Comment" Width="1.5" PointX="8.25" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.County" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Customer" Width="1.5" PointX="6.375" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.DuePayment" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Material" Width="1.5" PointX="4.5" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.News" Width="1.5" PointX="10.125" PointY="1.375" IsExpanded="true" />
@@ -25,32 +24,33 @@
         <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Worker" Width="1.5" PointX="8.25" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Work" Width="1.5" PointX="6.375" PointY="13.5" IsExpanded="true" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_roleId" ManuallyRouted="false" />
-        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_customerComment" ManuallyRouted="false" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_newId" ManuallyRouted="false" />
-        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_idCounty" ManuallyRouted="false" />
-        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_customerIdDebt" ManuallyRouted="false" />
-        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_RoleCustomerId" ManuallyRouted="false" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_providerId" ManuallyRouted="false" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_categoryPostId" ManuallyRouted="false" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_workerIdPayRoll" ManuallyRouted="false" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_workerIdWork" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Product" Width="1.5" PointX="4.5" PointY="1.375" />
+        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_categoryId" />
+        <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Customer" Width="1.5" PointX="6.375" PointY="4.875" />
         <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Employee" Width="1.5" PointX="2.5" PointY="7.75" />
-        <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Order" Width="1.5" PointX="2.5" PointY="1.375" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_employeeId" />
+        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_customerComment" />
+        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_idCounty" />
+        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_customerIdDebt" />
+        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_RoleCustomerId" />
+        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_employeeIdPayRoll" />
+        <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.OrderDetail" Width="1.5" PointX="4.5" PointY="6.375" />
+        <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Order" Width="1.5" PointX="2.625" PointY="1.375" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_orderIdBarCode" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_customerIdOrder" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_orderIdDebt" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_employeeIdConfirm" />
-        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_employeeIdPayRoll" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_employeeIdShipping" />
+        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_orderId" />
+        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_productOrderId" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_paymentMethodId" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_shippingId" />
         <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_statusId" />
-        <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.OrderDetail" Width="1.5" PointX="4.5" PointY="6.5" />
-        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_orderId" />
-        <EntityTypeShape EntityType="LAUNDRY_PROJECTModel.Product" Width="1.5" PointX="4.5" PointY="1.375" />
-        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_categoryId" />
-        <AssociationConnector Association="LAUNDRY_PROJECTModel.fk_productOrderId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -34,19 +34,21 @@
                                         <th>Discount</th>
                                         <th>Price</th>
                                         <th>Type</th>
+                                        <th>Total Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var od in ViewBag.ListOrderDetail)
                                     {
-                                        <tr>
-                                            <td>@od.id</td>
-                                            <td>@od.orderId</td>
-                                            <td>@od.Product.productName</td>
-                                            <td>@od.discount</td>
-                                            <td>@od.price</td>
-                                            <td>@od.type</td>
-                                        </tr>
+                                    <tr>
+                                        <td>@od.id</td>
+                                        <td>@od.orderId</td>
+                                        <td>@od.Product.productName</td>
+                                        <td>@od.discount</td>
+                                        <td>@od.price</td>
+                                        <td>@od.type</td>
+                                        <td>@od.totalPrice</td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -146,7 +148,7 @@
                                     </tr>
                                     <tr>
                                         <td>Type</td>
-                                        <th>@Html.DisplayFor(model => model.type)</th>
+                                        <th>@Html.DisplayFor(model => model.totalOrder)</th>
                                     <tr>
                                     <tr>
                                         <td>End Date</td>

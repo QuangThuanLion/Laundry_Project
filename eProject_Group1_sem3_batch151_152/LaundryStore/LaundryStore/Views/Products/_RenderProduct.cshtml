@@ -132,7 +132,7 @@
                             <button style="float:right" type="submit" class="btn btn-md btn-success" onclick="addToCart()"><b>ĐĂNG KÍ GIẶT</b></button>
                         </div>
                     </div>
-                    <table class="table table-bordered" style="text-align:center">
+                    <table class="table table-bordered" style="text-align:center;">
                         <thead>
                             <tr>
                                 <th>STT</th>
@@ -168,7 +168,7 @@
                                         @Html.DisplayFor(modelItem => item.discount)
                                     </td>
                                     <td>
-                                        <input type="checkbox" id="checkbox_@item.id" value="@item.id"/>
+                                        <input style="width:25px; height:25px;" type="checkbox" id="checkbox_@item.id" value="@item.id"/>
                                     </td>
                                 </tr>
                             }
@@ -236,3 +236,9 @@
     </div>
 </section>
 <!-- service detaiil end -->
+<style>
+    .table-bordered td, .table-bordered th {
+        border: 1px solid #dee2e6;
+        vertical-align: middle;
+}
+</style>

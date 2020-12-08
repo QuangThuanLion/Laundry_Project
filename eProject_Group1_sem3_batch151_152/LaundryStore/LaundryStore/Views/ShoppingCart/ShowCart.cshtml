@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row z-5 mt-85 align-items-center">
             <div class="col-lg-7 text-center text-lg-left">
-                <h1 class="blue">GIỎ HÀNG</h1>
+                <h1 class="blue">Giỏ hàng</h1>
             </div>
         </div>
     </div>
@@ -22,6 +22,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="cart-page table-responsive">
+                    <p style="padding-bottom:40px">
+                        <button style="float:right" class="btn btn-md btn-success btn-cart-clear"><b>XÓA TOÀN BỘ ĐƠN HÀNG</b></button>
+                    </p>
                     <table class="cart-table">
                         <thead>
                             <tr>
@@ -29,7 +32,7 @@
                                 <th class="prdt_name">Tên Dịch Vụ</th>
                                 <th class="prdt-price">Giá</th>
                                 <th class="prdt_quantity">Số Lượng</th>
-                                <th class="prdt_quantity">Giảm Giá</th>
+                                <th class="prdt_quantity">Giảm Giá (%)</th>
                                 <th class="prdt_quantity">Loại Dịch Vụ</th>
                                 <th class="prdt_total">Tổng</th>
                                 <th class="prdt_remove">Xóa</th>
@@ -38,9 +41,10 @@
                         <tbody>
                             @foreach (var item in ViewBag.listCart)
                             {
-                                <tr>
+                                <tr data-id="@item.productId" data-price="@item.price" data-discount="@item.discount">
                                     <td class="prdt-thumb">
                                         <img width="70" height="70" src="~/@item.image" />
+                                        <input type="hidden" id="idProduct" value="@item.productId" />
                                     </td>
                                     <td class="prdt-name">@item.productName</td>
                                     <td class="prdt-price">@item.price</td>
@@ -50,8 +54,12 @@
                                     </td>
                                     <td class="prdt-total">@item.discount</td>
                                     <td class="prdt-total">@item.type</td>
-                                    <td class="prdt-total">@item.total</td>
-                                    <td class="prdt-remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>
+                                    <td class="prdt-total" id="totalRow">@item.total</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning btn-cart-remove">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -80,7 +88,7 @@
                 </div>
                 <div class="inner-cart-box">
                     <ul class="total-table">
-                        <li class="total"><span>TOTAL:</span>@ViewBag.total VNĐ</li>
+                        <li class="total"><span>TOTAL:</span><b id="total">@ViewBag.total</b> VNĐ</li>
                     </ul>
                     <hr />
                     <div class="text-center text-sm-right">

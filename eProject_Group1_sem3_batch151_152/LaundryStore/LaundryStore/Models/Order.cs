@@ -37,8 +37,8 @@ namespace LaundryStore.Models
         public Nullable<long> employeeIdConfirm { get; set; }
         public Nullable<long> employeeIdShipping { get; set; }
         public Nullable<int> totalDebt { get; set; }
-        public string type { get; set; }
         public Nullable<bool> status { get; set; }
+        public Nullable<long> totalOrder { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Barcode> Barcodes { get; set; }
@@ -47,10 +47,10 @@ namespace LaundryStore.Models
         public virtual ICollection<DuePayment> DuePayments { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Employee Employee1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual PayMentMethod PayMentMethod { get; set; }
         public virtual ShippingAdress ShippingAdress { get; set; }
         public virtual Status Status1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

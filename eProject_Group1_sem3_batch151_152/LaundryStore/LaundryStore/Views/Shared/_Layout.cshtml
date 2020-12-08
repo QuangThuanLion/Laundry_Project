@@ -66,18 +66,75 @@
                                     <li>
                                         <a href="/Home/Contact" class=""><span></span>Liên hệ</a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="">Tài khoản</a>
-                                        <ul class="submenu">
-                                            <li>
-                                                <a href="/Account/Login"><span></span>Đăng nhập</a>
-                                            </li>
-                                            <li>
-                                                <a href="/Account/RegisterAccount"><span></span>Đăng kí</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    @if (Session["id_Customer"] != null)
+                                    {
+                                        <li>
+                                            <a href="#" class="">Tài khoản</a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="/Account/changePassword" data-toggle="modal" data-target="#exampleModal"><span></span>Đổi mật khẩu</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/editProfile"><span></span>Cập nhật tài khoản</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/orderList"><span></span>Đơn hàng</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/Logout"><span></span>Đăng xuất</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="#" class="">Tài khoản</a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="/Account/Login"><span></span>Đăng nhập</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/RegisterAccount"><span></span>Đăng kí</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/forgotPassword"><span></span>Quên mật khẩu</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+
                                 </ul>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <i class="fab fa-expeditedssl" style="font-size:40px; margin:0 44%; color:orange" ;></i>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                </button>
+                                            </div>
+                                            <div class="modal-body" style="text-align:center">
+                                                <div class="row">
+                                                    <b><span>Current Password</span></b>
+                                                    <input style="border-color:white;" class="form-control" type="password" id="currentPassword" name="currentPassword" required="required" placeholder="..." />
+                                                </div>
+                                                <div class="row">
+                                                    <b><span>New Password</span></b>
+                                                    <input style="border-color:white;" class="form-control" type="password" id="newPassword" name="newPassword" required="required" placeholder="..." />
+                                                </div>
+                                                <div class="row">
+                                                    <b><span>Confirm Password</span></b>
+                                                    <input style="border-color:white;" class="form-control" type="password" id="confirmPassword" name="confirmPassword" required="required" placeholder="..." />
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer editModalFooter">
+                                                <button class="btn btn-warning yes" onclick="changePassword()">Save changes</button>
+                                                <button type="button" class="btn btn-info cancel" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <a href="/ShoppingCart/ShowCart" class="head-1-book ml-15 mr-30">Cart</a>
                                 <div class="emergency shine-inf white">
                                     <p class="f-500 z-5">Tình trạng khẩn cấp ? Liên hệ ngay</p>
@@ -93,6 +150,8 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="idCustomer" name="idCustomer" value="@Session["id_Customer"]" />
+        <input type="hidden" id="currentPass" name="currentPass" value="@Session["password_Customer"]"/>
     </header>
     <!-- header end -->
     <div class="content-wrapper">
@@ -180,7 +239,6 @@
     <!-- Theme skins -->
     <!-- Theme skins -->
     <!-- JS Files -->
-    <script src="~/Assets/Client/resources/js/laundry.js"></script>
     <script src="~/Assets/Client/vendors/js/modernizr-3.5.0.min.js"></script>
     <script src="~/Assets/Client/vendors/js/jquery-1.12.4.min.js"></script>
     <script src="~/Assets/Client/vendors/js/bootstrap.bundle.min.js"></script>
@@ -197,9 +255,10 @@
     <script src="~/Assets/Client/vendors/js/tilt.jquery.min.js"></script>
     <script src="~/Assets/Client/vendors/js/jquery.event.move.js"></script>
     <script src="~/Assets/Client/vendors/js/jquery.twentytwenty.js"></script>
-    <script src="~/Assets/Client/vendors/js/main.js"></script>   
+    <script src="~/Assets/Client/vendors/js/main.js"></script>
     <script src="~/Assets/Admin/resources/sweetalert/sweetalert2.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Assets/Client/resources/js/laundry.js"></script>
     <!-- JS Files end -->
 </body>
 

@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row z-5 mt-85 align-items-center">
             <div class="col-lg-7 text-center text-lg-left">
-                <h1 class="blue">Sign in</h1>
+                <h1 class="blue">Đăng nhập</h1>
             </div>
         </div>
     </div>
@@ -26,15 +26,21 @@
             </div>
             <div class="col-xl-5 col-lg-6 ">
                 <div class="form-area bg-blue">
-                    <h2 class="f-700 mb-5 white">Have an Account?</h2>
-                    <p class=" white">Quisque enim ipsum, commodo et venenatis rutrum, luctus in enim venenatis.</p>
-                    <form action="#">
+                    <h2 class="f-700 mb-5 white">Bạn đã có tài khoản</h2>
+                    <p class=" white">Đăng nhập để nhận được nhiều ưu đãi từ cửa hàng cũng như ưu đãi từ dịch vụ cửa hàng</p>
+                    <form action="Login" method="post">
+                        @if (@ViewData["message"] != null)
+                        {
+                            <div class="alert alert-@ViewData["alert"]" role="alert">
+                                @ViewData["message"]
+                            </div>
+                        }
                         <div class="form-group relative mb-25 mb-sm-20">
-                            <input type="email" class="form-control input-lg input-white shadow-5" id="email" placeholder="Email">
+                            <input type="email" class="form-control input-lg input-white shadow-5" id="email" placeholder="Email" required="required" name="email">
                             <i class="far fa-envelope transform-v-center"></i>
                         </div>
                         <div class="form-group relative mb-20 mb-sm-20">
-                            <input type="password" class="form-control input-lg input-white shadow-5" id="pwd" placeholder="Password">
+                            <input type="password" class="form-control input-lg input-white shadow-5" id="password" placeholder="Password" required="required" name="password">
                             <i class="fas fa-lock transform-v-center"></i>
                         </div>
                         <div class="form-group form-check pl-0">
@@ -43,13 +49,13 @@
                                     <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
                                     <label class="custom-control-label fs-13" for="customCheck1"><span class="label-check white">Remember me</span></label>
                                 </div>
-                                <a href="" class="fs-12 white">Forgot Password?</a>
+                                <a href="/Account/forgotPassword" class="fs-12 white">Quên mật khẩu ?</a>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-black btn-block shine-btn mt-20">LOGIN</button>
+                        <button type="submit" class="btn btn-black btn-block shine-btn mt-20">ĐĂNG NHẬP</button>
                         <div class="signup-login text-center">
                             <p class="mt-15 fs-13 white">
-                                New here?<a href="" class="ml-5 mb-0 d-inline-block white f-500">Sign up</a>
+                                Bạn chưa có tài khoản?<a href="/Account/RegisterAccount" class="ml-5 mb-0 d-inline-block white f-500">Đăng kí</a>
                             </p>
                         </div>
                     </form>

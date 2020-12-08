@@ -141,15 +141,15 @@
                                         <div class="modal-body" style="text-align:center">
                                             <div class="row">
                                                 <b><span>Current Password</span></b>
-                                                <input class="form-control" type="password" id="currentPassword" name="currentPassword" required="required"/>
+                                                <input style="border-color:white;" class="form-control" type="password" id="currentPassword" name="currentPassword" required="required"/>
                                             </div>
                                             <div class="row">
                                                 <b><span>New Password</span></b>
-                                                <input class="form-control" type="password" id="newPassword" name="newPassword" required="required"/>
+                                                <input style="border-color:white;" class="form-control" type="password" id="newPassword" name="newPassword" required="required"/>
                                             </div>
                                             <div class="row">
                                                 <b><span>Confirm Password</span></b>
-                                                <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" required="required"/>
+                                                <input style="border-color:white;" class="form-control" type="password" id="confirmPassword" name="confirmPassword" required="required"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer editModalFooter">
@@ -223,11 +223,11 @@
     }
 
     function changePassword() {
-        var currentPassword = document.getElementById("currentPassword").value;
-        var newPassword = document.getElementById("newPassword").value;
-        var confirmPassword = document.getElementById("confirmPassword").value;
-        var currentPass = document.getElementById("currentPass").value;
-        var idEmployee = document.getElementById("idEmployee").value;
+        var currentPassword = document.getElementById("currentPassword").value; //pass nhap vao
+        var newPassword = document.getElementById("newPassword").value; // pass moi
+        var confirmPassword = document.getElementById("confirmPassword").value; // pass xac nhan
+        var currentPass = document.getElementById("currentPass").value; //pass da co
+        var idEmployee = document.getElementById("idEmployee").value; //idEmployee
         if (currentPassword != currentPass) {
             errorUpdateCurrentPass();
         } else {

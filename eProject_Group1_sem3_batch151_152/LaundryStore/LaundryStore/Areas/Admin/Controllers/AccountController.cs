@@ -43,6 +43,7 @@ namespace LaundryStore.Areas.Admin.Controllers
                             Session["email_Employee"] = account.email;
                             Session["password_Employee"] = account.password;
                             Session["id_Employee"] = account.id;
+                            Session["image_Employee"] = account.avatar;
                             FormsAuthentication.SetAuthCookie(email, false);
                             return RedirectToAction("Index", "DashBoard");
                         } else

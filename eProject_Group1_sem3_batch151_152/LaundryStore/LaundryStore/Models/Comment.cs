@@ -24,7 +24,7 @@ namespace LaundryStore.Models
         public string modifyBy { get; set; }
         public Nullable<bool> status { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual News News { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

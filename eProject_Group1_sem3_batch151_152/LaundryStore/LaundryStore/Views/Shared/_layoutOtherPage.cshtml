@@ -67,17 +67,43 @@
                                     <li>
                                         <a href="/Home/Contact" class=""><span></span>Liên hệ</a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="">Tài khoản</a>
-                                        <ul class="submenu">
-                                            <li>
-                                                <a href="/Account/Login"><span></span>Đăng nhập</a>
-                                            </li>
-                                            <li>
-                                                <a href="/Account/RegisterAccount"><span></span>Đăng kí</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    @if (Session["id_Customer"] != null)
+                                    {
+                                        <li>
+                                            <a href="#" class="">Tài khoản</a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="/Account/changePassword"><span></span>Đổi mật khẩu</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/editProfile"><span></span>Cập nhật tài khoản</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/orderList"><span></span>Đơn hàng</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/Logout"><span></span>Đăng xuất</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="#" class="">Tài khoản</a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <a href="/Account/Login"><span></span>Đăng nhập</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/RegisterAccount"><span></span>Đăng kí</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Account/forgotPassword"><span></span>Quên mật khẩu</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    }
                                 </ul>
                                 <a href="/ShoppingCart/ShowCart" class="head-1-book-2 bg-blue ml-15 blob-small shine-btn">Cart</a>
                                 <a href="" class="head-1-book-call ml-15"><i class="fas fa-phone fs-15 mr-10"></i>+123 456 7890</a>
@@ -204,7 +230,6 @@
     <!-- Theme skins -->
     <!-- Theme skins -->
     <!-- JS Files -->
-    <script src="~/Assets/Client/resources/js/laundry.js"></script>
     <script src="~/Assets/Client/vendors/js/modernizr-3.5.0.min.js"></script>
     <script src="~/Assets/Client/vendors/js/jquery-1.12.4.min.js"></script>
     <script src="~/Assets/Client/vendors/js/bootstrap.bundle.min.js"></script>
@@ -224,6 +249,8 @@
     <script src="~/Assets/Client/vendors/js/main.js"></script>
     <script src="~/Assets/Admin/resources/sweetalert/sweetalert2.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Assets/Client/resources/js/laundry.js"></script>
+
     <!-- JS Files end -->
 </body>
 

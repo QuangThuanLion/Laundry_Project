@@ -19,5 +19,9 @@ namespace LaundryStore.Constant
         public static readonly string INVALID_PASSWORD = "Incorrect password. Please check again !";
         public static readonly string EMAIL_CONFIRM = "Verification code just sent to your inbox, please check it now !";
         public static readonly string EMAIL_EXISTS = "Email already exists !, please enter another email";
+
+        //Client
+        public static readonly string AUTHEN_EMAIL = "Tài khoản của bạn chưa xác thực, vui lòng kiểm tra email !";
+        public static readonly string LOGIN_SUCCESS = "Đăng nhập thành công !";
     }
 }
