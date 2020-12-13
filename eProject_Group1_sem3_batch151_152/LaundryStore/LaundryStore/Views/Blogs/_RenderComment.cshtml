@@ -1,0 +1,31 @@
+﻿
+<!-- comments -->
+<div class="comments">
+    <h4 class="fs-25 f-700 mt-25 mb-25">Comments (<span>3</span>)</h4>
+    <ul class="connent-lists">
+        @foreach (var item in ViewBag.listComment)
+        {
+            <li>
+                <div class="d-flex flex-column flex-sm-row">
+                    <div class="comment-image mt-10">
+                        src="~/@item.Customer.avatar"
+                        <img src="~/Assets/Client/vendors/img/user/user-2.png" />
+                    </div>
+                    <div class="comment-text">
+                        <div class="top-head">
+                            <span class="comment-date">@item.createdDate</span>
+                        </div>
+                        <p class="mt-5 mb-10">@item.content</p>
+                        <div class="name-replay">
+                            <ul class="list-inline fs-12">
+                                <li class="list-inline-item pr-15">
+                                    <i class="far fa-user mr-10 fs-14 blue"></i>@item.Customer.fullname
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

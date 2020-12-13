@@ -20,6 +20,7 @@ namespace LaundryStore.Controllers
             var products = db.Products.Include(p => p.Category);
             return View(products.ToList());
         }
+
         /**
          * render product detail based on categoryId
          */

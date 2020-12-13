@@ -1,0 +1,190 @@
+﻿@model LaundryStore.Models.News
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- inner banner start -->
+<section class="inner-banner flex-center" style="background-image: url('/Assets/Client/vendors/img/bg/cleanitems.jpg');">
+    <div class="container">
+        <div class="row z-5 mt-85 align-items-center">
+            <div class="col-lg-7 text-center text-lg-left">
+                <h1 class="blue">Chi tiết bài viết</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- inner banner end -->
+
+<!-- blog area start -->
+<section class="blog-standared pt-90 pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-7">
+                <div class="each-blog-standared mb-25">
+                    <div class="blog-standared-img">
+                        <img src="~/Assets/Client/vendors/img/blog/blog-b1.jpg" />
+                        <div class="blog-standared-date shadow-blue text-center">
+                            <h2 class="fs-30 f-700 white">@Model.createdDate.Value.Date.ToString("dd")</h2>
+                            <p class="month mb-0 fs-13 white">@Model.createdDate.Value.Date.ToString("MM")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-detail-text">
+                    <ul class="list-inline fs-14 mb-10">
+                        <li class="list-inline-item pr-15">
+                            <i class="far fa-comments mr-10 fs-14 blue"></i> 33 Comments
+                        </li>
+                    </ul>
+                </div>
+                <h1 class="fs-45 mb-10">@Html.DisplayFor(model => model.title)</h1>
+                <p class="mb-20">@Html.DisplayFor(model => model.content)</p>
+                <div class="blog-de-footer pt-20 pb-20 mb-25">
+                    <div class="row align-items-center">
+                        <div class="col-xl-7 col-lg-12">
+                            <div class="d-flex align-items-center">
+                                <span class="fs-13 f-700 mr-10">Tags:</span>
+                                <div class="tags-small">
+                                    <a href="">Cleaning</a>
+                                    <a href="">Office</a>
+                                    <a href="">Window</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-12 text-right">
+                            <div class="d-flex align-items-center justify-content-xl-end  mt-lg-20">
+                                <span class="fs-13 f-700 mr-10">Share:</span>
+                                <ul class="social-icons blog-social">
+                                    <li>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><i class="fab fa-google-plus-g"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Danh muc comment Start-->
+                @Html.Partial("_RenderComment")
+                <!--Danh muc comment End-->
+
+                <!--Login to comment Start-->
+                @Html.Partial("_LoginToComment")
+                <!--Login to comment End-->
+
+                <!--Opinion Start-->
+                @Html.Partial("_RenderMessage")
+                <!--Opinion End-->
+
+                <div class="hr-1 bg-black opacity-1 mt-25 mb-25"></div>
+                <div class="related-blogs">
+                    <h4 class="fs-25 f-700 mb-20">Related Blogs</h4>
+                    <div class="row mb-md-30">
+                        <div class="col-md-6 mb-sm-25">
+                            <div class="each-blog-2">
+                                <div class="blog-image-2">
+                                    <img src="~/Assets/Client/vendors/img/blog/1a.jpg" />
+                                    <div class="blog-date-bg">
+                                        <img src="~/Assets/Client/vendors/img/icons/bg-date.png" />
+                                        <div class="date text-center transform-center">
+                                            <h3>25</h3>
+                                            <p>MAR</p>
+                                        </div>
+                                    </div>
+                                    <a href="" class="reabmore-blog-2 transform-center f-700">Read More<i class="fas fa-long-arrow-alt-right ml-20"></i></a>
+                                </div>
+                                <div class="blog-text-2 bg-light-white">
+                                    <h3 class="mb-5"><a href="" class="fs-17 f-700">12 no-fuss tips and tricks to clean your home in half the time..</a></h3>
+                                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur...</p>
+                                </div>
+                                <div class="blog-info-list">
+                                    <ul class="list-inline fs-13 text-left">
+                                        <li class="list-inline-item"> <i class="fas fa-user mr-10 fs-13 blue"></i> Jhone Doe</li>
+                                        <li class="list-inline-item"> <i class="fas fa-comment mr-10 fs-13 blue"></i> 30 Comments</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="each-blog-2">
+                                <div class="blog-image-2">
+                                    <img src="~/Assets/Client/vendors/img/blog/2a.jpg" />
+                                    <div class="blog-date-bg">
+                                        <img src="~/Assets/Client/vendors/img/icons/bg-date.png" />
+                                        <div class="date text-center transform-center">
+                                            <h3>05</h3>
+                                            <p>JUN</p>
+                                        </div>
+                                    </div>
+                                    <a href="" class="reabmore-blog-2 transform-center f-700">Read More<i class="fas fa-long-arrow-alt-right ml-20"></i></a>
+                                </div>
+                                <div class="blog-text-2 bg-light-white">
+                                    <h3 class="mb-5"><a href="" class="fs-17 f-700">Reasons to hire a professional office cleaning service..</a></h3>
+                                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur...</p>
+                                </div>
+                                <div class="blog-info-list">
+                                    <ul class="list-inline fs-13 text-left">
+                                        <li class="list-inline-item"> <i class="fas fa-user mr-10 fs-13 blue"></i> Jhone Doe</li>
+                                        <li class="list-inline-item"> <i class="fas fa-comment mr-10 fs-13 blue"></i> 30 Comments</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+
+                <!--Danh muc bai viet noi bat start-->
+                @*@{
+                    Html.RenderAction("PostPopular", "Blogs");
+                }*@
+                <!--Danh muc bai viet noi bat ket thuc-->
+
+                <!--Danh muc bai viet Start-->
+                @{
+                    Html.RenderAction("PostCategories", "Blogs");
+                }
+                <!--Danh muc bai viet End-->
+
+                <div class="right-box bg-light-white mb-30">
+                    <div class="right-box-head">
+                        <h4 class="fs-22">Follow Us</h4>
+                    </div>
+                    <div class="right-box-content">
+                        <div class="social-profile mt-10 mb-10">
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-google-plus-g"></i>
+                            </a>
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-box ad-banner bg-light-white mb-30 mb-sm-00">
+                    <a href="" class="d-block ">
+                        <img src="~/Assets/Client/vendors/img/bg/ad-bnr.jpg" class="w-100" alt="" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- blog area end -->

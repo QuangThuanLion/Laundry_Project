@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "orderList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- inner banner start -->
+<section class="inner-banner flex-center" style="background-image: url('/Assets/Client/vendors/img/bg/cleanitems.jpg');">
+    <div class="container">
+        <div class="row z-5 mt-85 align-items-center">
+            <div class="col-lg-7 text-center text-lg-left">
+                <h1 class="blue">Lịch sử đơn hàng</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- inner banner end -->
+<!-- cart start -->
+<section class="cart pt-90 pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cart-page table-responsive">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th class="prdt_thumb">STT</th>
+                                <th class="prdt_name">Ngày Order</th>
+                                <th class="prdt-price">Địa Chỉ</th>
+                                <th class="prdt_quantity">Phương Thức</th>
+                                <th class="prdt_quantity">Tổng Tiền (VNĐ)</th>
+                                <th class="prdt_quantity">Tình Trạng</th>
+                                <th class="prdt_quantity">Chi Tiết Đơn Hàng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ var value = 1;}
+                            @foreach (var item in ViewBag.OrderList)
+                            {
+                                <tr>
+                                    <td>
+                                        @(value++)
+                                    </td>
+                                    <td class="prdt-thumb">@item.orderDate</td>
+                                    <td class="prdt-name">@item.address</td>
+                                    <td class="prdt-name">@item.PayMentMethod.paymentName</td>
+                                    <td class="prdt-total">@item.totalOrder</td>
+                                    @if (@item.statusId == 2)
+                                    {
+                                        <td class="prdt-price btn-danger">Đang xử lý</td>
+                                    }
+                                    else if (@item.statusId == 1)
+                                    {
+                                        <td class="prdt-price btn-warning">Đã xác nhận</td>
+                                    }
+                                    else if (@item.statusId == 3)
+                                    {
+                                        <td class="prdt-price btn-success">Đã hoàn thành</td>
+                                    }
+                                    <td>
+                                        <span>
+                                            <a class="DetailOrder-link" title="Detail" href="@Url.Action("DetailOrder", "ShoppingCart", new { id = item.id })">
+                                                Chi tiết đơn hàng
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="body-content">
+
+</div>
+<!-- Main Content End -->
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<link href="~/Assets/Admin/resources/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Assets/Admin/resources/sweetalert/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+    .inner-cart-box {
+        height: 170px !important;
+    }
+</style>
+<script type="text/javascript">
+
+    $('.DetailOrder-link').click(function (e) {
+        var a_href = $(this).attr('href'); /* Lấy giá trị của thuộc tính href */
+        e.preventDefault(); /* Không thực hiện action mặc định */
+        $.ajax({ /* Gửi request lên server */
+            url: a_href, /* Nội dung trong DetailOrder.cshtml cụ thể là deleteModal div được server trả về */
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) { /* Sau khi nhận được giá */
+                $('.body-content').prepend(data); /* body-content div (định nghĩa trong OrderList) sẽ thêm DetailOrderModal div vào dưới cùng */
+                $('#DetailOrderModal').modal('show'); /* Hiển thị DetailOrderModal div dưới kiểu modal */
+            },
+            error: function (error) {
+                errorDelete();
+            }
+        })
+    });
+
+</script>

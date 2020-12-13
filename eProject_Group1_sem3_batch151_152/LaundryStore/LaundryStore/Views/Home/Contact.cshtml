@@ -1,98 +1,143 @@
 ﻿
 @{
     ViewBag.Title = "Contact";
-    Layout = "~/Views/Shared/_layoutOtherPage.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- inner banner start -->
-@section scripts{
+<section class="inner-banner flex-center" style="background-image: url('/Assets/Client/vendors/img/bg/cleanitems.jpg');">
     <div class="container">
         <div class="row z-5 mt-85 align-items-center">
             <div class="col-lg-7 text-center text-lg-left">
-                <h1 class="blue">Contact Us</h1>
+                <h1 class="blue">Liên hệ với chúng tôi</h1>
             </div>
         </div>
     </div>
-}
+</section>
 <!-- inner banner end -->
+
+@if (ViewData["message"] != null && ViewData["message"].Equals("Account does't exist. Please check again !"))
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            invalidEmail();
+        };
+
+        function invalidEmail() {
+            swal({
+                title: "Thông Báo",
+                text: "Email đã tồn tại, vui lòng nhập email khác !",
+                icon: "warning",
+                button: "OK",
+            });
+        }
+    </script>
+}
+else if (ViewData["message"] != null && ViewData["message"].Equals("Liên hệ thành công !"))
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            ContactSuccessfully();
+        };
+
+        function ContactSuccessfully() {
+            swal({
+                title: "Thông Báo",
+                text: "Thông báo vừa gửi tới Email bạn vừa đăng kí, vui lòng kiểm tra hộp thư. Chúng tôi sẽ sớm liên hệ với bạn !",
+                icon: "success",
+                button: "OK",
+            });
+        }
+    </script>
+}
 
 <!-- contact start -->
 <section class="contact pt-90 pb-90">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <h3 class="fs-26 f-700 mb-5">We are Here for You</h3>
-                <p class="mb-20">Lorem ipsum dolor sit amet consectetur adipi sicing elit, sed do eiusmod tempor incididut labore et dolore magna aliqua. </p>
+                <h3 class="fs-26 f-700 mb-5">Chúng tôi ở đây vì bạn</h3>
+                <p class="mb-20">Vui lòng điền vào mẫu liên hệ, chúng tôi sớm liên hệ với bạn trong thời gian sớm nhất. Hoặc có thể liên hệ trực tiếp tại.</p>
                 <div class="hr-1 bg-black opacity-1 mb-20"></div>
-                <h4 class="fs-20 f-700 mb-15">Contact Information</h4>
+                <h4 class="fs-20 f-700 mb-15">Thông tin liên hệ</h4>
                 <ul class="contacts-list">
                     <li class="mb-15">
                         <span class="icon bg-blue"><i class="fas fa-phone"></i></span>
-                        <span class="sub-head">Phone</span>
+                        <span class="sub-head">Số điện thoại</span>
                         <p>+123 456 7890</p>
                     </li>
                     <li>
                         <span class="icon bg-blue"><i class="fas fa-envelope"></i></span>
                         <span class="sub-head">Email</span>
-                        <p>info@example.com</p>
+                        <p>laundrycity@gmail.com</p>
                     </li>
                 </ul>
                 <div class="hr-1 bg-black opacity-1 mt-25 mb-25"></div>
-                <h4 class="fs-20 f-700 mb-15">Address</h4>
+                <h4 class="fs-20 f-700 mb-15">Địa chỉ</h4>
                 <ul class="contacts-list">
                     <li>
                         <span class="icon bg-blue"><i class="fas fa-map-marker-alt"></i></span>
-                        <span class="sub-head">Location</span>
-                        <p>2663 Lodgeville Road Minneapolis, Minnesota 55402, USA</p>
+                        <span class="sub-head">Vị trí</span>
+                        <p>38 Yên Bái - Hải Châu - Đà Nẵng</p>
                     </li>
                 </ul>
             </div>
             <div class="col-lg-7 offset-lg-1">
                 <div class="contact-form bg-blue mt-md-45">
-                    <h3 class="fs-26 f-700 white mb-20">Get in Touch with Us</h3>
-                    <form class="mf_form_validate ajax_submit" action="sendmail.php" method="post" enctype="multipart/form-data">
+                    <h3 class="fs-26 f-700 white mb-20">Form Đăng Kí</h3>
+                    <form class="mf_form_validate ajax_submit" action="Contact" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group relative">
-                                    <input type="text" class="form-control input-white" id="FirstName" placeholder="First Name" name="first_name">
-                                    <i class="far fa-user transform-v-center"></i>
+                            @if (Session["id_Customer"] == null)
+                            {
+                                <div class="col-lg-6">
+                                    <div class="form-group relative">
+                                        <input type="text" class="form-control input-white" id="FirstName" placeholder="First Name" name="first_name">
+                                        <i class="far fa-user transform-v-center"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group relative">
-                                    <input type="text" class="form-control input-white" id="LastName" placeholder="Last Name" name="last_name">
-                                    <i class="far fa-user transform-v-center"></i>
+                                <div class="col-lg-6">
+                                    <div class="form-group relative">
+                                        <input type="text" class="form-control input-white" id="LastName" placeholder="Last Name" name="last_name">
+                                        <i class="far fa-user transform-v-center"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group relative">
-                                    <input type="email" class="form-control input-white" id="YourEmail" placeholder="Your Email" name="email">
-                                    <i class="far fa-envelope transform-v-center"></i>
+                                <div class="col-lg-6">
+                                    <div class="form-group relative">
+                                        <input type="email" class="form-control input-white" id="YourEmail" placeholder="Your Email" name="email">
+                                        <i class="far fa-envelope transform-v-center"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group relative">
-                                    <input type="text" class="form-control input-white" id="PhoneNumber" placeholder="Phone Number" name="phone">
-                                    <i class="fas fa-phone transform-v-center"></i>
+                                <div class="col-lg-6">
+                                    <div class="form-group relative">
+                                        <input type="text" class="form-control input-white" id="PhoneNumber" placeholder="Phone Number" name="phone">
+                                        <i class="fas fa-phone transform-v-center"></i>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                             <div class="col-lg-12 mb-25 mb-xs-10">
                                 <div class="form-group relative">
-                                    <select class="form-control input-white select-nice mb-xs-15" name="subject">
-                                        <option>Select Your Service</option>
-                                        <option>Home Cleaning</option>
-                                        <option>Office Cleaning</option>
-                                        <option>Carpet Cleaning</option>
+                                    <select class="form-control input-white select-nice mb-xs-15" name="service">
+                                        <option>Chọn Dịch Vụ Bạn Muốn</option>
+                                        <option value="1">Áo quần</option>
+                                        <option value="14">Giày Dép</option>
+                                        <option value="20">Chăn Mền</option>
+                                        <option value="26">Nệm, rèm, thảm</option>
+                                        <option value="30">Đồ Da Lông Thú</option>
+                                        <option value="46">Ba Lô Túi Xách</option>
+                                        <option value="60">Giặt Theo Gói</option>
+                                        <option value="65">Giặt Cho Doanh Nghiệp</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group relative">
-                                    <textarea class="form-control input-white light-border mb-25" name="message" cols="30" rows="7" placeholder="Your message"></textarea>
+                                    <textarea class="form-control input-white light-border mb-25" name="description" cols="30" rows="7" placeholder="Ghi chú"></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <button type="submit" class="btn btn-black shine-btn">Submit</button>
+                                <button type="submit" class="btn btn-black shine-btn">Xác nhận</button>
                             </div>
                             <div class="col-lg-12">
                                 <div class="server_response w-100"></div>

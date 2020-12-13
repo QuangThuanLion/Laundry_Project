@@ -23,5 +23,7 @@ namespace LaundryStore.Constant
         //Client
         public static readonly string AUTHEN_EMAIL = "Tài khoản của bạn chưa xác thực, vui lòng kiểm tra email !";
         public static readonly string LOGIN_SUCCESS = "Đăng nhập thành công !";
+        public static readonly string COMMENT_CUSTOMER = "Cảm ơn góp ý của bạn !";
+        public static readonly string CONTACT_SUCCESS = "Liên hệ thành công !";
     }
 }

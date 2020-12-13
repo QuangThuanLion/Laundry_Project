@@ -59,10 +59,10 @@
                                         <a href="/Services/Index" class="">Dịch vụ</a>
                                     </li>
                                     <li>
-                                        <a href="/About/Index" class="">Giới thiệu</a>
+                                        <a href="/Blogs/Index" class="">Bài viết</a>
                                     </li>
                                     <li>
-                                        <a href="/Blog/Index" class="">Bài viết</a>
+                                        <a href="/About/Index" class="">Giới thiệu</a>
                                     </li>
                                     <li>
                                         <a href="/Home/Contact" class=""><span></span>Liên hệ</a>
@@ -73,13 +73,13 @@
                                             <a href="#" class="">Tài khoản</a>
                                             <ul class="submenu">
                                                 <li>
-                                                    <a href="/Account/changePassword"><span></span>Đổi mật khẩu</a>
+                                                    <a href="/Account/changePassword" data-toggle="modal" data-target="#exampleModalEditPassword"><span></span>Đổi mật khẩu</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/Account/editProfile"><span></span>Cập nhật tài khoản</a>
+                                                    <a href="/Account/infoProfile/@Session["id_Customer"]"><span></span>Cập nhật tài khoản</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/Account/orderList"><span></span>Đơn hàng</a>
+                                                    <a href="/ShoppingCart/orderList/@Session["id_Customer"]"><span></span>Đơn hàng</a>
                                                 </li>
                                                 <li>
                                                     <a href="/Account/Logout"><span></span>Đăng xuất</a>
@@ -104,6 +104,7 @@
                                             </ul>
                                         </li>
                                     }
+                                    @Html.Partial("_EditPassword")
                                 </ul>
                                 <a href="/ShoppingCart/ShowCart" class="head-1-book-2 bg-blue ml-15 blob-small shine-btn">Cart</a>
                                 <a href="" class="head-1-book-call ml-15"><i class="fas fa-phone fs-15 mr-10"></i>+123 456 7890</a>
@@ -116,6 +117,8 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="idCustomer" name="idCustomer" value="@Session["id_Customer"]" />
+        <input type="hidden" id="currentPass" name="currentPass" value="@Session["password_Customer"]" />
     </header>
     <!-- header end -->
     <!-- inner banner start -->
@@ -128,27 +131,6 @@
         @RenderBody()
     </div>
     <!-- /.content-wrapper -->
-    <!-- cta start -->
-    <section class="cta-footer relative pt-35 pb-35 bg-blue">
-        <div class="container">
-            <div class="row align-items-center z-5">
-                <div class="col-lg-5 text-center text-lg-left">
-                    <h2 class="white fs-40 f-700 mb-10">Get a Free Callback</h2>
-                    <p class="white mb-0 fs-16">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-                <div class="col-lg-7  text-center text-lg-right mt-md-15">
-                    <form action="#">
-                        <div class="callback-footer-2 d-flex flex-column flex-sm-row">
-                            <input type="text" class="form-control input-white shadow-2" placeholder="Your phone numner">
-                            <a href="" class="btn btn-black ml-20 ml-xs-00 mt-xs-15">Send Now</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <img src="~/Assets/Client/vendors/img/other/clean.png" class="cta-cl-bg" alt="" />
-    </section>
-    <!-- cta end -->
     <!-- footer start -->
     <footer class="pt-100 pb-45 z-15 footer-1" data-overlay="8" style="background-image: url('/Assets/Client/vendors/img/bg/footer-bg.jpg');">
         <div class="container">

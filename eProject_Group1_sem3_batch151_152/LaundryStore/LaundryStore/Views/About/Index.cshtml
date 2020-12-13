@@ -1,21 +1,21 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_layoutOtherPage.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- inner banner start -->
-@section scripts{
+<section class="inner-banner flex-center" style="background-image: url('/Assets/Client/vendors/img/bg/cleanitems.jpg');">
     <div class="container">
         <div class="row z-5 mt-85 align-items-center">
             <div class="col-lg-7 text-center text-lg-left">
-                <h1 class="blue">About us</h1>
+                <h1 class="blue">Giới thiệu về chúng tôi</h1>
             </div>
         </div>
     </div>
-}
-
+</section>
 <!-- inner banner end -->
+
 <!-- about start -->
 <section class="about-3 pt-100 pb-100">
     <div class="container">
@@ -33,14 +33,16 @@
             <div class="col-xl-5 col-lg-6">
                 <div class="about-div mt-md-45">
                     <p class="sub-head blue f-700 mb-5">ABOUT US<span>............</span></p>
-                    <h1 class="mb-15">We are Different in Cleaning Industry</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudt. </p>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. eaque ipsa quae incididunt ut labore et dolore magna aliqua nulla pariatur.</p>
+                    <h1 class="mb-15">Chúng Tôi Tạo Ra Sự Khác Biệt</h1>
+                    <p>
+                        Laundry City là thương hiệu hệ thống giặt ủi ( giặt là ) tại Đà Nẵng. Laundry City được xây dựng từ năm 2009 cho đến nay.
+                        Trải qua 10 năm hoạt động và phát triển, Laundry City đã và đang là địa điểm dịch vụ tiện ích chất lượng giành cho khách du lịch, khách địa phương, các tổ chức và doanh nghiệp tại Đà Nẵng.
+                    </p>
                     <ul class="check-list half-list mb-15 mt-20">
-                        <li><span><i class="fas fa-check"></i></span>Cost Effective</li>
-                        <li><span><i class="fas fa-check"></i></span>Insured and Bonded</li>
-                        <li><span><i class="fas fa-check"></i></span>100% Satisfaction </li>
-                        <li><span><i class="fas fa-check"></i></span>Quality Services</li>
+                        <li><span><i class="fas fa-check"></i></span>Giá cả thích hợp</li>
+                        <li><span><i class="fas fa-check"></i></span>100% hài lòng</li>
+                        <li><span><i class="fas fa-check"></i></span>Đảm bảo tuyệt đối</li>
+                        <li><span><i class="fas fa-check"></i></span>Chất lượng dịch vụ</li>
                     </ul>
                 </div>
             </div>
@@ -48,13 +50,16 @@
         <div class="row align-items-center mt-90 mt-md-00">
             <div class="col-xl-5 col-lg-6">
                 <div class="about-div mt-md-45 mt-sm-10">
-                    <h1 class="mb-10">Our Mission and Vision</h1>
+                    <h1 class="mb-10">Quá trình hình thành và phát triển</h1>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudt.
+                        Lời đầu tiên, Xí nghiệp giặt là Laundry City xin gửi đến Quý khách hàng lời chào trân trọng nhất, kính chúc Quý khách hàng sức khỏe và thành công trong cuộc sống.
+                        trải qua 10 năm xây dựng và phát triển, nhờ có sự đổi mới sáng tạo, liên tục về công nghệ, đầu tư các trang thiết bị hiện đại.
                     </p>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. eaque ipsa quae incididunt ut labore et dolore magna aliqua nulla pariatur.</p>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudt.
+                        Bên cạnh đó đội ngũ của chúng tôi là những cán bộ, nhân viên kỹ thuật, kỹ sư giàu tri thức, kinh nghiệm thực tiễn, năng động, tâm huyết và sự chuyên môn hóa trong từng bộ phận, tính trách nhiệm cao.
+                    </p>
+                    <p>
+                        Trên hành trình phát triển, chúng tôi không thể thiếu sự hợp tác, khích lệ, động viên nhiệt tình của Quý khách hàng. Chúng tôi xin hứa bằng tất cả tấm lòng trong sáng.
                     </p>
                 </div>
             </div>
@@ -67,104 +72,13 @@
     </div>
 </section>
 <!-- about end -->
-<!-- about-feature start -->
-<section class="features-about pt-100 pb-55" data-overlay="9" style="background-image: url('/Assets/Client/vendors/img/bg/cta.jpg');">
-    <div class="container">
-        <div class="row z-5">
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="each-feature white">
-                    <img src="~/Assets/Client/vendors/img/icons/fe1-wt.png" />
-                    <h3 class="fs-20 f-700 mt-20 mb-10">Highly Rated & Esteemed</h3>
-                    <p class="mb-0">Ut enim ad minim veniam</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="each-feature white">
-                    <img src="~/Assets/Client/vendors/img/icons/fe2-wt.png" />
-                    <h3 class="fs-20 f-700 mt-20 mb-10">Insured & Bonded</h3>
-                    <p class="mb-0">Ut enim ad minim veniam</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="each-feature white">
-                    <img src="~/Assets/Client/vendors/img/icons/fe3-wt.png" />
-                    <h3 class="fs-20 f-700 mt-20 mb-10">Trusted Proffessionals</h3>
-                    <p class="mb-0">Ut enim ad minim veniam</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="each-feature white">
-                    <img src="~/Assets/Client/vendors/img/icons/fe4-wt.png" />
-                    <h3 class="fs-20 f-700 mt-20 mb-10">Cost Effective</h3>
-                    <p class="mb-0">Ut enim ad minim veniam</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <img src="~/Assets/Client/vendors/img/other/clean.png" class="feature-bg-icon2" alt="" />
-</section>
-<!-- about-feature end -->
-<!-- how it works start -->
-<section class="hw-it-wrks bg-dot-full pt-95 pb-75 pb-sm-35">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <p class="sub-head blue f-700 mb-5"><span>............</span>HOW WE WORK<span>............</span></p>
-                <h1 class="mb-45">How ‘Clean World’ Works</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <div class="each-hw-works">
-                    <div class="hw-icon">
-                        <img src="~/Assets/Client/vendors/img/icons/hw1.png" />
-                    </div>
-                    <span class="hw-steps shadow-blue mt-30 mb-25">1</span>
-                    <div class="hw-text">
-                        <h3 class="f-700 mb-15 mt-sm-20">Book Online</h3>
-                        <p>Lorem ipsum dolor sit amet co nsectetur adipisicing elitsed </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="each-hw-works">
-                    <div class="hw-icon">
-                        <img src="~/Assets/Client/vendors/img/icons/hw2.png" />
-                    </div>
-                    <span class="hw-steps shadow-blue mt-30 mb-25">2</span>
-                    <div class="hw-text">
-                        <h3 class="f-700 mb-15 mt-sm-20">We Clean</h3>
-                        <p>Lorem ipsum dolor sit amet co nsectetur adipisicing elitsed </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="each-hw-works">
-                    <div class="hw-icon">
-                        <img src="~/Assets/Client/vendors/img/icons/hw3.png" />
-                    </div>
-                    <span class="hw-steps no-line shadow-blue mt-30 mb-25">3</span>
-                    <div class="hw-text">
-                        <h3 class="f-700 mb-15 mt-sm-20">You Relax</h3>
-                        <p>Lorem ipsum dolor sit amet co nsectetur adipisicing elitsed </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- how it works end -->
-
 <!-- team start -->
 <section class="team all-team relative pt-85 pb-90">
     <div class="container">
         <div class="row mb-45 align-items-end">
             <div class="col-lg-9 text-center text-lg-left">
-                <p class="sub-head blue f-700 mb-5"><span class="d-sm-inline-block d-lg-none">............</span>OUR TEAM<span>............</span></p>
-                <h1 class="">Experienced Team</h1>
-            </div>
-            <div class="col-lg-3 text-center text-lg-right">
-                <a href="" class="btn btn-blue-border btn-lg mt-md-20">Join Us</a>
+                <p class="sub-head blue f-700 mb-5"><span class="d-sm-inline-block d-lg-none">............</span>ĐỘI NGŨ THÀNH VIÊN<span>............</span></p>
+                <h1 class="">Kinh nghiệm làm việc</h1>
             </div>
         </div>
         <div class="row">
@@ -174,23 +88,23 @@
                         <img src="~/Assets/Client/vendors/img/team/1.jpg" />
                         <ul class="social-icons transform-center white">
                             <li>
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-google-plus-g"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g"></i></a>
                             </li>
                         </ul>
                     </div>
                     <a href="" class="plus-btn bg-blue shadow-blue">+</a>
                     <div class="team-text text-center">
-                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Mary Joe</a></h4>
-                        <p class="mb-0">Office Cleaning Specialist</p>
+                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Thu Huong</a></h4>
+                        <p class="mb-0">CEO</p>
                     </div>
                 </div>
             </div>
@@ -200,23 +114,23 @@
                         <img src="~/Assets/Client/vendors/img/team/2.jpg" />
                         <ul class="social-icons transform-center white">
                             <li>
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-google-plus-g"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g"></i></a>
                             </li>
                         </ul>
                     </div>
                     <a href="" class="plus-btn bg-blue shadow-blue">+</a>
                     <div class="team-text text-center">
-                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Ann Jacob</a></h4>
-                        <p class="mb-0">Laundry Cleaning Specialist</p>
+                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Huong Giang</a></h4>
+                        <p class="mb-0">Chuyên viên tư vấn</p>
                     </div>
                 </div>
             </div>
@@ -226,23 +140,23 @@
                         <img src="~/Assets/Client/vendors/img/team/3.jpg" />
                         <ul class="social-icons transform-center white">
                             <li>
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-google-plus-g"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g"></i></a>
                             </li>
                         </ul>
                     </div>
                     <a href="" class="plus-btn bg-blue shadow-blue">+</a>
                     <div class="team-text text-center">
-                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Jhone Doe</a></h4>
-                        <p class="mb-0">Carpet Cleaning</p>
+                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Thanh Nhan</a></h4>
+                        <p class="mb-0">Hỗ trợ tư vấn</p>
                     </div>
                 </div>
             </div>
@@ -252,239 +166,30 @@
                         <img src="~/Assets/Client/vendors/img/team/4.jpg" />
                         <ul class="social-icons transform-center white">
                             <li>
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
                             </li>
                             <li>
-                                <a href=""><i class="fab fa-google-plus-g"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g"></i></a>
                             </li>
                         </ul>
                     </div>
                     <a href="" class="plus-btn bg-blue shadow-blue">+</a>
                     <div class="team-text text-center">
-                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Albert Joe</a></h4>
-                        <p class="mb-0">After Disaster Cleaning</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="each-teams mb-50 mb-sm-45">
-                    <div class="team-image-part">
-                        <img src="~/Assets/Client/vendors/img/team/1.jpg" />
-                        <ul class="social-icons transform-center white">
-                            <li>
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-google-plus-g"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="" class="plus-btn bg-blue shadow-blue">+</a>
-                    <div class="team-text text-center">
-                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Mary Joe</a></h4>
-                        <p class="mb-0">Office Cleaning Specialist</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="each-teams mb-50 mb-sm-45">
-                    <div class="team-image-part">
-                        <img src="~/Assets/Client/vendors/img/team/2.jpg" />
-                        <ul class="social-icons transform-center white">
-                            <li>
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-google-plus-g"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="" class="plus-btn bg-blue shadow-blue">+</a>
-                    <div class="team-text text-center">
-                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Ann Jacob</a></h4>
-                        <p class="mb-0">Laundry Cleaning Specialist</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="each-teams mb-50 mb-sm-45">
-                    <div class="team-image-part">
-                        <img src="~/Assets/Client/vendors/img/team/3.jpg" />
-                        <ul class="social-icons transform-center white">
-                            <li>
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-google-plus-g"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="" class="plus-btn bg-blue shadow-blue">+</a>
-                    <div class="team-text text-center">
-                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Jhone Doe</a></h4>
-                        <p class="mb-0">Carpet Cleaning</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="each-teams mb-50 mb-sm-45">
-                    <div class="team-image-part">
-                        <img src="~/Assets/Client/vendors/img/team/4.jpg" />
-                        <ul class="social-icons transform-center white">
-                            <li>
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-google-plus-g"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="" class="plus-btn bg-blue shadow-blue">+</a>
-                    <div class="team-text text-center">
-                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Albert Joe</a></h4>
-                        <p class="mb-0">After Disaster Cleaning</p>
+                        <h4 class="fs-22 f-700 mt-20 mb-5"><a href="/About/Detail">Mai Chau</a></h4>
+                        <p class="mb-0">Lễ Tân</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-12">
                 <div class="hr-2 bg-black opacity-1 mb-45"></div>
             </div>
-            <div class="col-lg-12 text-center">
-                <div class="pagination-type1 left-align">
-                    <ul>
-                        <li>
-                            <a href=""><i class="fas fa-angle-double-left"></i></a>
-                        </li>
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li>
-                            <a href=""><i class="fas fa-angle-double-right"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </section>
 <!-- our team end -->
-<!-- blog start -->
-<section class="blog-2 relative bg-light-white pt-95 pb-100 pb-md-70">
-    <div class="container">
-        <div class="row mb-35 align-items-end">
-            <div class="col-lg-8 text-center text-lg-left">
-                <p class="sub-head blue f-700 mb-5"><span class="d-sm-inline-block d-lg-none">............</span>NEWS & BLOGS<span>............</span></p>
-                <h1 class="">Latest From News</h1>
-            </div>
-            <div class="col-lg-4 text-center text-lg-right">
-                <a href="" class="link-line mb-15 mt-md-15">View All Blogs</a>
-            </div>
-        </div>
-        <div class="row justify-content-md-center">
-            <div class="col-lg-4 col-md-6">
-                <div class="each-blog-2 mb-md-30">
-                    <div class="blog-image-2">
-                        <img src="~/Assets/Client/vendors/img/blog/1a.jpg" />
-                        <div class="blog-date-bg">
-                            <img src="~/Assets/Client/vendors/img/icons/bg-date.png" />
-                            <div class="date text-center transform-center">
-                                <h3>25</h3>
-                                <p>MAR</p>
-                            </div>
-                        </div>
-                        <a href="" class="reabmore-blog-2 transform-center f-700">Read More<i class="fas fa-long-arrow-alt-right ml-20"></i></a>
-                    </div>
-                    <div class="blog-text-2">
-                        <h3 class="mb-5"><a href="" class="fs-17 f-700">12 no-fuss tips and tricks to clean your home in half..</a></h3>
-                    </div>
-                    <div class="blog-info-list">
-                        <ul class="list-inline fs-13 text-left">
-                            <li class="list-inline-item"> <i class="fas fa-user mr-10 fs-13 blue"></i> Jhone Doe</li>
-                            <li class="list-inline-item"> <i class="fas fa-comment mr-10 fs-13 blue"></i> 30 Comments</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="each-blog-2 mb-md-30">
-                    <div class="blog-image-2">
-                        <img src="~/Assets/Client/vendors/img/blog/2a.jpg" />
-                        <div class="blog-date-bg">
-                            <img src="~/Assets/Client/vendors/img/icons/bg-date.png" />
-                            <div class="date text-center transform-center">
-                                <h3>05</h3>
-                                <p>JUN</p>
-                            </div>
-                        </div>
-                        <a href="" class="reabmore-blog-2 transform-center f-700">Read More<i class="fas fa-long-arrow-alt-right ml-20"></i></a>
-                    </div>
-                    <div class="blog-text-2">
-                        <h3 class="mb-5"><a href="" class="fs-17 f-700">Reasons to hire a professional office cleaning service..</a></h3>
-                    </div>
-                    <div class="blog-info-list">
-                        <ul class="list-inline fs-13 text-left">
-                            <li class="list-inline-item"> <i class="fas fa-user mr-10 fs-13 blue"></i> Jhone Doe</li>
-                            <li class="list-inline-item"> <i class="fas fa-comment mr-10 fs-13 blue"></i> 30 Comments</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="each-blog-2 mb-md-30">
-                    <div class="blog-image-2">
-                        <img src="~/Assets/Client/vendors/img/blog/3a.jpg" />
-                        <div class="blog-date-bg">
-                            <img src="~/Assets/Client/vendors/img/icons/bg-date.png" />
-                            <div class="date text-center transform-center">
-                                <h3>11</h3>
-                                <p>APR</p>
-                            </div>
-                        </div>
-                        <a href="" class="reabmore-blog-2 transform-center f-700">Read More<i class="fas fa-long-arrow-alt-right ml-20"></i></a>
-                    </div>
-                    <div class="blog-text-2">
-                        <h3 class="mb-5"><a href="" class="fs-17 f-700">Home cleaning training for starting a cleaning business..</a></h3>
-                    </div>
-                    <div class="blog-info-list">
-                        <ul class="list-inline fs-13 text-left">
-                            <li class="list-inline-item"> <i class="fas fa-user mr-10 fs-13 blue"></i> Jhone Doe</li>
-                            <li class="list-inline-item"> <i class="fas fa-comment mr-10 fs-13 blue"></i> 30 Comments</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <img src="img/other/clean.png" class="blog-bg-icon2" alt="">
-</section>
-<!-- blog end -->

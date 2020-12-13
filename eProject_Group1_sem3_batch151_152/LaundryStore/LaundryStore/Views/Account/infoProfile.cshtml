@@ -1,0 +1,169 @@
+﻿@model LaundryStore.Models.Customer
+
+@{
+    ViewBag.Title = "infoProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Assets/Client/vendors/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- inner banner start -->
+<section class="inner-banner flex-center" style="background-image: url('/Assets/Client/vendors/img/bg/cleanitems.jpg');">
+    <div class="container">
+        <div class="row z-5 mt-85 align-items-center">
+            <div class="col-lg-7 text-center text-lg-left">
+                <h1 class="blue">Thông tin tài khoản</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- inner banner end -->
+
+@using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.password)
+    @Html.HiddenFor(model => model.createdDate)
+    @Html.HiddenFor(model => model.activated)
+    @Html.HiddenFor(model => model.status)
+    @Html.HiddenFor(model => model.roleId)
+    <div class="page-wrapper" style="background-color:#F2F7F8;">
+        <!-- ============================================================== -->
+        <br />
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <!-- Row -->
+            <div class="row">
+                <!-- Column -->
+                <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <div class="card">
+                        <div class="card-body profile-card">
+                            <center class="m-t-30"> 
+                                <img src="~/@Model.avatar" class="rounded-circle" width="150" />
+                                <h4 class="card-title m-t-10">@Model.fullname</h4>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
+                <!-- Column -->
+                <div class="col-lg-8 col-xlg-9 col-md-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material">
+                                @if (@ViewData["message"] != null)
+                                {
+                                    <div class="alert alert-@ViewData["alert"]" role="alert">
+                                        @ViewData["message"]
+                                    </div>
+                                }
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="col-md-12 mb-0">Email</label>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @readonly="readonly"} })
+                                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="col-md-12 mb-0">Họ & Tên</label>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.EditorFor(model => model.fullname, new { htmlAttributes = new { @class = "form-control" , @required = true} })
+                                                @Html.ValidationMessageFor(model => model.fullname, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="col-md-12 mb-0">Quận</label>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.DropDownList("idCounty", null, htmlAttributes: new { @class = "form-control" , @required = true})
+                                                @Html.ValidationMessageFor(model => model.idCounty, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">Số Điện Thoại</label>
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" , @required = true} })
+                                                    @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="col-md-12 mb-0">Địa Chỉ</label>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" , @required = true} })
+                                                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">Ngày Sinh</label>
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" name="dayOfBirth" required="required" type="date" value="@Model.dayOfBirth.Value.Date.ToString("yyyy-MM-dd")" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="col-md-12 mb-0">Avatar</label>
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" type="file" name="avatar" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="col-md-12 mb-0">Giới Tính</label>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.RadioButtonFor(model => model.gender, "Male")
+                                                <label for="Male">Nam</label><br>
+                                                @Html.RadioButtonFor(model => model.gender, "Female")
+                                                <label for="Female">Nữ</label><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 d-flex">
+                                        <button class="btn btn-success mx-auto mx-md-0 text-white" type="submit">
+                                            Cập nhật tài khoản
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
+            </div>
+            <!-- Row -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+    </div>
+    <br />
+}

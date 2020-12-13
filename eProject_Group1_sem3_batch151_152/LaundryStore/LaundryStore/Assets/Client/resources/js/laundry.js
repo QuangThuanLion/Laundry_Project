@@ -151,17 +151,12 @@ function purchase() {
  * check va thay doi mat khau cho customer
  * */
 function changePassword() {
-    var currentPassword = document.getElementById("currentPassword").value;
-    var newPassword = document.getElementById("newPassword").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
-    var currentPass = document.getElementById("currentPass").value;
-    var idCustomer = document.getElementById("idCustomer").value;
-    console.log(currentPassword);
-    console.log(newPassword);
-    console.log(confirmPassword);
-    console.log(currentPass);
-    console.log(idCustomer);
-    /*if (currentPassword != currentPass) {
+    var currentPassword = document.getElementById("currentPassword").value; //Pass Nhap vao
+    var newPassword = document.getElementById("newPassword").value; //newPass
+    var confirmPassword = document.getElementById("confirmPassword").value; //xac nhan pass
+    var oldPass = document.getElementById("currentPass").value; // oldPass
+    var idCustomer = document.getElementById("idCustomer").value; //idCustomer
+    if (currentPassword != oldPass) {
         errorUpdateCurrentPass();
     } else {
         if (confirmPassword != newPassword) {
@@ -169,9 +164,9 @@ function changePassword() {
         } else {
             $.ajax({
                 type: "post",
-                url: "/Admin/Account/changePassword/",
+                url: "/Account/changePassword/",
                 data: {
-                    id: idEmployee,
+                    id: idCustomer,
                     newPass: newPassword
                 },
                 success: function (response) {
@@ -185,7 +180,7 @@ function changePassword() {
                 }
             })
         }
-    }*/
+    }
 }
 
 /**

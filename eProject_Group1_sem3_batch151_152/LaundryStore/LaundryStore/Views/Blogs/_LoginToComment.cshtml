@@ -1,0 +1,91 @@
+﻿
+
+@using (Html.BeginForm("LoginToComment", "Blogs", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @if (ViewData["message"] != null && ViewData["message"].Equals("Cảm ơn góp ý của bạn !"))
+        {
+            <script type="text/javascript">
+
+                window.onload = function () {
+                    CommentSuccessfully();
+                };
+
+                function CommentSuccessfully() {
+                    swal({
+                        title: "Thông Báo",
+                        text: "Cảm ơn ý kiến của bạn !. Thông báo vừa gửi tới Email bạn vừa đăng kí, vui lòng kiểm tra hộp thư !",
+                        icon: "success",
+                        button: "OK",
+                    });
+                }
+            </script>
+        }
+        else if (ViewData["message"] != null && ViewData["message"].Equals("Đăng nhập thành công !"))
+        {
+            <script type="text/javascript">
+
+                window.onload = function () {
+                    LoginSuccessfully();
+                };
+
+                function LoginSuccessfully() {
+                    swal({
+                        title: "Thông Báo",
+                        text: "Đăng nhập thành công !",
+                        icon: "success",
+                        button: "OK",
+                    });
+                }
+            </script>
+        }
+
+        @if (Session["id_Customer"] == null)
+        {
+            <div class="login-section">
+                <div id="accordion1">
+                    <div class="card">
+                        <div class="card-header" id="heading1" data-toggle="collapse" role="button" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                            <h5 class="mb-0 rbt fs-15">Đăng Nhập Để Bình Luận</h5>
+                        </div>
+                        <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordion1">
+                            <div class="card-body">
+                                <form action="LoginToComment" method="post">
+                                    <p class="mb-20">Nếu bạn đã có tài khoản, vui lòng đăng nhập tại đây</p>
+                                    <div class="form-group">
+                                        <label for="email">Email *</label>
+                                        <input type="email" class="form-control input-white" placeholder="Email address" id="email" required="required" name="email">
+                                        <p class="required-field" style="display: none;"><i class="fas fa-times"></i>Vui lòng nhập email !</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd">Mật Khẩu *</label>
+                                        <input type="password" class="form-control input-white" placeholder="Password" id="password" required="required" name="password">
+                                        <p class="required-field" style="display: none;"><i class="fas fa-times"></i>Vui lòng nhập mật khẩu</p>
+                                    </div>
+                                    <input type="hidden" value="@Model.id" name="idPost" />
+                                    <button type="submit" class="btn btn-blue btn-md mb-5">ĐĂNG NHẬP</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="heading2" data-toggle="collapse" role="button" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                            <h5 class="mb-0 rbt fs-15">Bạn Là Khách Hàng Mới ?</h5>
+                        </div>
+                        <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion1">
+                            <div class="card-body">
+                                <h5 class="mb-20 ">Đăng kí tài khoản để nhận được nhiều ưu đãi hơn</h5>
+                                <a href="/Account/RegisterAccount" class="btn btn-blue btn-md">Tạo tài khoản</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+

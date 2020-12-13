@@ -58,7 +58,7 @@
                                         <a href="/Services/Index" class="">Dịch vụ</a>
                                     </li>
                                     <li>
-                                        <a href="/Blog/Index" class="">Bài viết</a>
+                                        <a href="/Blogs/Index" class="">Bài viết</a>
                                     </li>
                                     <li>
                                         <a href="/About/Index" class="">Giới thiệu</a>
@@ -72,13 +72,13 @@
                                             <a href="#" class="">Tài khoản</a>
                                             <ul class="submenu">
                                                 <li>
-                                                    <a href="/Account/changePassword" data-toggle="modal" data-target="#exampleModal"><span></span>Đổi mật khẩu</a>
+                                                    <a href="/Account/changePassword" data-toggle="modal" data-target="#exampleModalEditPassword"><span></span>Đổi mật khẩu</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/Account/editProfile"><span></span>Cập nhật tài khoản</a>
+                                                    <a href="/Account/infoProfile/@Session["id_Customer"]"><span></span>Cập nhật tài khoản</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/Account/orderList"><span></span>Đơn hàng</a>
+                                                    <a href="/ShoppingCart/orderList/@Session["id_Customer"]"><span></span>Đơn hàng</a>
                                                 </li>
                                                 <li>
                                                     <a href="/Account/Logout"><span></span>Đăng xuất</a>
@@ -103,38 +103,8 @@
                                             </ul>
                                         </li>
                                     }
-
-                                </ul>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <i class="fab fa-expeditedssl" style="font-size:40px; margin:0 44%; color:orange" ;></i>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                </button>
-                                            </div>
-                                            <div class="modal-body" style="text-align:center">
-                                                <div class="row">
-                                                    <b><span>Current Password</span></b>
-                                                    <input style="border-color:white;" class="form-control" type="password" id="currentPassword" name="currentPassword" required="required" placeholder="..." />
-                                                </div>
-                                                <div class="row">
-                                                    <b><span>New Password</span></b>
-                                                    <input style="border-color:white;" class="form-control" type="password" id="newPassword" name="newPassword" required="required" placeholder="..." />
-                                                </div>
-                                                <div class="row">
-                                                    <b><span>Confirm Password</span></b>
-                                                    <input style="border-color:white;" class="form-control" type="password" id="confirmPassword" name="confirmPassword" required="required" placeholder="..." />
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer editModalFooter">
-                                                <button class="btn btn-warning yes" onclick="changePassword()">Save changes</button>
-                                                <button type="button" class="btn btn-info cancel" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @Html.Partial("_EditPassword")
+                                </ul>                                
                                 <a href="/ShoppingCart/ShowCart" class="head-1-book ml-15 mr-30">Cart</a>
                                 <div class="emergency shine-inf white">
                                     <p class="f-500 z-5">Tình trạng khẩn cấp ? Liên hệ ngay</p>

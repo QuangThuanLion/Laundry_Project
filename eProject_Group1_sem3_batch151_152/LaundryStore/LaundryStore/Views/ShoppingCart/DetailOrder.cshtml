@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<!-- Modal -->
+<div class="modal fade" id="DetailOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-asterisk" style="font-size:40px; margin:0 44%; color:orange" ;></i>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên Dịch Vụ</th>
+                            <th>Giảm Giá</th>
+                            <th>Giá</th>
+                            <th>Loại</th>
+                            <th>Tổng Giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var value = 1;}
+                        @foreach (var od in ViewBag.OrderDetail)
+                        {
+                            <tr>
+                                <td>
+                                    @(value++)
+                                </td>
+                                <td>@od.Product.productName</td>
+                                <td>@od.discount</td>
+                                <td>@od.price</td>
+                                <td>@od.type</td>
+                                <td>@od.totalPrice</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->

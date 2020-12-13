@@ -1,0 +1,172 @@
+﻿@model IEnumerable<LaundryStore.Models.News>
+
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- inner banner start -->
+<section class="inner-banner flex-center" style="background-image: url('/Assets/Client/vendors/img/bg/cleanitems.jpg');">
+    <div class="container">
+        <div class="row z-5 mt-85 align-items-center">
+            <div class="col-lg-7 text-center text-lg-left">
+                <h1 class="blue">Bài viết</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- inner banner end -->
+<!-- blog area start -->
+<section class="blog-standared pt-90 pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-7">
+                @foreach (var item in Model)
+                {
+                    <div class="each-blog-standared mb-45">
+                        <div class="blog-standared-img">
+                            <a href="@Url.Action("Details", "Blogs", new { id = item.id })"><img src="~/Assets/Client/vendors/img/blog/blog-b1.jpg" /></a>
+                            <div class="blog-standared-date shadow-blue text-center">
+                                <h2 class="fs-30 f-700 white">@item.createdDate.Value.Date.ToString("dd")</h2>
+                                <p class="month mb-0 fs-13 white">@item.createdDate.Value.Date.ToString("MM")</p>
+                            </div>
+                        </div>
+                        <div class="blog-standared-content">
+                            <div class="blog-std-head">
+                                <div class="row">
+                                    <div class="col-md-7 col-sm-8">
+                                        <ul class="list-inline fs-13">
+                                            <li class="list-inline-item pr-15">
+                                                <i class="far fa-comments mr-10 fs-14 blue"></i> 33 Comments
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-5 col-sm-4 text-left text-sm-right">
+                                        <span class="tag-blog fs-13 bg-light-white">@Html.DisplayFor(modelItem => item.PostCategory.categoryNamePost)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blog-std-texts">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h2 class="fs-30 f-700 mb-10 lh-12">@Html.DisplayFor(modelItem => item.title)</h2>
+                                        <p>@Html.DisplayFor(modelItem => item.shortDescription)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="pagination-type1 left-align mb-md-50">
+                    <ul>
+                        <li>
+                            <a href=""><i class="fas fa-angle-double-left"></i></a>
+                        </li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li>
+                            <a href=""><i class="fas fa-angle-double-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="right-box bg-light-white mb-30">
+                    <div class="right-box-head">
+                        <h4 class="fs-22">Tìm Kiếm</h4>
+                    </div>
+                    <div class="right-box-content">
+                        <form action="#" class="relative mt-10 mb-10">
+                            <input type="text" class="form-control input-white search-white" id="search2" placeholder="Tìm kiếm..">
+                            <i class="fas fa-search transform-v-center blue"></i>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Danh muc bai viet noi bat start-->
+                @*@{
+                    Html.RenderAction("PostPopular", "Blogs");
+                }*@
+                <!--Danh muc bai viet noi bat ket thuc-->
+
+                <div class="right-box bg-light-white mb-30">
+                    <div class="right-box-head">
+                        <h4 class="fs-22">Popular Posts</h4>
+                    </div>
+                    <div class="right-box-content ">
+                        <a href="" class="popular-post d-flex align-items-center">
+                            <div class="popular-post-img mr-20">
+                                <img src="~/Assets/Client/vendors/img/blog/blog-sml1.jpg" />
+                                <div class="full-cover bg-blue-op-8 transition-4">
+                                    <i class="fas fa-external-link-alt transform-center"></i>
+                                </div>
+                            </div>
+                            <div class="popular-post-text">
+                                <p class="mb-5 black">Lorem ipsum dolor sit amet, consecte..</p>
+                                <span>June 25, 2020</span>
+                            </div>
+                        </a>
+                        <a href="" class="popular-post d-flex align-items-center">
+                            <div class="popular-post-img mr-20">
+                                <img src="~/Assets/Client/vendors/img/blog/blog-sml2.jpg" />
+                                <div class="full-cover bg-blue-op-8 transition-4">
+                                    <i class="fas fa-external-link-alt transform-center"></i>
+                                </div>
+                            </div>
+                            <div class="popular-post-text">
+                                <p class="mb-5 black">Maecenas commodo nisl vel leo dapib..</p>
+                                <span>May 16, 2020</span>
+                            </div>
+                        </a>
+                        <a href="" class="popular-post d-flex align-items-center">
+                            <div class="popular-post-img mr-20">
+                                <img src="~/Assets/Client/vendors/img/blog/blog-sml3.jpg" />
+                                <div class="full-cover bg-blue-op-8 transition-4">
+                                    <i class="fas fa-external-link-alt transform-center"></i>
+                                </div>
+                            </div>
+                            <div class="popular-post-text">
+                                <p class="mb-5 black">Donec bibendum, neque et auctorm..</p>
+                                <span>April 11, 2020</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!--Danh muc bai viet Start-->
+                @{
+                    Html.RenderAction("PostCategories", "Blogs");
+                }
+                <!--Danh muc bai viet End-->
+
+                <div class="right-box bg-light-white mb-30">
+                    <div class="right-box-head">
+                        <h4 class="fs-22">Follow Us</h4>
+                    </div>
+                    <div class="right-box-content">
+                        <div class="social-profile mt-10 mb-10">
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-google-plus-g"></i>
+                            </a>
+                            <a href="" class="social-profile-box">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-box ad-banner bg-light-white mb-30 mb-sm-00">
+                    <a href="" class="d-block ">
+                        <img src="~/Assets/Client/vendors/img/bg/ad-bnr.jpg" class="w-100" alt="" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- blog area end -->

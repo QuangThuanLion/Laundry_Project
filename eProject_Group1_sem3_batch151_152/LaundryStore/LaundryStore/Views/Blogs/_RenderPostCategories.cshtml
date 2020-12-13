@@ -1,0 +1,23 @@
+﻿@model IEnumerable<LaundryStore.Models.PostCategory>
+
+
+<div class="right-box bg-light-white mb-30">
+    <div class="right-box-head">
+        <h4 class="fs-22">Danh mục bài viết</h4>
+    </div>
+    <div class="right-box-content">
+        <div class="categories mb-5">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="#">
+                            @Html.DisplayFor(modelItem => item.categoryNamePost)
+                            @*<span class="count-number">15</span>*@
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

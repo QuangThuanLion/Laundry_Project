@@ -66,6 +66,16 @@ namespace LaundryStore.Utils
                 result.Add("message", SystemConstant.LOGIN_SUCCESS);
                 result.Add("alert", SystemConstant.ALERT_SUCCESS);
             }
+            else if(message.Equals("comment"))
+            {
+                result.Add("message", SystemConstant.COMMENT_CUSTOMER);
+                result.Add("alert", SystemConstant.ALERT_SUCCESS);
+            }
+            else if(message.Equals("contactSuccess"))
+            {
+                result.Add("message", SystemConstant.CONTACT_SUCCESS);
+                result.Add("alert", SystemConstant.ALERT_SUCCESS);
+            }
             return result;
         }
     }

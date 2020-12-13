@@ -3,6 +3,8 @@ using LaundryStore.Models;
 using LaundryStore.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -34,7 +36,7 @@ namespace LaundryStore.Controllers
             {
                 using (LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities())
                 {
-                    var account = db.Customers.Where(x => x.email.Equals(email)).SingleOrDefault();
+                    var account = db.Customers.Where(x => x.email.Equals(email)).FirstOrDefault();
                     if (account != null)
                     {
                         if(account.activated == true)
@@ -44,8 +46,8 @@ namespace LaundryStore.Controllers
                             {
                                 Session["username_Customer"] = account.fullname;
                                 Session["email_Customer"] = account.email;
-                                Session["password_Customer"] = account.password;
-                                Session["id_Customer"] = account.id;
+                                Session["password_Customer"] = EncryptPassword.DecryptPassword(account.password);
+                                Session["id_Customer"] =  account.id;
                                 Session["image_Customer"] = account.avatar;
                                 FormsAuthentication.SetAuthCookie(email, false);
                                 return RedirectToAction("Index", "Home");
@@ -162,12 +164,71 @@ namespace LaundryStore.Controllers
             }
             else
             {
-                string password = EncryptPassword.EncryptForPassword(customer.password);
+                string password = EncryptPassword.DecryptPassword(customer.password);
                 SendEmail.SendMail("Gửi từ Laundry Store, Xác nhận người dùng ! ", customer.email, " lấy lại mật khẩu !" +
                        " Với tên đăng nhập : " + customer.email +
                        " Mật khẩu của bạn là: " + password + ", click đường dẫn dưới đây để quay về trang đăng nhập " + "https://localhost:44335/Account/Login");
                 return new RedirectResult(url: "/Account/forgotPassword?message=confirm_email");
             }
+        }
+
+        [HttpPost]
+        public JsonResult changePassword(long id, string newPass)
+        {
+            LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
+            Customer customer = db.Customers.Where(x => x.id == id).FirstOrDefault();
+            customer.password = EncryptPassword.EncryptForPassword(newPass);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult infoProfile(int? id)
+        {
+            LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
+            string message = Request.QueryString["message"];
+            if (message != null)
+            {
+                Dictionary<string, string> viewData = MessageUtil.getMessage(message);
+                ViewData["message"] = viewData["message"];
+                ViewData["alert"] = viewData["alert"];
+            }
+            Customer customer = db.Customers.Where(x => x.id == id).SingleOrDefault();
+            ViewBag.idCounty = new SelectList(db.Counties, "id", "name");
+            return View(customer);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfile([Bind(Include = "id,email,password,fullname,phone,gender,dayOfBirth,address,avatar,idCounty,activated,status,createdDate,modifyDate,modifyBy,roleId")] Customer customer,
+                        HttpPostedFileBase avatar)
+        {
+            LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
+            if (ModelState.IsValid)
+            {
+                string path = Server.MapPath("/Assets/Client/resources/image");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (customer.avatar != null)
+                {
+                    avatar.SaveAs(path + "/" + avatar.FileName);
+                    customer.avatar = "Assets/Client/resources/image/" + avatar.FileName;
+                }
+                else
+                {
+                    customer.avatar = "Assets/Client/resources/image/" + "customerDefault.jpg";
+                }
+
+                customer.modifyDate = DateTime.Now;
+                customer.modifyBy = Session["username_Customer"].ToString();
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+                return new RedirectResult(url: "/Account/infoProfile/"+customer.id+"?message=update_success");
+            }
+            ViewBag.idCounty = new SelectList(db.Counties, "id", "name", customer.idCounty);
+            return View(customer);
         }
 
         public ActionResult Logout()

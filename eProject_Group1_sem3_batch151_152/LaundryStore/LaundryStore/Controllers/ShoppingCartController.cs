@@ -4,6 +4,7 @@ using LaundryStore.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -247,7 +248,7 @@ namespace LaundryStore.Controllers
                 customer.address = address;
                 customer.avatar = "Assets/Admin/resources/image/" + "customerDefault.jpg";
                 customer.idCounty = Int32.Parse(county);
-                customer.activated = false;
+                customer.activated = true;
                 customer.status = true;
                 customer.createdDate = DateTime.Now;
                 customer.roleId = 3;
@@ -308,6 +309,28 @@ namespace LaundryStore.Controllers
             }
             Session["cart"] = null;
             return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        /**
+         * show don hang dang order - tinh trang don hang - tong tien phai tra
+         */
+        [HttpGet]
+        public ActionResult orderList(int? id)
+        {
+            LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
+            List<Order> order = db.Orders.Where(o => o.customerId == id).OrderByDescending(o => o.orderDate).ToList();
+            ViewBag.OrderList = order;
+            return View();
+        }
+
+        //thong tin chi tiet cua don hang
+        [HttpGet]
+        public ActionResult DetailOrder(long? id)
+        {
+            LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
+            List<OrderDetail> listOrderDetail = db.OrderDetails.Where(o => o.orderId == id).ToList();
+            ViewBag.OrderDetail = listOrderDetail;
+            return View();
         }
 
         /**

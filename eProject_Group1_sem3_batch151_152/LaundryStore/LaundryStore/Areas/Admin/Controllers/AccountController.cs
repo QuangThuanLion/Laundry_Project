@@ -36,12 +36,12 @@ namespace LaundryStore.Areas.Admin.Controllers
                     var account = db.Employees.Where(x => x.email.Equals(email)).SingleOrDefault();
                     if (account != null)
                     {
-                        var passwordCheck = account.password.Equals(password);
+                        var passwordCheck = account.password.Equals(EncryptPassword.EncryptForPassword(password));
                         if (passwordCheck)
                         { 
                             Session["username_Employee"] = account.fullname;
                             Session["email_Employee"] = account.email;
-                            Session["password_Employee"] = account.password;
+                            Session["password_Employee"] = EncryptPassword.DecryptPassword(account.password);
                             Session["id_Employee"] = account.id;
                             Session["image_Employee"] = account.avatar;
                             FormsAuthentication.SetAuthCookie(email, false);
@@ -126,7 +126,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         {
             LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities();
             Employee employee = db.Employees.Where(x => x.id == id).FirstOrDefault();
-            employee.password = newPass;
+            employee.password = EncryptPassword.EncryptForPassword(newPass);
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
@@ -154,7 +154,7 @@ namespace LaundryStore.Areas.Admin.Controllers
                 return new RedirectResult(url: "/Admin/Account/forgotPassword?message=invalid_email");
             } else
             {
-                string password = employee.password;
+                string password = EncryptPassword.DecryptPassword(employee.password);
                 SendEmail.SendMail("Gửi từ Laundry Store, Xác nhận người dùng ! ", employee.email, " lấy lại mật khẩu !" +
                        " Với tên đăng nhập : " + employee.email +
                        " Mật khẩu của bạn là: "+password+", click đường dẫn dưới đây để quay về trang đăng nhập " + "https://localhost:44335/Admin/Account/Login");

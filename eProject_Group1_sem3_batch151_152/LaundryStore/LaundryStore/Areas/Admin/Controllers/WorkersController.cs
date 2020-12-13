@@ -17,7 +17,9 @@ namespace LaundryStore.Areas.Admin.Controllers
         // GET: Admin/Workers
         public ActionResult Index()
         {
-            return View(db.Workers.ToList());
+            List<Worker> list = null;
+            list = db.Workers.Where(e => e.status == true).ToList();
+            return View(list);
         }
 
         // GET: Admin/Workers/Details/5
