@@ -1,99 +1,206 @@
 ﻿@model LaundryStore.Models.News
 
 @{
+
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<!-- Main Content Start -->
+<section class="main--content">
+    <div class="panel container-fluid">
+        <!-- Records Header Start -->
+        <div class="records--header">
+            <div class="title fa-shopping-bag">
+                <h3 class="h3">Employee Management<a href="#" class="btn btn-sm btn-outline-info">Post Detail</a></h3>
+            </div>
+            <div class="actions">
+                <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "Employees")">
+                    <span>BACK</span>
+                </a>
+                <a class="addProduct btn btn-lg btn-rounded btn-warning" title="Edit" href="@Url.Action("Edit", "Posts", new { id = Model.id })">
+                    <span>EDIT Post</span>
+                </a>
+            </div>
+        </div>
+        <!-- Records Header End -->
+    </div>
 
-<div>
-    <h4>News</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.title)
-        </dt>
+    <div class="panel">
 
-        <dd>
-            @Html.DisplayFor(model => model.title)
-        </dd>
+        <!-- View Order Start -->
+        <div class="records--body">
+            <div class="title">
+                <h6 class="h6"><span class="text-lightergray">Detail Post</span></h6>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.thumbnail)
-        </dt>
+            <!-- Tabs Nav Start -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#tab01" data-toggle="tab" class="nav-link active">Detail</a>
+                </li>
+            </ul>
+            <!-- Tabs Nav End -->
+            <!-- Tab Content Start -->
+            <div class="tab-content">
+                <!-- Tab Pane Start -->
+                <div class="tab-pane fade show active" id="tab01">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="subtitle">Other Information</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.thumbnail)
-        </dd>
+                            <table class="table table-simple">
+                                <tbody>
+                                    <tr>
+                                        <td>Id</td>
+                                        <th>@Html.DisplayFor(model => model.id)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Title</td>
+                                        <th>@Html.DisplayFor(model => model.title)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Thumnail</td>
+                                        <th>@Html.DisplayFor(model => model.thumbnail)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Décription</td>
+                                        <th>@Html.DisplayFor(model => model.shortDescription)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Content</td>
+                                        <th>@Html.DisplayFor(model => model.content)</th>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.shortDescription)
-        </dt>
+                        <div class="col-md-6">
+                            <h4 class="subtitle">Other Information</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.shortDescription)
-        </dd>
+                            <table class="table table-simple">
+                                <tbody>
+                                    <tr>
+                                        <td>CategryName</td>
+                                        <th>@Html.DisplayFor(model => model.PostCategory.categoryCodePost)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>CreateDate</td>
+                                        <th>@Html.DisplayFor(model => model.createdDate)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Date Start</td>
+                                        <th>@Html.DisplayFor(model => model.createdBy)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>ModifyBytd>
+                                        <th>@Html.DisplayFor(model => model.modifyBy)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>ModifyDate</td>
+                                        <th>@Html.DisplayFor(model => model.modifyDate)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <th>
+                                            @if (Model.status == true)
+                                            {
+                                                <span class="label label-success">Yes</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-danger">No</span>
+                                            }
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab Pane End -->
+            </div>
+            <!-- Tab Content End -->
+        </div>
+        <!-- View Order End -->
+    </div>
+</section>
+<!-- Main Content End -->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.content)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.content)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.createdDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.createdDate)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.createdBy)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.createdBy)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.modifyDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.modifyDate)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.modifyBy)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.modifyBy)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PostCategory.categoryNamePost)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PostCategory.categoryNamePost)
-        </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
