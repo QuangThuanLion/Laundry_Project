@@ -79,6 +79,7 @@ namespace LaundryStore.Areas.Admin.Controllers
                 }
 
                 customer.createdDate = DateTime.Now;
+                customer.password = EncryptPassword.EncryptForPassword(customer.password);
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return new RedirectResult(url: "/Admin/Customers/Index?message=insert_success");
@@ -133,6 +134,7 @@ namespace LaundryStore.Areas.Admin.Controllers
 
                 customer.modifyDate = DateTime.Now;
                 customer.modifyBy = Session["username"].ToString();
+                customer.password = EncryptPassword.EncryptForPassword(customer.password);
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return new RedirectResult(url: "/Admin/Customers/Index?message=update_success");

@@ -1,11 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using LaundryStore.Common;
 using LaundryStore.Models;
@@ -50,7 +53,7 @@ namespace LaundryStore.Areas.Admin.Controllers
             {
                 arrayRole[i] = listAccount[i].Role.name;
             }
-            ViewBag.RoleEmployee = arrayRole[0];
+            
             return View(employee);
         }
 
@@ -92,19 +95,14 @@ namespace LaundryStore.Areas.Admin.Controllers
                     account.roleId = Convert.ToInt32(role);
                     employee.createdDate = DateTime.Now;
                     employee.dateEnd = DateTime.Now.AddYears(1);
-                    employee.createdBy = Session["username_Employee"].ToString();
+                    employee.createdBy = Session["username"].ToString();
                     employee.status = true;
                     employee.activated = false;
-                    employee.password = EncryptPassword.EncryptForPassword(employee.password);
 
                     db.AccountRoles.Add(account);
                     db.Employees.Add(employee);
                     db.SaveChanges();
-
-                    SendEmail.SendMail("Gửi từ Laundry Store, Xác nhận người dùng ! ", employee.email, " Bạn vừa đăng kí thành công tài khoản tại Laundry Store !" +
-                       " Với tên đăng nhập : " + employee.email +
-                       " Để kích hoạt tài khoản vừa đăng kí, vui lòng xác nhận tại đường dẫn tại đây: " + "https://localhost:44335/Admin/Employees/ActiveEmail?username=" + employee.email);
-
+                    BuildEmailTemplate(employee.id);
                     return new RedirectResult(url: "/Admin/Employees/Index?message=confirm_email");
                 } else
                 {
@@ -114,18 +112,57 @@ namespace LaundryStore.Areas.Admin.Controllers
             return View(employee);
         }
 
-        // nhận xác nhân email
-        public ActionResult ActiveEmail(string username)
+        private void BuildEmailTemplate(long id)
         {
+            string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/Common/EmailTemplate/") + "Index" + ".cshtml");
+            var registerInfo = db.Employees.Where(x => x.id == id).FirstOrDefault();
+            var url = "https://localhost:44335/" + "Admin/Employees/ActiveEmail?registerId=" + id;
+            body = body.Replace("@ViewBag.ConfirmationLink", url);
+            body = body.ToString();
+            BuildEmailTemplate("Your account is successfully created !", body, registerInfo.email);
+        }
 
-            Employee employee = db.Employees.Where(x => x.email.Equals(username)).SingleOrDefault();
-            if (employee != null)
+        private static void BuildEmailTemplate(string subjectText, string bodyText, string sendTo)
+        {
+            string from, to, bbc, cc, subject, body;
+            from = "quangthuanyoutobe.2412@gmail.com";
+            to = sendTo.ToString();
+            bbc = "";
+            cc = "";
+            subject = subjectText;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(bodyText);
+            body = sb.ToString();
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(from);
+            mail.To.Add(new MailAddress(to));
+            if (!string.IsNullOrEmpty(bbc))
             {
-                employee.activated = true;
-                db.SaveChanges();
-                return new RedirectResult(url: "/Admin/Employees/Index?message=insert_success");
+                mail.Bcc.Add(new MailAddress(bbc));
             }
-            return View(employee);
+            if (!string.IsNullOrEmpty(cc))
+            {
+                mail.CC.Add(new MailAddress(cc));
+            }
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.IsBodyHtml = true;
+            SendEmail.SendMail(mail);
+        }
+
+        // nh?n x�c nhan email
+        public ActionResult ActiveEmail(long id)
+        {
+            ViewBag.registerEmail = id;
+            return View();
+        }
+        public JsonResult CreateConfirm(long id)
+        {
+            Employee employee = db.Employees.Where(x => x.id == id).FirstOrDefault();
+            employee.activated = true;
+            db.SaveChanges();
+            var message = "Your account is verified !";
+            return Json(message, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Admin/Employees/Edit/5
@@ -173,8 +210,7 @@ namespace LaundryStore.Areas.Admin.Controllers
                 account.employeeId = employee.id;
                 account.roleId = Convert.ToInt32(role);
                 employee.modifyDate = DateTime.Now;
-                employee.modifyBy = Session["username_Employee"].ToString();
-                employee.password = EncryptPassword.EncryptForPassword(employee.password);
+                employee.modifyBy = Session["username"].ToString();
                 db.AccountRoles.Add(account);
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();

@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <b><span>Day Of Birth</span></b>
-                                    @Html.EditorFor(model => model.dayOfBirth, new { htmlAttributes = new { @class = "form-control", @required = true, @type = "Date"}})
+                                    <input class="form-control" type="date" name="dayOfBirth" value="@Model.dayOfBirth.Value.Date.ToString("yyyy-MM-dd")" required="required" />
                                     @Html.ValidationMessageFor(model => model.dayOfBirth, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -129,36 +129,6 @@
                                     </p>
                                 </div>
                             </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <i class="fab fa-expeditedssl" style="font-size:40px; margin:0 44%; color:orange" ;></i>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" style="text-align:center">
-                                            <div class="row">
-                                                <b><span>Current Password</span></b>
-                                                <input style="border-color:white;" class="form-control" type="password" id="currentPassword" name="currentPassword" required="required"/>
-                                            </div>
-                                            <div class="row">
-                                                <b><span>New Password</span></b>
-                                                <input style="border-color:white;" class="form-control" type="password" id="newPassword" name="newPassword" required="required"/>
-                                            </div>
-                                            <div class="row">
-                                                <b><span>Confirm Password</span></b>
-                                                <input style="border-color:white;" class="form-control" type="password" id="confirmPassword" name="confirmPassword" required="required"/>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer editModalFooter">
-                                            <button class="btn btn-warning yes" onclick="changePassword()">Save changes</button>
-                                            <button type="button" class="btn btn-info cancel" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <!-- Tab Pane End -->
                     </div>
@@ -170,6 +140,36 @@
     </div>
     <!-- Main Content End -->
 }
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fab fa-expeditedssl" style="font-size:40px; margin:0 44%; color:orange" ;></i>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <div class="row">
+                    <b><span>Current Password</span></b>
+                    <input style="border-color:white;" class="form-control" type="password" id="currentPassword" name="currentPassword" required="required" />
+                </div>
+                <div class="row">
+                    <b><span>New Password</span></b>
+                    <input style="border-color:white;" class="form-control" type="password" id="newPassword" name="newPassword" required="required" />
+                </div>
+                <div class="row">
+                    <b><span>Confirm Password</span></b>
+                    <input style="border-color:white;" class="form-control" type="password" id="confirmPassword" name="confirmPassword" required="required" />
+                </div>
+            </div>
+            <div class="modal-footer editModalFooter">
+                <button class="btn btn-warning yes" onclick="changePassword()">Save changes</button>
+                <button type="button" class="btn btn-info cancel" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <link href="~/Assets/Admin/resources/sweetalert/sweetalert2.min.css" rel="stylesheet" />
 <script src="~/Assets/Admin/resources/sweetalert/sweetalert2.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

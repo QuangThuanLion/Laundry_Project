@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "DateStatistics";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Main Content Start -->
+<section class="main--content">
+    <div class="panel">
+        <!-- Records Header Start -->
+        <div class="records--header">
+            <div class="title fa-shopping-bag">
+                <h3 class="h3">Statistics Date<a href="#" class="btn btn-sm btn-outline-info">Manage Statistics Date</a></h3>
+            </div>
+        </div>
+        <!-- Records Header End -->
+    </div>
+
+    <div class="panel">
+        <!-- Records List Start -->
+        <div class="records--list" data-title="Order Date Listing">
+            <table id="recordsListView">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Order Date</th>
+                        <th>Customer Name</th>
+                        <th>PayMent status</th>
+                        <th>Amount</th>
+                        <th>Total Order</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.listOrder)
+                    {
+                        <tr>
+                            <td>
+                                @item.id
+                            </td>
+                            <td>
+                                @item.orderDate
+                            </td>
+                            <td>
+                                @item.Customer.fullname
+                            </td>
+                            <td>
+                                @item.PayMentMethod.paymentName
+                            </td>
+                            <td>
+                                @item.amount
+                            </td>
+                            <td>
+                                @item.totalOrder
+                            </td>
+                            <td>
+                                @if (item.statusId == 1)
+                                {
+                                    <span class="label label-warning">Confirm</span>
+                                }
+                                else if (item.statusId == 2)
+                                {
+                                    <span class="label label-danger">Pending</span>
+                                }
+                                else if (item.statusId == 3)
+                                {
+                                    <span class="label label-success">Completed</span>
+                                }
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- Records List End -->
+    </div>
+</section>
+<!-- Main Content End -->

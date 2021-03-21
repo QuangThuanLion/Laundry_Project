@@ -48,7 +48,7 @@
             <!-- Navbar Header Start -->
             <div class="navbar--header">
                 <!-- Logo Start -->
-                <a href="#" class="logo">
+                <a href="/Admin/DashBoard/Index" class="logo">
                     <img src="~/Assets/Admin/vendors/assets/img/logo.png" />
                 </a>
                 <!-- Logo End -->
@@ -115,7 +115,7 @@
                     <!-- Nav Language End -->
                     <!-- Nav User Start -->
                     <li class="nav-item dropdown nav--user online">
-                        <a href="#" class="nav-link" data-toggle="dropdown">
+                        <a href="/Admin/Account/infoProfile/@Session["id_Employee"]" class="nav-link" data-toggle="dropdown">
                             <img src="~/@Session["image_Employee"]" alt="" class="rounded-circle" />
                             <span>@Session["username_Employee"]</span>
                             <i class="fa fa-angle-down"></i>
@@ -123,7 +123,6 @@
 
                         <ul class="dropdown-menu">
                             <li><a href="/Admin/Account/infoProfile/@Session["id_Employee"]"><i class="far fa-user"></i>Profile</a></li>
-                            <li><a href="#"><i class="fa fa-lock"></i>Lock Screen</a></li>
                             <li><a href="/Admin/Account/Logout"><i class="fa fa-power-off"></i>Logout</a></li>
                         </ul>
                     </li>
@@ -137,13 +136,13 @@
             <!-- Sidebar Profile Start -->
             <div class="sidebar--profile">
                 <div class="profile--img">
-                    <a href="#">
+                    <a href="/Admin/Account/infoProfile/@Session["id_Employee"]">
                         <img src="~/@Session["image_Employee"]" alt="" class="rounded-circle" />
                     </a>
                 </div>
 
                 <div class="profile--name">
-                    <a href="#" class="btn-link">@Session["username_Employee"]</a>
+                    <a href="/Admin/Account/infoProfile/@Session["id_Employee"]" class="btn-link">@Session["username_Employee"]</a>
                 </div>
 
                 <div class="profile--nav">
@@ -151,11 +150,6 @@
                         <li class="nav-item">
                             <a href="/Admin/Account/infoProfile/@Session["id_Employee"]" class="nav-link" title="User Profile">
                                 <i class="fa fa-user"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" title="Lock Screen">
-                                <i class="fa fa-lock"></i>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -214,6 +208,12 @@
                                     <span>Material Management</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="/Admin/News/Index">
+                                    <i class="far fa-newspaper"></i>
+                                    <span>Blogs Management</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
@@ -241,53 +241,23 @@
                             </li>
                         </ul>
                     </li>
-
-                    <li>
-                        <a href="#">Blog Management</a>
-
-                        <ul>
-                            <li>
-                                <a href="/Admin/News/Index">
-                                    <i class="far fa-newspaper"></i>
-                                    <span>Post</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-wpforms"></i>
-                                    <span>Post Statistics</span>
-                                </a>
-
-                                <ul>
-                                    <li><a href="#">Date</a></li>
-                                    <li><a href="#">Weeks</a></li>
-                                    <li><a href="#">Months</a></li>
-                                    <li><a href="#">Quarters</a></li>
-                                    <li><a href="#">Years</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
                     <li>
                         <a href="#">Cost Statistics</a>
-
                         <ul>
                             <li>
                                 <a href="#">
                                     <i class="far fa-money-bill-alt"></i>
                                     <span>Sales Statistics</span>
                                 </a>
-
                                 <ul>
                                     <li><a href="#">Date</a></li>
                                     <li><a href="#">Weeks</a></li>
                                     <li><a href="#">Months</a></li>
-                                    <li><a href="#">Quarters</a></li>
+                                    @*<li><a href="#">Quarters</a></li>*@
                                     <li><a href="#">Years</a></li>
                                 </ul>
                             </li>
-                            <li>
+                            @*<li>
                                 <a href="#">
                                     <i class="far fa-money-bill-alt"></i>
                                     <span>Due Payment</span>
@@ -300,7 +270,7 @@
                                     <li><a href="#">Quarters</a></li>
                                     <li><a href="#">Years</a></li>
                                 </ul>
-                            </li>
+                            </li>*@
                             <li>
                                 <a href="#">
                                     <i class="far fa-money-bill-alt"></i>
@@ -340,7 +310,7 @@
             <!-- /.content-wrapper -->
             <!-- Main Footer Start -->
             <footer class="main--footer main--footer-light">
-                <p>Copyright &copy; <a href="#">Admin</a>. All Rights Reserved.</p>
+                <p>Admin Management &copy; <a href="#">Admin</a>. All Rights Reserved.</p>
             </footer>
             <!-- Main Footer End -->
         </main>

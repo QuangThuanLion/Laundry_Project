@@ -66,10 +66,15 @@ namespace LaundryStore.Controllers
                 customer.password = EncryptPassword.EncryptForPassword(phone);
                 customer.fullname = fullname.ToString();
                 customer.phone = Convert.ToInt32(phone);
+                customer.address = "";
+                customer.idCounty = 1;
                 customer.avatar = "Assets/Client/resources/image/" + "customerDefault.jpg";
                 customer.activated = true;
                 customer.status = true;
                 customer.createdDate = DateTime.Now;
+                customer.modifyDate = DateTime.Now;
+                customer.modifyBy = fullname.ToString();
+                customer.dayOfBirth = DateTime.Now;
                 customer.roleId = 3;
 
                 db.Customers.Add(customer);
@@ -104,6 +109,15 @@ namespace LaundryStore.Controllers
             order.createdBy = customer.fullname;
             order.status = true;
             db.Orders.Add(order);
+            db.SaveChanges();
+
+            //insert table barcodes
+            Barcode barcode = new Barcode();
+            barcode.orderId = order.id;
+            barcode.codeName = RandomBarCodes.RandomBarCode();
+            barcode.createdDate = DateTime.Now;
+            barcode.createdBy = fullname.ToString();
+            db.Barcodes.Add(barcode);
             db.SaveChanges();
 
             OrderDetail orderDetail = new OrderDetail();

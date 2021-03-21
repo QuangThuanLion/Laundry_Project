@@ -157,6 +157,7 @@
     <Compile Include="Areas\Admin\Controllers\ProvidersController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShippingAdressesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\WorkersController.cs" />
     <Compile Include="Areas\Admin\Controllers\WorksController.cs" />
@@ -291,6 +292,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\EncryptPassword.cs" />
     <Compile Include="Utils\MessageUtil.cs" />
+    <Compile Include="Utils\RandomBarCodes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -1184,6 +1186,10 @@
     <Content Include="Assets\Client\vendors\profile\css\icons\weather-icons\sass\weather-icons-wind.scss" />
     <Content Include="Assets\Client\vendors\profile\css\icons\weather-icons\sass\weather-icons.min.scss" />
     <Content Include="Assets\Client\vendors\profile\css\icons\weather-icons\sass\weather-icons.scss" />
+    <Content Include="Areas\Admin\Views\Statistics\DateStatistics.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\WeekStatistics.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\MonthStatistics.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\YearStatistics.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

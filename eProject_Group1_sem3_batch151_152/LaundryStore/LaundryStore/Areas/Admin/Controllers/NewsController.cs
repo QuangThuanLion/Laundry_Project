@@ -115,7 +115,7 @@ namespace LaundryStore.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             News news = db.News.Find(id);
-            db.News.Remove(news);
+            news.status = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

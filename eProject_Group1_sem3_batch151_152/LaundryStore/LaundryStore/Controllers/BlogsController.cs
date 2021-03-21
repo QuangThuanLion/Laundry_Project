@@ -66,7 +66,7 @@ namespace LaundryStore.Controllers
             {
                 return HttpNotFound();
             }
-            List<Comment> listComment = db.Comments.Where(c => c.newId == id).ToList();
+            List<Comment> listComment = db.Comments.Where(c => c.newId == id).OrderByDescending(o => o.createdDate).ToList();
             ViewBag.listComment = listComment;
             return View(news);
         }
@@ -80,7 +80,7 @@ namespace LaundryStore.Controllers
             {
                 using (LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities())
                 {
-                    var account = db.Customers.Where(x => x.email.Equals(email)).FirstOrDefault();
+                    var account = db.Customers.Where(x => x.email.Equals(email) && x.status == true && x.activated == true).FirstOrDefault();
                     if (account != null)
                     {
                         if (account.activated == true)
@@ -146,12 +146,17 @@ namespace LaundryStore.Controllers
                 customer.email = email;
                 customer.password = EncryptPassword.EncryptForPassword(passwordDefault);
                 customer.fullname = name;
-                customer.avatar = "Assets/Admin/resources/image/" + "customerDefault.jpg";
+                customer.address = "";
+                customer.idCounty = 1;
+                customer.avatar = "Assets/Client/resources/image/" + "customerDefault.jpg";
                 customer.activated = true;
                 customer.status = true;
                 customer.createdDate = DateTime.Now;
+                customer.modifyDate = DateTime.Now;
+                customer.modifyBy = name;
+                customer.dayOfBirth = DateTime.Now;
                 customer.roleId = 3;
-
+               
                 db.Customers.Add(customer);
                 db.SaveChanges();
 
@@ -159,7 +164,7 @@ namespace LaundryStore.Controllers
 
                 SendEmail.SendMail("Gửi từ Laundry Store, Xác nhận người dùng ! ", customer.email, " Bạn vừa đăng kí thành công tài khoản tại Laundry Store !" +
                        " Với tên đăng nhập : " + customer.email + 
-                       " Bạn có thể sử dụng email trên để đăng nhập vào cửa hàng của chúng tôi với mật khẩu là : "+ password + " " +
+                       " Bạn có thể sử dụng email trên để đăng nhập vào cửa hàng của chúng tôi với mật khẩu mặc định là : "+ password + " " +
                        " Vui lòng truy cập vào đường dẫn dưới đây để cập nhật thông tin tài khoản " + "https://localhost:44335/Account/infoProfile/"+customer.id);
             }
             //khach hang co dang nhap tai khoan

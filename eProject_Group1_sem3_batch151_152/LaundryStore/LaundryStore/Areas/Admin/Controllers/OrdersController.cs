@@ -17,7 +17,13 @@ namespace LaundryStore.Areas.Admin.Controllers
         // GET: Admin/Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Customer).Include(o => o.PayMentMethod).Include(o => o.ShippingAdress).Include(o => o.Status1).Include(o => o.Employee).Include(o => o.Employee1);
+            var orders = db.Orders.Include(o => o.Customer)
+                .Include(o => o.PayMentMethod)
+                .Include(o => o.ShippingAdress)
+                .Include(o => o.Status1)
+                .Include(o => o.Employee)
+                .Include(o => o.Employee1)
+                .OrderByDescending(o => o.statusId == 2).ThenByDescending(o => o.orderDate);
             return View(orders.ToList());
         }
 

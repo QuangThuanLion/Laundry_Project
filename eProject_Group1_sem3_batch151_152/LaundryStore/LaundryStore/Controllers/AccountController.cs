@@ -36,7 +36,7 @@ namespace LaundryStore.Controllers
             {
                 using (LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities())
                 {
-                    var account = db.Customers.Where(x => x.email.Equals(email)).FirstOrDefault();
+                    var account = db.Customers.Where(x => x.email.Equals(email) && x.status == true && x.activated == true).FirstOrDefault();
                     if (account != null)
                     {
                         if(account.activated == true)
@@ -108,11 +108,18 @@ namespace LaundryStore.Controllers
                     Customer customer = new Customer();
                     customer.email = email;
                     customer.password = EncryptPassword.EncryptForPassword(password);
-                    customer.avatar = "Assets/Admin/resources/image/" + "customerDefault.jpg";
+                    customer.fullname = "";
+                    customer.address = "";
+                    customer.idCounty = 1;
+                    customer.avatar = "Assets/Client/resources/image/" + "customerDefault.jpg";
                     customer.activated = false;
                     customer.status = true;
                     customer.createdDate = DateTime.Now;
-                    customer.roleId = 3;
+                    customer.modifyDate = DateTime.Now;
+                    customer.dayOfBirth = DateTime.Now;
+                    customer.modifyBy = "";
+                    customer.roleId = 3;             
+
                     db.Customers.Add(customer);
                     db.SaveChanges();
 

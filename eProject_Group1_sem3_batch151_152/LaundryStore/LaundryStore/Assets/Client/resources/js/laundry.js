@@ -141,8 +141,13 @@ function purchase() {
         },
         success: function (response) {
             if (response == 1) {
+                console.log("hehe");
+                return successPurchaseNewCustomer();
+            } else {
+                console.log("haha");
                 return successPurchase();
             }
+
         }
     })
     
@@ -212,6 +217,15 @@ function successAddToCart() {
     swal({
         title: "Thông báo !",
         text: "Bạn đã thêm sản phẩm vào trong giỏ hàng !",
+        icon: "success",
+        button: "OK",
+    });
+}
+
+function successPurchaseNewCustomer() {
+    swal({
+        title: "Thông báo !",
+        text: "Cảm ơn bạn đã đặt hàng!.Chúng tôi vừa gửi thông báo tới email bạn vừa đăng kí, vui lòng kiểm tra hộp thư của bạn!",
         icon: "success",
         button: "OK",
     });

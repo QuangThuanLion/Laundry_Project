@@ -6,7 +6,7 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-@using (Html.BeginForm("Edit", "Posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -32,7 +32,7 @@
                         <h3 class="h3">Posts Management<a href="#" class="btn btn-sm btn-outline-info">Posts Edit</a></h3>
                     </div>
                     <div class="actions">
-                        <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "Posts")">
+                        <a style="margin-right:10px" class="addProduct btn btn-lg btn-rounded btn-info" title="Back" href="@Url.Action("Index", "News")">
                             <span>BACK</span>
                         </a>
                         <div style="margin-right:10px" class="addProduct btn btn-sm btn-rounded btn-warning">
@@ -46,7 +46,6 @@
             </div>
 
             <div class="panel">
-
                 <!-- Edit Product Start -->
                 <div class="records--body">
                     <div class="title">
@@ -119,7 +118,7 @@
                                     @Html.ValidationMessageFor(model => model.PostCategory.categoryNamePost, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <b> <span>Status</span></b>
+                                    <b><span>Status</span></b>
                                     <div class="checkbox">
                                         @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", @required = true } })
                                         @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
@@ -131,6 +130,10 @@
                                     <b><span>Thumnail</span></b>
                                     <input class="form-control" type="file" name="avatar" />
                                 </div>
+                                <div class="form-group col-sm-6">
+                                    <b><span>Content</span></b>
+                                    <textarea class="form-control" name="content">@Model.content</textarea>
+                                </div>
                             </div>
                             <!-- Tab Pane End -->
                         </div>
@@ -138,6 +141,7 @@
                     </div>
                     <!-- Edit Product End -->
                 </div>
+            </div>
         </section>
     </div>
     <!-- Main Content End -->

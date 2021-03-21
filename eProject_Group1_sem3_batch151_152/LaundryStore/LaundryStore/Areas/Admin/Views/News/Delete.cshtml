@@ -21,7 +21,7 @@
                 <h4>You will not be able to recover this employee !</h4>
             </div>
             <div class="modal-footer editModalFooter">
-                @using (Html.BeginForm("Delete", "Posts", FormMethod.Post))
+                @using (Html.BeginForm("Delete", "News", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     <button type="button" class="btn btn-info cancel" data-dismiss="modal"><b>Cancel</b></button>

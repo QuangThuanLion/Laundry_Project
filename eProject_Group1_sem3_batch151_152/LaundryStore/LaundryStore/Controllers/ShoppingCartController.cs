@@ -1,4 +1,5 @@
-﻿using LaundryStore.Models;
+﻿using LaundryStore.Common;
+using LaundryStore.Models;
 using LaundryStore.Models.DataModel;
 using LaundryStore.Utils;
 using System;
@@ -54,7 +55,7 @@ namespace LaundryStore.Controllers
         public int totalQuantity()
         {
             List<CartItem> listCart = Session["cart"] as List<CartItem>;
-            if(listCart == null)
+            if (listCart == null)
             {
                 return 0;
             }
@@ -69,7 +70,7 @@ namespace LaundryStore.Controllers
             {
                 using (LAUNDRY_PROJECTEntities db = new LAUNDRY_PROJECTEntities())
                 {
-                    var account = db.Customers.Where(x => x.email.Equals(email)).SingleOrDefault();
+                    var account = db.Customers.Where(x => x.email.Equals(email) && x.status == true && x.activated == true).FirstOrDefault();
                     if (account != null)
                     {
                         if (account.activated == true)
@@ -131,8 +132,8 @@ namespace LaundryStore.Controllers
                     ViewBag.countyCustomer = customer.County.name != null ? customer.County.name : "";
                     ViewBag.addressCustomer = customer.address != null ? customer.address : "";
                 }
-            }           
-            
+            }
+
             ViewBag.listCart = listCart;
             double? total = totalMoney();
             ViewBag.total = total;
@@ -150,7 +151,7 @@ namespace LaundryStore.Controllers
             }
             return listCart;
         }
-        
+
         /**
          * them san pham vao trong don hang
          */
@@ -192,7 +193,7 @@ namespace LaundryStore.Controllers
             List<CartItem> listCart = getCart();
             CartItem cartItem = listCart.Where(c => c.productId == idProduct).SingleOrDefault();
             object[] changeCart = new object[1];
-            if(cartItem != null)
+            if (cartItem != null)
             {
                 cartItem.quantity = newQuantity;
                 int? amount = cartItem.price * newQuantity;
@@ -210,17 +211,20 @@ namespace LaundryStore.Controllers
         public JsonResult removeItemInCart(long productId)
         {
             Product product = db.Products.SingleOrDefault(p => p.id == productId);
-            if(product == null)
+            if (product == null)
             {
                 return Json(1, JsonRequestBehavior.AllowGet);
-            } else
+            }
+            else
             {
                 List<CartItem> listCart = getCart();
                 CartItem cartItem = listCart.Where(c => c.productId == productId).SingleOrDefault();
                 if (cartItem == null)
                 {
                     return Json(1, JsonRequestBehavior.AllowGet);
-                } else {
+                }
+                else
+                {
                     object[] remoteItem = new object[2];
                     listCart.Remove(cartItem);
                     double? total = totalMoney();
@@ -246,21 +250,30 @@ namespace LaundryStore.Controllers
                 customer.fullname = fullName;
                 customer.phone = phone;
                 customer.address = address;
-                customer.avatar = "Assets/Admin/resources/image/" + "customerDefault.jpg";
+                customer.avatar = "Assets/Client/resources/image/" + "customerDefault.jpg";
                 customer.idCounty = Int32.Parse(county);
                 customer.activated = true;
                 customer.status = true;
                 customer.createdDate = DateTime.Now;
+                customer.modifyDate = DateTime.Now;
+                customer.modifyBy = fullName;
+                customer.dayOfBirth = DateTime.Now;
                 customer.roleId = 3;
 
                 db.Customers.Add(customer);
                 db.SaveChanges();
 
-            } else
+                SendEmail.SendMail("Gửi từ Laundry Store, Xác nhận người dùng ! ", customer.email, " Bạn vừa đăng kí thành công tài khoản tại Laundry Store !" +
+                           " Với tên đăng nhập : " + customer.email +
+                           " Bạn có thể sử dụng email trên để đăng nhập vào cửa hàng của chúng tôi với mật khẩu là số điện thoại của bạn : " + customer.phone + " " +
+                           " Vui lòng truy cập vào đường dẫn dưới đây để cập nhật thông tin tài khoản " + "https://localhost:44335/Account/infoProfile/" + customer.id);
+
+            }
+            else
             {
                 var customerId = int.Parse(Session["id_Customer"].ToString());
                 customer = db.Customers.Find(customerId);
-                if(customer != null)
+                if (customer != null)
                 {
                     customer.email = email;
                     customer.fullname = fullName;
@@ -292,6 +305,15 @@ namespace LaundryStore.Controllers
             db.Orders.Add(order);
             db.SaveChanges();
 
+            //insert table barcodes
+            Barcode barcode = new Barcode();
+            barcode.orderId = order.id;
+            barcode.codeName = RandomBarCodes.RandomBarCode();
+            barcode.createdDate = DateTime.Now;
+            barcode.createdBy = fullName;
+            db.Barcodes.Add(barcode);
+            db.SaveChanges();
+
             //them don hang vao chi tiet don hang
             List<CartItem> listCart = getCart();
             foreach (CartItem item in listCart)
@@ -307,8 +329,14 @@ namespace LaundryStore.Controllers
                 db.OrderDetails.Add(orderDetail);
                 db.SaveChanges();
             }
+
             Session["cart"] = null;
-            return Json(1, JsonRequestBehavior.AllowGet);
+            if (Session["id_Customer"] == null)
+            {
+                return Json(1, JsonRequestBehavior.AllowGet);
+            }
+            return Json(2, JsonRequestBehavior.AllowGet);
+
         }
 
         /**
@@ -343,7 +371,8 @@ namespace LaundryStore.Controllers
             if (listCart == null)
             {
                 return Json(1, JsonRequestBehavior.AllowGet);
-            } else
+            }
+            else
             {
                 listCart.Clear();
                 return Json(2, JsonRequestBehavior.AllowGet);
